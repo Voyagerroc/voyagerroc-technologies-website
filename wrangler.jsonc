@@ -1,0 +1,12 @@
+{
+  "name": "voyagerroc-technologies",
+  "compatibility_date": "2026-10-25",
+  "workers_dev": true,
+  "preview_urls": false,
+  "routes": [
+    { "pattern": "voyagerroctechnologies.com", "custom_domain": true }
+  ],
+  "assets": {
+    "directory": "./dist"
+  }
+}

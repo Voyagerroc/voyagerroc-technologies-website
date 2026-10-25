@@ -1,0 +1,264 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" width="1100" height="620" role="img" aria-label="Application interface: form panel on the left, live A4 report preview on the right">
+  <defs>
+    <linearGradient id="amberG" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#F59E0B"/><stop offset="100%" stop-color="#F0B037"/>
+    </linearGradient>
+    <pattern id="gridBg" width="26" height="26" patternUnits="userSpaceOnUse">
+      <path d="M26 0H0V26" fill="none" stroke="#D9DEE5" stroke-width="1"/>
+    </pattern>
+    <clipPath id="win"><rect width="1100" height="620" rx="16"/></clipPath>
+    <filter id="soft" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#0F172A" flood-opacity=".14"/>
+    </filter>
+  </defs>
+
+  <g clip-path="url(#win)">
+    <rect width="1100" height="620" fill="#F4F6F8"/>
+    <rect width="1100" height="620" fill="url(#gridBg)" opacity=".55"/>
+
+    <!-- top bar -->
+    <rect width="1100" height="56" fill="#1B2A4A"/>
+    <rect x="20" y="17" width="46" height="22" rx="5" fill="#F59E0B"/>
+    <text x="43" y="32" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#1B2A4A" text-anchor="middle">§CRM</text>
+    <text x="78" y="27" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF">Construction Report Master</text>
+    <text x="78" y="42" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#B9C3D6">Voyagerroc Construction — Daily Progress Report</text>
+
+    <g font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="600">
+      <g transform="translate(690 16)">
+        <rect width="94" height="24" rx="12" fill="#FFFFFF" fill-opacity=".12"/>
+        <circle cx="14" cy="12" r="3.5" fill="#22C55E"/>
+        <text x="26" y="16" fill="#BBF7D0">Saved</text>
+      </g>
+      <g transform="translate(794 16)"><rect width="42" height="24" rx="6" fill="#FFFFFF" fill-opacity=".12"/><text x="21" y="16" fill="#FFFFFF" text-anchor="middle">TR</text></g>
+      <g transform="translate(842 16)"><rect width="32" height="24" rx="6" fill="#FFFFFF" fill-opacity=".12"/><text x="16" y="16" fill="#FFFFFF" text-anchor="middle">🌙</text></g>
+      <g transform="translate(880 16)"><rect width="46" height="24" rx="6" fill="#FFFFFF" fill-opacity=".12"/><text x="23" y="16" fill="#FFFFFF" text-anchor="middle">New</text></g>
+      <g transform="translate(932 16)"><rect width="48" height="24" rx="6" fill="#F59E0B"/><text x="24" y="16" fill="#1B2A4A" text-anchor="middle">Save</text></g>
+      <g transform="translate(986 16)"><rect width="94" height="24" rx="6" fill="#F59E0B"/><text x="47" y="16" fill="#1B2A4A" text-anchor="middle">Print / PDF</text></g>
+    </g>
+
+    <!-- ============ LEFT: FORM PANEL ============ -->
+    <g filter="url(#soft)">
+      <rect x="20" y="76" width="330" height="524" rx="12" fill="#FFFFFF" stroke="#D9DEE5"/>
+    </g>
+
+    <!-- history section -->
+    <rect x="20" y="76" width="330" height="34" fill="#FAFBFC"/>
+    <rect x="34" y="86" width="28" height="15" rx="4" fill="#FEF3E2"/>
+    <text x="48" y="97" font-family="Consolas, monospace" font-size="9" font-weight="700" fill="#B45309" text-anchor="middle">§00</text>
+    <text x="70" y="98" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="600" fill="#1B2A4A">SAVED REPORTS</text>
+    <text x="334" y="98" font-size="9" fill="#6B7280" text-anchor="end">▾</text>
+
+    <!-- sparkline -->
+    <g transform="translate(34 120)">
+      <polygon points="0,44 6,32 44,26 82,29 120,18 158,20 196,10 234,13 272,6 282,6 282,44"
+               fill="#F59E0B" fill-opacity=".18"/>
+      <polyline points="6,32 44,26 82,29 120,18 158,20 196,10 234,13 272,6"
+                fill="none" stroke="#F59E0B" stroke-width="2" stroke-linejoin="round"/>
+      <g fill="#1B2A4A">
+        <circle cx="6" cy="32" r="2"/><circle cx="44" cy="26" r="2"/><circle cx="82" cy="29" r="2"/>
+        <circle cx="120" cy="18" r="2"/><circle cx="158" cy="20" r="2"/><circle cx="196" cy="10" r="2"/>
+        <circle cx="234" cy="13" r="2"/><circle cx="272" cy="6" r="2"/>
+      </g>
+    </g>
+
+    <!-- history rows -->
+    <g font-family="Segoe UI, Arial, sans-serif">
+      <rect x="34" y="176" width="282" height="34" rx="7" fill="#FEF3E2" stroke="#F59E0B"/>
+      <text x="44" y="191" font-size="11" font-weight="700" fill="#1B2A4A">09.08.2026</text>
+      <text x="44" y="204" font-size="9.5" fill="#6B7280">Voyagerroc Residences — Block B · 37%</text>
+      <rect x="272" y="184" width="34" height="16" rx="4" fill="#1B2A4A"/>
+      <text x="289" y="196" font-family="Consolas, monospace" font-size="9" font-weight="700" fill="#FFFFFF" text-anchor="middle">#042</text>
+
+      <rect x="34" y="214" width="282" height="34" rx="7" fill="#FFFFFF" stroke="#E5E7EB"/>
+      <text x="44" y="229" font-size="11" font-weight="700" fill="#1B2A4A">08.08.2026</text>
+      <text x="44" y="242" font-size="9.5" fill="#6B7280">Voyagerroc Residences — Block B · 35%</text>
+      <rect x="272" y="222" width="34" height="16" rx="4" fill="#1B2A4A"/>
+      <text x="289" y="234" font-family="Consolas, monospace" font-size="9" font-weight="700" fill="#FFFFFF" text-anchor="middle">#041</text>
+    </g>
+
+    <!-- form sections list -->
+    <g font-family="Segoe UI, Arial, sans-serif">
+      <!-- §01 open -->
+      <rect x="20" y="262" width="330" height="30" fill="#FAFBFC"/>
+      <rect x="34" y="270" width="28" height="15" rx="4" fill="#FEF3E2"/>
+      <text x="48" y="281" font-family="Consolas, monospace" font-size="9" font-weight="700" fill="#B45309" text-anchor="middle">§01</text>
+      <text x="70" y="282" font-size="11" font-weight="600" fill="#1B2A4A">PROJECT INFO</text>
+      <circle cx="300" cy="277" r="7" fill="#DCFCE7"/><text x="300" y="281" font-size="9" fill="#166534" text-anchor="middle">✓</text>
+
+      <g>
+        <text x="34" y="308" font-size="8.5" font-weight="700" fill="#6B7280" letter-spacing=".5">DATE</text>
+        <rect x="34" y="313" width="134" height="26" rx="6" fill="#FFFFFF" stroke="#F59E0B"/>
+        <text x="44" y="330" font-size="11" fill="#1F2937">2026-08-09</text>
+        <text x="182" y="308" font-size="8.5" font-weight="700" fill="#6B7280" letter-spacing=".5">REPORT NO</text>
+        <rect x="182" y="313" width="134" height="26" rx="6" fill="#FFFFFF" stroke="#D9DEE5"/>
+        <text x="192" y="330" font-size="11" fill="#1F2937">042</text>
+
+        <text x="34" y="358" font-size="8.5" font-weight="700" fill="#6B7280" letter-spacing=".5">PROJECT NAME</text>
+        <rect x="34" y="363" width="282" height="26" rx="6" fill="#FFFFFF" stroke="#D9DEE5"/>
+        <text x="44" y="380" font-size="11" fill="#1F2937">Voyagerroc Residences — Block B</text>
+      </g>
+
+      <!-- collapsed rows -->
+      <g>
+        <rect x="20" y="400" width="330" height="30" fill="#FAFBFC"/>
+        <rect x="34" y="408" width="28" height="15" rx="4" fill="#FEF3E2"/>
+        <text x="48" y="419" font-family="Consolas, monospace" font-size="9" font-weight="700" fill="#B45309" text-anchor="middle">§03</text>
+        <text x="70" y="420" font-size="11" font-weight="600" fill="#1B2A4A">WORKFORCE &amp; EQUIPMENT</text>
+        <circle cx="300" cy="415" r="7" fill="#DCFCE7"/><text x="300" y="419" font-size="9" fill="#166534" text-anchor="middle">✓</text>
+        <text x="334" y="420" font-size="9" fill="#6B7280" text-anchor="end">▾</text>
+
+        <rect x="20" y="430" width="330" height="30" fill="#FFFFFF"/>
+        <rect x="34" y="438" width="28" height="15" rx="4" fill="#FEF3E2"/>
+        <text x="48" y="449" font-family="Consolas, monospace" font-size="9" font-weight="700" fill="#B45309" text-anchor="middle">§06</text>
+        <text x="70" y="450" font-size="11" font-weight="600" fill="#1B2A4A">HSE &amp; SAFETY</text>
+        <text x="334" y="450" font-size="9" fill="#6B7280" text-anchor="end">▾</text>
+      </g>
+
+      <!-- §08 photos dropzone -->
+      <rect x="20" y="460" width="330" height="30" fill="#FAFBFC"/>
+      <rect x="34" y="468" width="28" height="15" rx="4" fill="#FEF3E2"/>
+      <text x="48" y="479" font-family="Consolas, monospace" font-size="9" font-weight="700" fill="#B45309" text-anchor="middle">§08</text>
+      <text x="70" y="480" font-size="11" font-weight="600" fill="#1B2A4A">SITE PHOTOS</text>
+
+      <rect x="34" y="498" width="282" height="52" rx="9" fill="#FEF3E2" stroke="#F59E0B" stroke-width="2" stroke-dasharray="6 4"/>
+      <text x="175" y="521" font-size="15" text-anchor="middle">📷</text>
+      <text x="175" y="538" font-size="10" fill="#6B7280" text-anchor="middle">Drop photos here or click to browse</text>
+
+      <g>
+        <rect x="34" y="560" width="66" height="30" rx="6" fill="#E9EDF2" stroke="#D9DEE5"/>
+        <rect x="106" y="560" width="66" height="30" rx="6" fill="#E9EDF2" stroke="#D9DEE5"/>
+        <rect x="178" y="560" width="66" height="30" rx="6" fill="#E9EDF2" stroke="#D9DEE5"/>
+        <rect x="250" y="560" width="66" height="30" rx="6" fill="#E9EDF2" stroke="#D9DEE5"/>
+      </g>
+    </g>
+
+    <!-- ============ RIGHT: REPORT PREVIEW ============ -->
+    <g filter="url(#soft)">
+      <rect x="366" y="76" width="714" height="524" rx="12" fill="#FFFFFF" stroke="#D9DEE5"/>
+    </g>
+    <text x="386" y="100" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#6B7280" letter-spacing="1">LIVE PREVIEW — A4</text>
+    <g font-family="Consolas, monospace" font-size="10" fill="#6B7280">
+      <rect x="978" y="88" width="22" height="18" rx="5" fill="#FFFFFF" stroke="#D9DEE5"/><text x="989" y="101" text-anchor="middle">−</text>
+      <text x="1024" y="101" text-anchor="middle">100%</text>
+      <rect x="1048" y="88" width="22" height="18" rx="5" fill="#FFFFFF" stroke="#D9DEE5"/><text x="1059" y="101" text-anchor="middle">+</text>
+    </g>
+
+    <!-- the A4 page -->
+    <g transform="translate(410 116)">
+      <rect width="626" height="470" fill="#FFFFFF" stroke="#D9DEE5"/>
+
+      <!-- page header -->
+      <rect width="626" height="66" fill="#1B2A4A"/>
+      <text x="24" y="32" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">CONSTRUCTION DAILY PROGRESS REPORT</text>
+      <text x="24" y="50" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#B9C3D6">Voyagerroc Residences — Block B · Ataşehir / İstanbul</text>
+      <g font-family="Segoe UI, Arial, sans-serif" font-size="9" fill="#DCE3EF" text-anchor="end">
+        <text x="602" y="24">Date: <tspan font-family="Consolas, monospace" fill="#FFFFFF" font-weight="700">09.08.2026</tspan></text>
+        <text x="602" y="38">Report No: <tspan font-family="Consolas, monospace" fill="#FFFFFF" font-weight="700">#042</tspan></text>
+        <text x="602" y="52">Site Chief: <tspan font-family="Consolas, monospace" fill="#FFFFFF" font-weight="700">M. Tan</tspan></text>
+      </g>
+
+      <!-- KPI row -->
+      <rect y="66" width="626" height="52" fill="#D9DEE5"/>
+      <g font-family="Segoe UI, Arial, sans-serif" text-anchor="middle">
+        <rect x="0" y="66" width="124" height="51" fill="#FFFFFF"/>
+        <text x="62" y="94" font-family="Consolas, monospace" font-size="17" font-weight="700" fill="#1B2A4A">27</text>
+        <text x="62" y="108" font-size="7.5" fill="#6B7280" letter-spacing=".5">PERSONNEL</text>
+
+        <rect x="125" y="66" width="125" height="51" fill="#FFFFFF"/>
+        <text x="187" y="94" font-family="Consolas, monospace" font-size="17" font-weight="700" fill="#2563EB">230</text>
+        <text x="187" y="108" font-size="7.5" fill="#6B7280" letter-spacing=".5">MAN-HOURS</text>
+
+        <rect x="251" y="66" width="124" height="51" fill="#FFFFFF"/>
+        <text x="313" y="94" font-family="Consolas, monospace" font-size="15" font-weight="700" fill="#1B2A4A">⛅ 24°</text>
+        <text x="313" y="108" font-size="7.5" fill="#6B7280" letter-spacing=".5">PARTLY CLOUDY</text>
+
+        <rect x="376" y="66" width="125" height="51" fill="#FFFFFF"/>
+        <text x="438" y="94" font-family="Consolas, monospace" font-size="17" font-weight="700" fill="#16A34A">0</text>
+        <text x="438" y="108" font-size="7.5" fill="#6B7280" letter-spacing=".5">HSE INCIDENTS</text>
+
+        <rect x="502" y="66" width="124" height="51" fill="#FFFFFF"/>
+        <text x="564" y="94" font-family="Consolas, monospace" font-size="17" font-weight="700" fill="#1B2A4A">37%</text>
+        <text x="564" y="108" font-size="7.5" fill="#6B7280" letter-spacing=".5">PROGRESS</text>
+      </g>
+
+      <!-- progress block -->
+      <g font-family="Segoe UI, Arial, sans-serif">
+        <text x="24" y="140" font-size="9" font-weight="600" fill="#B45309" letter-spacing=".6">OVERALL PROGRESS &amp; SCHEDULE STATUS</text>
+        <line x1="248" y1="137" x2="602" y2="137" stroke="#EAD9BE"/>
+        <rect x="24" y="150" width="578" height="13" rx="6.5" fill="#E5E7EB"/>
+        <rect x="24" y="150" width="214" height="13" rx="6.5" fill="url(#amberG)"/>
+        <rect x="255" y="147" width="2" height="19" fill="#1B2A4A"/>
+        <text x="24" y="180" font-size="9" fill="#6B7280">Completion <tspan fill="#DC2626" font-weight="700">−3% behind plan</tspan></text>
+        <text x="602" y="180" font-size="9" font-family="Consolas, monospace" font-weight="700" fill="#1B2A4A" text-anchor="end">37% / 40% · Deviation: −2 days</text>
+      </g>
+      <line x1="0" y1="194" x2="626" y2="194" stroke="#D9DEE5"/>
+
+      <!-- tasks -->
+      <g font-family="Segoe UI, Arial, sans-serif">
+        <text x="24" y="216" font-size="9" font-weight="600" fill="#B45309" letter-spacing=".6">TASKS PERFORMED TODAY</text>
+        <line x1="176" y1="213" x2="602" y2="213" stroke="#EAD9BE"/>
+        <g font-size="9.5" fill="#374151">
+          <text x="24" y="234">▸  3rd floor column rebar tied — 45 m²</text>
+          <text x="24" y="250">▸  Ground floor plastering completed — 210 m²</text>
+          <text x="24" y="266">▸  Electrical conduits laid on 2nd floor</text>
+        </g>
+      </g>
+      <line x1="0" y1="282" x2="626" y2="282" stroke="#D9DEE5"/>
+
+      <!-- split: donut + equipment table -->
+      <g font-family="Segoe UI, Arial, sans-serif">
+        <text x="24" y="304" font-size="9" font-weight="600" fill="#B45309" letter-spacing=".6">WORKFORCE DISTRIBUTION</text>
+        <line x1="164" y1="301" x2="300" y2="301" stroke="#EAD9BE"/>
+        <g transform="translate(30 316)">
+          <circle cx="34" cy="34" r="33" fill="#1B2A4A"/>
+          <path d="M34 1a33 33 0 0 1 28.4 49.9L34 34z" fill="#F59E0B"/>
+          <path d="M34 67A33 33 0 0 1 6.1 16.6L34 34z" fill="#9CA3AF"/>
+          <circle cx="34" cy="34" r="16" fill="#FFFFFF"/>
+          <text x="34" y="39" font-family="Consolas, monospace" font-size="13" font-weight="700" fill="#1B2A4A" text-anchor="middle">27</text>
+        </g>
+        <g font-size="9" fill="#374151">
+          <rect x="112" y="325" width="8" height="8" rx="2" fill="#1B2A4A"/><text x="126" y="333">Main Contractor: 14 (52%)</text>
+          <rect x="112" y="345" width="8" height="8" rx="2" fill="#F59E0B"/><text x="126" y="353">Subcontractor: 9 (33%)</text>
+          <rect x="112" y="365" width="8" height="8" rx="2" fill="#9CA3AF"/><text x="126" y="373">Engineer / Tech: 4 (15%)</text>
+        </g>
+
+        <text x="330" y="304" font-size="9" font-weight="600" fill="#B45309" letter-spacing=".6">SITE EQUIPMENT</text>
+        <line x1="416" y1="301" x2="602" y2="301" stroke="#EAD9BE"/>
+        <g font-size="9" fill="#374151">
+          <text x="330" y="322" font-size="7.5" font-weight="700" fill="#6B7280" letter-spacing=".4">EQUIPMENT</text>
+          <text x="602" y="322" font-size="7.5" font-weight="700" fill="#6B7280" letter-spacing=".4" text-anchor="end">HOURS</text>
+          <line x1="330" y1="327" x2="602" y2="327" stroke="#D9DEE5"/>
+          <text x="330" y="343">Tower crane</text><text x="602" y="343" font-family="Consolas, monospace" text-anchor="end">8 h</text>
+          <line x1="330" y1="349" x2="602" y2="349" stroke="#E5E7EB" stroke-dasharray="2 2"/>
+          <text x="330" y="365">Excavator CAT 320</text><text x="602" y="365" font-family="Consolas, monospace" text-anchor="end">6 h</text>
+          <line x1="330" y1="371" x2="602" y2="371" stroke="#E5E7EB" stroke-dasharray="2 2"/>
+          <text x="330" y="387">Concrete pump</text><text x="602" y="387" font-family="Consolas, monospace" text-anchor="end">3 h</text>
+        </g>
+      </g>
+      <line x1="0" y1="404" x2="626" y2="404" stroke="#D9DEE5"/>
+
+      <!-- HSE -->
+      <g font-family="Segoe UI, Arial, sans-serif">
+        <text x="24" y="424" font-size="9" font-weight="600" fill="#B45309" letter-spacing=".6">HSE &amp; SAFETY REPORT</text>
+        <line x1="150" y1="421" x2="602" y2="421" stroke="#EAD9BE"/>
+        <g>
+          <rect x="24" y="432" width="186" height="26" rx="6" fill="#FAFBFC" stroke="#E5E7EB"/>
+          <text x="117" y="449" font-size="9" fill="#374151" text-anchor="middle">Incidents <tspan font-family="Consolas, monospace" font-weight="700" fill="#16A34A">0</tspan></text>
+          <rect x="220" y="432" width="186" height="26" rx="6" fill="#FAFBFC" stroke="#E5E7EB"/>
+          <text x="313" y="449" font-size="9" fill="#374151" text-anchor="middle">Near Misses <tspan font-family="Consolas, monospace" font-weight="700" fill="#B45309">1</tspan></text>
+          <rect x="416" y="432" width="186" height="26" rx="6" fill="#DCFCE7"/>
+          <text x="509" y="449" font-size="9" fill="#166534" text-anchor="middle">🦺 Toolbox talk held</text>
+        </g>
+      </g>
+
+      <!-- stamp -->
+      <g transform="translate(548 372)" opacity=".5">
+        <circle r="30" fill="none" stroke="#B45309" stroke-width="2.5"/>
+        <circle r="24" fill="none" stroke="#B45309" stroke-width="1"/>
+        <text y="-6" font-family="Segoe UI, Arial, sans-serif" font-size="7" font-weight="700" fill="#B45309" text-anchor="middle">VOYAGERROC</text>
+        <text y="3" font-family="Segoe UI, Arial, sans-serif" font-size="6" font-weight="700" fill="#B45309" text-anchor="middle">CONSTRUCTION</text>
+        <text y="13" font-family="Consolas, monospace" font-size="6" font-weight="700" fill="#B45309" text-anchor="middle">09.08.2026</text>
+      </g>
+    </g>
+  </g>
+</svg>

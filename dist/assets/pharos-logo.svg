@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Pharos">
+  <title>Pharos</title>
+  <!-- A lighthouse standing inside the onion-routing layers: the beam is the
+       query, the rings are the network it reaches into. -->
+  <g fill="none" stroke="#34d399" stroke-width="2.4" opacity="0.42">
+    <circle cx="32" cy="30" r="27"/>
+    <circle cx="32" cy="30" r="19"/>
+  </g>
+  <g stroke="#34d399" stroke-width="2.6" stroke-linecap="round" opacity="0.75">
+    <path d="M20 20 L7 14"/>
+    <path d="M44 20 L57 14"/>
+  </g>
+  <path d="M27 52 L29.5 22 L34.5 22 L37 52 Z" fill="#34d399"/>
+  <rect x="28" y="33" width="8" height="2.4" fill="#0d1117" opacity="0.75"/>
+  <rect x="28.6" y="18.5" width="6.8" height="4.4" rx="1" fill="#34d399"/>
+  <circle cx="32" cy="20.7" r="1.9" fill="#f4fff0"/>
+  <path d="M29.4 17.4 L32 13.6 L34.6 17.4 Z" fill="#34d399"/>
+  <ellipse cx="32" cy="52.6" rx="10.5" ry="2.1" fill="#34d399" opacity="0.55"/>
+</svg>

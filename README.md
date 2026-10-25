@@ -1,0 +1,80 @@
+# Voyagerroc Technologies
+
+Corporate website for a product ecosystem spanning evidence-led recruitment, personal finance, Bluetooth communication, research and operations.
+
+**Website:** https://voyagerroctechnologies.com  
+**Cloudflare origin:** https://voyagerroc-technologies.voyagerroc.workers.dev
+
+The website runs independently on **Cloudflare Workers Static Assets**. It does not require OpenAI Sites, an OpenAI account, or an AI API key. All runtime scripts, fonts and 3D assets are served from the same origin.
+
+## What is included
+
+- Turkish and English content, project search, filters and product detail dialogs.
+- Featured products: EIP, PayRadar, LaserDeck PTT, Pharos Onion Researcher and Bungalow OS.
+- A native-scroll product story linked to one Three.js scene, with five distinct product modules.
+- Mobile layouts, keyboard navigation, motion pause, reduced-motion support and a static WebGL fallback.
+- Android test links for EIP, PayRadar and LaserDeck. Test links do not imply a public production release; eligibility is managed by each application.
+
+Some product visuals are explicitly labelled schematic or use sample data. Product statuses describe current scope rather than claiming every workflow passed end-to-end testing.
+
+## Run locally
+
+Install Node.js 20 or later, then:
+
+```sh
+npm ci
+npm run dev
+```
+
+Open http://localhost:8890. The static files are in `dist/`; there is no application build step. Use an HTTP server rather than opening `index.html` directly because the 3D scene uses JavaScript modules.
+
+```sh
+npm run check
+```
+
+This checks JavaScript syntax. Browser checks should also cover both languages, mobile navigation, all five story steps, product dialogs, reduced motion and WebGL failure. No real-device FPS or Lighthouse score is claimed.
+
+## Deploy to your own Cloudflare account
+
+1. Change `name` in `wrangler.jsonc` to a unique Worker name.
+2. Remove `routes`, or replace the hostname with a domain you control in an active Cloudflare zone.
+3. Replace company content, branding, contact addresses, canonical/social URLs, `robots.txt` and `sitemap.xml` for your deployment.
+4. Authenticate and deploy:
+
+```sh
+npx wrangler login
+npm run deploy
+```
+
+For a first deployment, omit `routes` and verify the returned `workers.dev` address before adding a custom domain. A `custom_domain: true` route lets Cloudflare manage the Worker domain binding and certificate. Preserve unrelated DNS and email records. OpenAI verification TXT records and OpenAI Sites A targets are not used by this deployment.
+
+Deployments are manual from the CLI; this repository does not configure automatic GitHub deployment or require a stored API token.
+
+## Project structure
+
+```text
+dist/
+  index.html             Page structure and static story content
+  app.js                 Languages, search, filters and product dialogs
+  motion.js / motion.css Scroll story and progressive motion
+  scene.js               Three.js scene and product modules
+  data/projects.js       Curated public product data
+  assets/                Images, logo, icons and self-hosted fonts
+  vendor/                Three.js modules and license
+brand/                   Separate master PNG logo copy
+wrangler.jsonc           Cloudflare static deployment and custom domain
+```
+
+The logo PNG is a raster brand asset, not a vector master. Fonts and Three.js retain their included upstream license files. No general open-source license is granted for the original code or brand assets in this repository. Replace Voyagerroc branding and product content before publishing a derivative site.
+
+**Contact:** voyagerroc@voyagerroctechnologies.com
+
+## Preview
+
+![Voyagerroc Technologies desktop website](docs/preview-desktop.png)
+
+[Mobile preview](docs/preview-mobile.png)
+
+## Development dependency note
+
+The deployed site has no npm runtime dependencies. The pinned Wrangler development tool currently reports three transitive audit findings (two moderate, one high, through Miniflare/Undici). These packages are used by local tooling and are not shipped in `dist/`. Review upstream fixes before exposing a local development server; it should remain bound to localhost.
