@@ -36,3 +36,7 @@ SaaS-oriented development does not establish a launched multi-tenant subscriptio
 These references inform terminology; they do not certify Voyagerroc products or establish a partnership with the publisher.
 
 Homepage text lives in `dist/app.js`, with a Turkish fallback in `dist/index.html`. The scrolling story uses `dist/motion.js` and project summaries in `dist/data/projects.js`. Update these surfaces together. Do not revise technical scope or release status just to make a headline sound stronger.
+
+## Owner terminology update
+
+Public interface text uses **Si**, including English UI copy, metadata and product descriptions. Preserve technical identifiers and actual repository URLs. This is the owner’s naming preference; it does not imply achieved superintelligence or foundation-model research. The APERTURE scene is a conceptual five-domain portfolio study, not a live integration map.

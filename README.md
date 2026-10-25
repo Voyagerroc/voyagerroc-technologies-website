@@ -11,7 +11,7 @@ The website runs independently on **Cloudflare Workers Static Assets**. It does 
 
 - Turkish and English content, project search, filters and product detail dialogs.
 - Featured products: EIP, PayRadar, LaserDeck PTT, Pharos Onion Researcher and Bungalow OS.
-- A native-scroll product story linked to one Three.js scene, with five distinct product modules.
+- A native-scroll product story linked to APERTURE: one procedural Three.js sculpture with five product domains.
 - Mobile layouts, keyboard navigation, motion pause, reduced-motion support and a static WebGL fallback.
 - Android test links for EIP, PayRadar and LaserDeck. Test links do not imply a public production release; eligibility is managed by each application.
 
@@ -19,14 +19,15 @@ Some product visuals are explicitly labelled schematic or use sample data. Produ
 
 ## Run locally
 
-Install Node.js 20 or later, then:
+Install Node.js 20.18.1 or later, then:
 
 ```sh
 npm ci
+npm run build
 npm run dev
 ```
 
-Open http://localhost:8890. The static files are in `dist/`; there is no application build step. Use an HTTP server rather than opening `index.html` directly because the 3D scene uses JavaScript modules.
+Open http://localhost:8890. The static files are in `dist/`; the application is static. The build regenerates product pages, structured data and security headers. Use an HTTP server rather than opening `index.html` directly because the 3D scene uses JavaScript modules.
 
 ```sh
 npm run check
@@ -57,7 +58,7 @@ dist/
   index.html             Page structure and static story content
   app.js                 Languages, search, filters and product dialogs
   motion.js / motion.css Scroll story and progressive motion
-  scene.js               Three.js scene and product modules
+  scene.js / aperture.js Procedural five-domain sculpture
   data/projects.js       Curated public product data
   assets/                Images, logo, icons and self-hosted fonts
   vendor/                Three.js modules and license
@@ -77,16 +78,20 @@ The logo PNG is a raster brand asset, not a vector master. Fonts and Three.js re
 
 ## Development dependency note
 
-The deployed site has no npm runtime dependencies. The pinned Wrangler development tool currently reports three transitive audit findings (two moderate, one high, through Miniflare/Undici). These packages are used by local tooling and are not shipped in `dist/`. Review upstream fixes before exposing a local development server; it should remain bound to localhost.
+The deployed site has no npm runtime dependencies. Miniflare’s Undici dependency is overridden to patched `7.30.1`; a clean install and full npm audit reported zero known vulnerabilities on 25 October 2026. Keep the pinned tooling under review. See [security and SEO notes](docs/SECURITY-AND-SEO.md) for verification scope and account-level responsibilities.
 
 ## Legal content and privacy controls
 
 The legal centre is served at `/yasal/`, with static Turkish notices for KVKK, privacy, browser storage, terms, intellectual property, data requests and operator contact. It covers this portfolio site, not all linked applications. The operator identity appears only where the legal notices require it; the main page uses the brand name.
 
-Edit `content/legal.mjs`, then run `npm run build:legal` to regenerate the nine HTML pages and sitemap. The deploy script runs generation and syntax checks first. Do not copy these identity-specific notices unchanged to another business, or treat their presence as a compliance certification. Provider transfer safeguards, actual retention settings, contact-information duties and rights/permissions require separate operational verification.
+Edit `content/legal.mjs`, then run `npm run build` to regenerate legal/product pages, the sitemap and CSP hashes. The deploy script runs generation and syntax checks first. Do not copy these identity-specific notices unchanged to another business, or treat their presence as a compliance certification. Provider transfer safeguards, actual retention settings, contact-information duties and rights/permissions require separate operational verification.
 
 `dist/_headers` applies no-transform to suppress automatically injected browser measurement, restricts scripts and connections to the same origin, and adds security/privacy headers. Only sessionStorage is used for an explicitly selected language; the former localStorage key is removed. The storage notice provides a targeted clear button. No consent-acceptance wall, advertising tracker or marketing form is added. Reassess policies and consent before adding any optional analytics, embeds, accounts, forms or payments.
 
 ## Developer collaboration scope
 
 The redundant footer branding/domain/social block was removed. `/yasal/isbirligi/` describes prospective collaboration for the operator's own projects; it is linked from the company section and legal navigation. It does not launch a vacancy, applicant pool, paid intermediary service or CV form. Actual worker classification, tax/social insurance duties, project terms and written IP arrangements remain separate from this general notice. No blanket freelancer exemption or automatic rights transfer is asserted.
+
+## Search and editorial configuration
+
+Five featured products have crawlable pages at `/urunler/{id}/`. The homepage includes WebSite/Brand/ItemList structured data, canonical/social metadata and direct product links. The alternate Workers hostname is noindex. See [security and SEO](docs/SECURITY-AND-SEO.md) and [editorial direction](docs/VOICE.md). Public terminology uses **Si** at the owner’s request; it does not claim achieved superintelligence.

@@ -215,7 +215,7 @@ window.PORTFOLIO_PROJECTS = [
       "summary": "Tahmini yaz. Sonucunu takip et.",
       "description": "Maç verilerini, istatistiksel tahminleri ve kişisel analiz günlüğünü bir araya getiren futbol çalışma alanı.",
       "problem": "Tahmin üretmek kolay; gerekçesini ve gerçekleşen sonuçla farkını izlemek daha zor.",
-      "approach": "Fikstür, istatistiksel modeller, isteğe bağlı AI analizi ve tahmin defteri.",
+      "approach": "Fikstür, istatistiksel modeller, isteğe bağlı Si analizi ve tahmin defteri.",
       "scope": "Web sayfası erişilebilir. Bazı analizler kullanıcının sağlayıcı anahtarını gerektiriyor. Tahmin doğruluğu veya kazanç garantisi yok."
     },
     "en": {
@@ -223,7 +223,7 @@ window.PORTFOLIO_PROJECTS = [
       "summary": "Make a prediction. Track its outcome.",
       "description": "A football workspace combining match data, statistical predictions and a personal analysis log.",
       "problem": "Producing predictions is easy; tracking reasoning and actual outcomes takes more care.",
-      "approach": "Fixtures, statistical modelling, optional AI analysis and a prediction journal.",
+      "approach": "Fixtures, statistical modelling, optional Si analysis and a prediction journal.",
       "scope": "The web interface is accessible. Some analyses require the user's provider key; no accuracy or financial return is guaranteed."
     },
     "featured": false
@@ -242,7 +242,7 @@ window.PORTFOLIO_PROJECTS = [
       "tag": "Güvenlik / Gözlemlenebilirlik",
       "summary": "Model trafiğine görünürlük.",
       "description": "LLM isteklerinde hassas veri maskeleme ve istek metaverisi denetimi için geliştirilen yerel ağ geçidi.",
-      "problem": "AI servislerine giden veride ne bulunduğunu ve hangi isteklerin yapıldığını takip etmek.",
+      "problem": "Si servislerine giden veride ne bulunduğunu ve hangi isteklerin yapıldığını takip etmek.",
       "approach": "Proxy katmanı, DLP kuralları ve denetim kayıtları.",
       "scope": "Beta kaynakları incelendi. Hassas verinin her koşulda engelleneceğine veya sıfır sızıntıya ilişkin garanti sunulmuyor."
     },
@@ -344,7 +344,7 @@ window.PORTFOLIO_PROJECTS = [
   },
   {
     "id": "ai-news",
-    "name": "Güncel AI Haberleri",
+    "name": "Güncel Si Haberleri",
     "category": "intelligence",
     "status": "source",
     "stack": [

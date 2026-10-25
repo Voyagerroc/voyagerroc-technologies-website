@@ -1,0 +1,4 @@
+Contact: mailto:voyagerroc@voyagerroctechnologies.com
+Expires: 2027-04-25T00:00:00Z
+Preferred-Languages: tr, en
+Canonical: https://voyagerroctechnologies.com/.well-known/security.txt

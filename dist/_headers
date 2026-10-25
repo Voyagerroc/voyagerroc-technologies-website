@@ -1,7 +1,15 @@
 /*
   Cache-Control: public, max-age=0, must-revalidate, no-transform
-  Content-Security-Policy: default-src 'self'; script-src 'self'; connect-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'sha256-nFvyRKqU8DZFqI0bTD2reN+lhtoESh9Zeq7GLcXgYFw=' 'sha256-gpMEyk9ID0pCT4+MpKpvsicou3bJdpgQBg+2K37253c=' 'sha256-CwWRObieeJ2sv2c3CoYyEmEBEXGX5YBgeJHS/L8FeCg=' 'sha256-lVnlKzF4+/lnV2Eat3f66wuGJgnJFDSDdOMwlO0EEuU=' 'sha256-4dMQIl+Wg7I6sQYYvbIidkJZop5RpNSdavl33NkiS48=' 'sha256-LUDO27dn7ZHKrknUJx5lxJbBcWsYIDiLSKOYzxrknOA='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
   Referrer-Policy: no-referrer
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
-  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=31536000
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=(), bluetooth=(), midi=(), display-capture=(), fullscreen=()
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  X-Permitted-Cross-Domain-Policies: none
+  X-DNS-Prefetch-Control: off
+
+https://voyagerroc-technologies.voyagerroc.workers.dev/*
+  X-Robots-Tag: noindex, follow

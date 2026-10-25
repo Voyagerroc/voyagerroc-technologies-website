@@ -6,14 +6,20 @@
   "scripts": {
     "dev": "wrangler dev --port 8890",
     "deploy": "wrangler deploy",
-    "check": "node --check dist/app.js && node --check dist/motion.js && node --check dist/scene.js && node --check dist/legal.js && node --check content/legal.mjs && node --check scripts/build-legal.mjs",
+    "check": "node --check dist/app.js && node --check dist/motion.js && node --check dist/scene.js && node --check dist/legal.js && node --check content/legal.mjs && node --check scripts/build-legal.mjs && node --check dist/aperture.js && node --check scripts/build-site.mjs",
     "build:legal": "node scripts/build-legal.mjs",
-    "predeploy": "npm run build:legal && npm run check"
+    "predeploy": "npm run build && npm run check",
+    "build": "npm run build:legal && node scripts/build-site.mjs"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=20.18.1"
   },
   "devDependencies": {
     "wrangler": "4.152.0"
+  },
+  "overrides": {
+    "miniflare": {
+      "undici": "7.30.1"
+    }
   }
 }
