@@ -95,3 +95,7 @@ The redundant footer branding/domain/social block was removed. `/yasal/isbirligi
 ## Search and editorial configuration
 
 Five featured products have crawlable pages at `/urunler/{id}/`. The homepage includes WebSite/Brand/ItemList structured data, canonical/social metadata and direct product links. The alternate Workers hostname and HTTP requests redirect permanently to the canonical HTTPS host. See [security and SEO](docs/SECURITY-AND-SEO.md) and [editorial direction](docs/VOICE.md). Public terminology uses **Si** at the owner’s request; it does not claim achieved superintelligence.
+
+## Privacy choices and logs
+
+All pages include first-party accept/reject/settings controls. Optional analytics is **inactive pending transfer and operational verification**; preview choices do not permit later activation. Minimized custom security logs are separate, with raw invocation logging and traces disabled. The prepared optional endpoint stays closed without deployment flags, a new consent version, visitor permission and a rate limiter. See [privacy operations](docs/PRIVACY-OPERATIONS.md). Run `npm run check:telemetry` for the consent and minimisation checks.

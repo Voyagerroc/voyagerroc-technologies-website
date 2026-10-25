@@ -4,7 +4,7 @@ This document describes the portfolio website. It is not a security certificatio
 
 ## Exposure and controls
 
-The deployment serves static files. A small stateless edge guard enforces HTTPS and the canonical hostname, permits GET/HEAD and forwards asset responses. There is no business API, login, database, upload endpoint, visitor-submitted HTML or runtime secret. No remote script, font, embedded frame or 3D model is required. Product dialogs escape displayed project data. There is no analytics or advertising integration.
+The deployment serves static files. A small stateless edge guard enforces HTTPS and the canonical hostname, permits GET/HEAD and forwards asset responses. There is no business API, login, database, upload endpoint, visitor-submitted HTML or runtime secret. No remote script, font, embedded frame or 3D model is required. Product dialogs escape displayed project data. There is no advertising integration. A later change adds privacy-choice storage, minimized custom security records and an INACTIVE optional telemetry endpoint; see [privacy operations](PRIVACY-OPERATIONS.md) for its gates and legal verification limits.
 
 `scripts/build-site.mjs` emits `dist/_headers`. The content security policy permits scripts from the same origin and exact hashes of the generated JSON-LD blocks. Inline event handlers, `eval`, remote scripts, frames, plugins, workers and form submissions are not allowed. Inline styles remain permitted because the scene and dialog UI set style properties. This is a deliberate limit of the policy, not a claim that every injection risk is eliminated.
 

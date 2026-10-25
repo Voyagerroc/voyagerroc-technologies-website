@@ -13,6 +13,16 @@
     "run_worker_first": true
   },
   "vars": {
-    "CANONICAL_ORIGIN": "https://voyagerroctechnologies.com"
+    "CANONICAL_ORIGIN": "https://voyagerroctechnologies.com",
+    "ANALYTICS_ENABLED": "false",
+    "ANALYTICS_TRANSFER_READY": "false",
+    "CONSENT_VERSION": "20261025-preview"
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+    "redact_query_string": true,
+    "logs": { "enabled": true, "invocation_logs": false, "persist": true },
+    "traces": { "enabled": false }
   }
 }
