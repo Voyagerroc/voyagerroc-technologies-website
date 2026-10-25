@@ -19,3 +19,6 @@ npm run build, check, check:edge, check:telemetry and check:search passed. The s
 
 ## Next measurement
 Inspect Search Console Pages and Performance reports after processing completes, then retry the failed homepage indexing request. Record query, page, impressions, clicks and position using the same date range. Distinguish data processing from no traffic. Measure mobile field performance when sufficient data is available. Request indexing through the supported UI; do not use the restricted Indexing API for these ordinary product pages. Do not buy backlinks, invent reviews or automatically generate near-duplicate landing pages.
+
+## Final sitemap recheck
+A separate read-only Sitemaps check confirmed **Success**, type Sitemap, submitted and last read 25 October 2026, **18 discovered pages**, no errors. The earlier Couldn't fetch state no longer appears. Discovery is not indexing. Homepage indexing-request submission still has no confirmation.
