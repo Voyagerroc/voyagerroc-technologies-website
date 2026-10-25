@@ -22,3 +22,6 @@ Inspect Search Console Pages and Performance reports after processing completes,
 
 ## Final sitemap recheck
 A separate read-only Sitemaps check confirmed **Success**, type Sitemap, submitted and last read 25 October 2026, **18 discovered pages**, no errors. The earlier Couldn't fetch state no longer appears. Discovery is not indexing. Homepage indexing-request submission still has no confirmation.
+
+## Brand/demo follow-up
+The published sitemap now contains 19 URLs, including `/notlar/payradar-web-push-bildirimleri/`. This is the served XML count, not a new claim that Google has discovered or indexed all 19. The earlier independently verified Google sitemap report discovered 18 pages. A later homepage URL inspection reported URL unknown/not indexed and N/A crawl fields; manual Request indexing again returned the same Oops/Something went wrong error (tool reported two failed attempts), with no confirmation. The case page was not manually submitted after this failure. Do not interpret inconsistent new-property report wording as successful indexing, or processing reports as zero traffic.

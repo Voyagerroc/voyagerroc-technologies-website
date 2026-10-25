@@ -14,3 +14,6 @@
 
 ## Evidence and safeguards
 New README commits passed redacted Gitleaks checks. Public website output, source snapshot and outgoing commit are scanned before publication. Raw browser recordings, audit evidence and working scripts stay in ignored qa/; only the final example-data MP4, poster and captions are public. No private keys or credentials are included.
+
+## Public visibility check
+Unauthenticated GitLab API confirms PayRadar is public. The LaserDeck and eip-core paths returned 404 without credentials (including lowercase LaserDeck); their public visibility is not established. No repository visibility was changed and those two README links are not counted as confirmed publicly crawlable mentions. GitHub profile and corporate product pages are public.
