@@ -24,19 +24,19 @@ Cloudflare supplies the hosting edge. No paid WAF product, managed challenge, cu
 
 - The primary canonical host is `https://voyagerroctechnologies.com`.
 - Five featured products have static, crawlable Turkish pages at `/urunler/{id}/`, linked directly from the main page. Their status and limitations come from the same public product data as the dialogs.
-- Sitemap contains the home page, nine legal pages and five product pages. The dates describe this content revision and are not refreshed on every request.
-- Homepage JSON-LD describes a WebSite, a Brand and a five-item portfolio. Product pages use WebPage/CreativeWork. No registered corporation, address, rating, price, review, successful subscription launch or customer count is invented.
+- Sitemap contains the home page, nine legal pages, five product pages and three project approach pages. The dates describe this content revision and are not refreshed on every request.
+- Homepage JSON-LD describes a WebSite, a Brand and a five-item portfolio. Product pages use WebPage/CreativeWork and visible breadcrumbs with BreadcrumbList. Project approach pages use WebPage. No registered corporation, address, rating, price, review, successful subscription launch or customer count is invented.
 - Open Graph and social-card metadata use a local 1200×630 brand visual. Titles, descriptions, visible content and canonical URLs refer to the same products.
 - `robots.txt` permits crawling and supplies the sitemap. HTTP and the alternate Workers hostname return a permanent 308 redirect to the canonical HTTPS host. Redirects also carry `X-Robots-Tag: noindex, follow`.
 - TR/EN is a browser UI switch on one URL, not two independently served language routes. No misleading `hreflang` links are added. The crawlable default content and product pages are Turkish.
 
 The guard runs before static assets, so requests consume the account’s normal Worker request allowance; no paid service was purchased.
 
-No Search Console property, account verification token, indexing submission, ranking guarantee, paid search service or fabricated performance score is added. Search engines decide when to crawl, index and display results.
+A public Google Search Console HTML ownership-verification tag is present on the homepage for the HTTPS URL-prefix property. This is not a tracking script or a private signing key. The domain property still requires DNS verification; the deployment OAuth token does not grant DNS access. Record Google-confirmed ownership, sitemap and indexing outcomes in docs/SEARCH-OPERATIONS.md. Search engines decide when to crawl, index and display results; no ranking guarantee or fabricated performance score is offered.
 
 ## Build and verify
 
-Run `npm run build` after changing product data or HTML. It regenerates legal pages, product pages, metadata, the sitemap and the CSP hashes as a unit. Then run `npm run check`. `npm run deploy` invokes both through `predeploy`.
+Run `npm run build` after changing product data or HTML. It regenerates legal pages, product pages, metadata, the sitemap and the CSP hashes as a unit. Then run `npm run check` and `npm run check:search`. `npm run deploy` invokes both through `predeploy`.
 
 Browser QA should cover the real response headers, JSON-LD parsing, canonical URLs, all product pages, missing-path status codes, both UI languages, paused/reduced motion, WebGL fallback, offscreen suspension and phone layouts. Native-device GPU performance and a professional penetration test are outside the checks performed here.
 

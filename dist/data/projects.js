@@ -56,7 +56,7 @@ window.PORTFOLIO_PROJECTS = [
       "description": "Kira, abonelik ve taksitleri bir araya getiren; çevrimdışı kullanımı ve cihazdaki veri kontrolünü öne alan ödeme takip uygulaması.",
       "problem": "Düzenli ödemeler farklı yerlerde durunca yenileme tarihlerini ve toplam yükü görmek zorlaşıyor.",
       "approach": "Yerel kasa, mobil ödeme özeti, ertelenen ödemeler ve bildirim paneli. İsteğe bağlı senkronizasyon ile Cloudflare tabanlı arka plan hatırlatma kaynakları aynı ürün ailesinde geliştiriliyor.",
-      "scope": "Web uygulaması erişilebilir. Daha yeni yerel kopyada henüz commit edilmemiş geliştirmeler var; hepsi yayında kabul edilmiyor. Gerçek telefonda kapalı-uygulama bildirim teslimi ayrıca test gerektiriyor. iOS kaynakları bir App Store yayını anlamına gelmiyor; bulut senkronu E2EE değil.",
+      "scope": "Web uygulaması erişilebilir. Android 1.1.0 sürümü Google Play iç test kanalında yayınlandı. Orbit 3D teması ve bildirim tanılama akışı web sürümünde mevcut. Gerçek telefonda arka plan bildirim teslimi ayrıca test gerektirir. iOS için App Store yayını iddiası yoktur; bulut senkronizasyonu E2EE olarak sunulmaz.",
       "visual": "Güncel yerel arayüzün örnek ödeme verileriyle görünümü; kişisel hesap kaydı değildir."
     },
     "en": {
@@ -65,7 +65,7 @@ window.PORTFOLIO_PROJECTS = [
       "description": "A recurring-payment tracker that brings rent, subscriptions and instalments together, with offline use and control over on-device data.",
       "problem": "Scattered recurring payments make renewals and total spending hard to see.",
       "approach": "A local vault, mobile payment overview, deferred payments and a notification panel. Optional sync and Cloudflare-based background reminder sources are developed within the same product family.",
-      "scope": "The web app is accessible. The newer local copy has uncommitted work, so not every change is considered deployed. Background notifications need real-device acceptance tests. iOS source is not an App Store release; cloud sync is not E2EE.",
+      "scope": "The web app is available. Android 1.1.0 is available to internal testers on Google Play. The web release includes the Orbit 3D theme and notification diagnostics. Background notification delivery still requires physical-device verification. No App Store release is claimed; cloud sync is not presented as E2EE.",
       "visual": "The current local interface with sample payment data, not a personal account record."
     }
   },

@@ -8,10 +8,11 @@
     "deploy": "wrangler deploy",
     "check": "node --check dist/app.js && node --check dist/motion.js && node --check dist/scene.js && node --check dist/legal.js && node --check content/legal.mjs && node --check scripts/build-legal.mjs && node --check dist/aperture.js && node --check scripts/build-site.mjs && node --check src/edge.mjs && node --check src/security-headers.mjs && node --check dist/consent.js && node --check src/telemetry.mjs",
     "build:legal": "node scripts/build-legal.mjs",
-    "predeploy": "npm run build && npm run check && npm run check:edge && npm run check:telemetry",
+    "predeploy": "npm run build && npm run check && npm run check:edge && npm run check:telemetry && npm run check:search",
     "build": "npm run build:legal && node scripts/build-site.mjs",
     "check:edge": "node scripts/check-edge.mjs",
-    "check:telemetry": "node scripts/check-telemetry.mjs"
+    "check:telemetry": "node scripts/check-telemetry.mjs",
+    "check:search": "node scripts/check-search.mjs"
   },
   "engines": {
     "node": ">=20.18.1"

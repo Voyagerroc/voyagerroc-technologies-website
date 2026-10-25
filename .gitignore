@@ -8,3 +8,14 @@ node_modules/
 Thumbs.db
 qa/
 graphify-out/
+
+# Private material must stay outside the public site
+*.keystore
+*.jks
+*.pem
+*.key
+*.p12
+*.pfx
+signing-key-info.txt
+credentials*.json
+service-account*.json
