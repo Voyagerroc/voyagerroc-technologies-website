@@ -17,7 +17,7 @@ window.PORTFOLIO_PROJECTS = [
     "featured": true,
     "tr": {
       "tag": "Yetenek & işe alım platformu",
-      "summary": "Başvurudaki iddianın yanına çalışma örneğini koy.",
+      "summary": "Belge ve çalışma örnekleriyle aday değerlendirme.",
       "description": "Adayların deneyimini belgeleri ve çalışma örnekleriyle birlikte ele alan; başvuru, işveren ve değerlendirme süreçlerini aynı çatı altında buluşturan platform.",
       "problem": "Bir özgeçmişin anlattıkları ile kişinin gösterebildikleri her zaman aynı şey değil.",
       "approach": "Aday kanıt merkezi, başvurular, işveren çalışma alanı ve raporlar üzerinden daha incelenebilir bir süreç kuruyor.",
@@ -26,7 +26,7 @@ window.PORTFOLIO_PROJECTS = [
     },
     "en": {
       "tag": "Talent & recruitment platform",
-      "summary": "Put the work sample beside the claim.",
+      "summary": "Candidate evaluation with documents and work samples.",
       "description": "A platform connecting experience with documents and work samples, bringing applications, employer workflows and evaluation into one workspace.",
       "problem": "What a CV says and what a person can demonstrate are not always the same.",
       "approach": "A candidate evidence centre, applications, employer workspace and reporting make the process more inspectable.",
@@ -52,7 +52,7 @@ window.PORTFOLIO_PROJECTS = [
     "featured": true,
     "tr": {
       "tag": "Günlük hayat / Finans",
-      "summary": "Bir sonraki yenileme ne zaman?",
+      "summary": "Abonelik, taksit ve düzenli ödeme takibi.",
       "description": "Kira, abonelik ve taksitleri bir araya getiren; çevrimdışı kullanımı ve cihazdaki veri kontrolünü öne alan ödeme takip uygulaması.",
       "problem": "Düzenli ödemeler farklı yerlerde durunca yenileme tarihlerini ve toplam yükü görmek zorlaşıyor.",
       "approach": "Yerel kasa, mobil ödeme özeti, ertelenen ödemeler ve bildirim paneli. İsteğe bağlı senkronizasyon ile Cloudflare tabanlı arka plan hatırlatma kaynakları aynı ürün ailesinde geliştiriliyor.",
@@ -61,7 +61,7 @@ window.PORTFOLIO_PROJECTS = [
     },
     "en": {
       "tag": "Everyday tools / Finance",
-      "summary": "When is the next renewal?",
+      "summary": "Track subscriptions, instalments and recurring payments.",
       "description": "A recurring-payment tracker that brings rent, subscriptions and instalments together, with offline use and control over on-device data.",
       "problem": "Scattered recurring payments make renewals and total spending hard to see.",
       "approach": "A local vault, mobile payment overview, deferred payments and a notification panel. Optional sync and Cloudflare-based background reminder sources are developed within the same product family.",
@@ -82,7 +82,7 @@ window.PORTFOLIO_PROJECTS = [
     "live": "https://laserdeck-ptt.voyagerroc.workers.dev",
     "tr": {
       "tag": "Mobil / İletişim",
-      "summary": "Yakındaki telefona Bluetooth üzerinden ulaş.",
+      "summary": "Android cihazlar arasında Bluetooth iletişim.",
       "description": "İki Android telefon arasında Bluetooth üzerinden bas-konuş, sesli arama, mesaj ve fotoğraf aktarımı.",
       "problem": "Hesap ve internet bağlantısı olmadan, yakın mesafede doğrudan iletişim kurma ihtiyacı.",
       "approach": "Bluetooth Classic RFCOMM tabanlı Android uygulaması; PTT, arama ve yardımcı mesafe modülleri.",
@@ -91,7 +91,7 @@ window.PORTFOLIO_PROJECTS = [
     },
     "en": {
       "tag": "Mobile / Communication",
-      "summary": "Reach a nearby phone over Bluetooth.",
+      "summary": "Bluetooth communication between Android devices.",
       "description": "Bluetooth push-to-talk, calls, messages and photo transfer between two Android phones.",
       "problem": "Direct nearby communication without an account or internet connection.",
       "approach": "An Android app built on Bluetooth Classic RFCOMM, with PTT and supporting distance tools.",
@@ -116,7 +116,7 @@ window.PORTFOLIO_PROJECTS = [
     ],
     "tr": {
       "tag": "Araştırma & istihbarat yazılımı",
-      "summary": "Aynı iz nerede tekrar ediyor?",
+      "summary": "Hibrit arama ve kaynak ilişkisi analizi.",
       "description": "Onion servislerinde aramayı, altyapı ilişkilerini ve zaman içindeki değişimleri tek araştırma yüzeyinde birleştiren, kendi sunucunda çalıştırılabilen analiz platformu.",
       "problem": "Dağınık kayıtları bulmak tek başına yetmiyor. Bir servisin başka kayıtlarla ilişkisini ve zaman içinde neyin değiştiğini incelemek gerekiyor.",
       "approach": "BM25 ve vektör benzerliğini birleştiren arama; cüzdan, PGP, favicon ve sunucu izi üzerinden varlık geçişleri; snapshot, diff, klon adayları ve izleme listeleri.",
@@ -133,7 +133,7 @@ window.PORTFOLIO_PROJECTS = [
     },
     "en": {
       "tag": "Research & intelligence software",
-      "summary": "Where does the same trace appear again?",
+      "summary": "Hybrid search and source relationship analysis.",
       "description": "A self-hosted research platform bringing onion-service search, infrastructure relationships and changes over time into one investigative workspace.",
       "problem": "Finding scattered records is only the beginning. Researchers also need to inspect relationships and understand what changed over time.",
       "approach": "Hybrid BM25/vector search, entity pivots across wallet/PGP/favicon/server fingerprints, snapshots, diffs, clone candidates and watchlists.",
@@ -165,7 +165,7 @@ window.PORTFOLIO_PROJECTS = [
     ],
     "tr": {
       "tag": "Konaklama operasyon platformu",
-      "summary": "Hangi oda hazır, hangi iş onay bekliyor?",
+      "summary": "Tesis operasyonları ve onay kontrollü otomasyon.",
       "description": "Rezervasyon, misafir hesabı, temizlik, bakım ve finansı tek operasyon merkezinde toplayan; istisnalara ve onay gerektiren kararlara odaklanan platform.",
       "problem": "Konaklamada birbirine bağlı işlerin farklı listelerde ve uygulamalarda takip edilmesi.",
       "approach": "Modüler API, operasyon panosu, olay ve worker hattı; RBAC, denetim kaydı ve onay kapılı ajan. Rezervasyondan finans kapanışına uzanan iş alanları ayrı modüllerde.",
@@ -181,7 +181,7 @@ window.PORTFOLIO_PROJECTS = [
     },
     "en": {
       "tag": "Hospitality operations platform",
-      "summary": "Which room is ready? Which task needs approval?",
+      "summary": "Property operations and approval-gated automation.",
       "description": "An operations platform connecting reservations, guest accounts, housekeeping, maintenance and finance, with attention on exceptions and decisions that need approval.",
       "problem": "Coordinating connected operational work scattered across lists and apps.",
       "approach": "A modular API, command centre, event/worker pipeline, RBAC, audit logs and approval-gated agent. Separate domains span reservation through financial close.",
