@@ -23,3 +23,5 @@
 @media(max-width:760px){.laser-phone{padding:10px}.laser-ptt{font-size:40px}.laser-pair{gap:18px}.story-index{gap:24px}}
 @media(prefers-reduced-motion:reduce){.laser-pair{transform:none!important}}
 .legal-notice-links{display:flex;flex-wrap:wrap;gap:12px 23px;margin:25px 0;font-size:11px;line-height:1.8}.legal-notice-links a{color:#9fb5d3}.legal-notice-links a:hover{color:#8ce5da}.legal-contact-note{font-size:11px;color:#9fb5d3;margin:0 0 2px}.legal-contact-note a{text-decoration:underline;text-underline-offset:3px}
+.company-story .collaboration-note a{display:inline-block;color:#254d78;font-size:12px;border-bottom:1px solid #809bb8;padding:4px 0}.company-story .collaboration-note a:hover{color:#102d50;border-color:#254d78}
+.site-footer{padding-top:10px}.site-footer .legal-notice-links{margin-top:18px}
