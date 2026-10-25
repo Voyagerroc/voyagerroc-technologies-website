@@ -41,3 +41,6 @@ Run `npm run build` after changing product data or HTML. It regenerates legal pa
 Browser QA should cover the real response headers, JSON-LD parsing, canonical URLs, all product pages, missing-path status codes, both UI languages, paused/reduced motion, WebGL fallback, offscreen suspension and phone layouts. Native-device GPU performance and a professional penetration test are outside the checks performed here.
 
 Primary references: [Cloudflare static headers](https://developers.cloudflare.com/workers/static-assets/headers/), [Google structured data](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data), [Google robots directives](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag).
+
+## Product evidence update
+A self-hosted, silent PayRadar demo uses sample records and actual browser UI. MP4 is user-initiated (`preload="none"`, no autoplay), with optional Turkish captions and a visible text summary. CSP allows only same-origin media; fullscreen is allowed only for the site itself. No remote video embed or analytics script was introduced. The technical case page at `/notlar/payradar-web-push-bildirimleri/` records the tested workerd fix and distinguishes provider acceptance from physical-phone delivery. Sitemap now has 19 pages.

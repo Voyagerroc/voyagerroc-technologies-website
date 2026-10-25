@@ -1,11 +1,11 @@
 /*
   Cache-Control: public, max-age=0, must-revalidate, no-transform
-  Content-Security-Policy: default-src 'none'; script-src 'self' 'sha256-b8vcRqnI9qaheOzKzEI649u5jec/l3QE/oI3Dn39f0I=' 'sha256-KUNaRf5B2gte3LTJiBp6WylpK742d41q74qC4jgwMGw=' 'sha256-cBaZ6Ho7HizpQji1m4eZ/DTNv9pn7sSWlZJv+sW7888=' 'sha256-Fe0RbGYYg9qtiX5GuCfPFCQ54ZIAWCyaFoYvlfkWC88=' 'sha256-TqPww9Kaub2UDHnehbyCoPAT8a+cRQmITWBC4G/Yyig=' 'sha256-WuJhzF57HMM7LIctHktAn+EKWHW9j+NPJuVooUa6ukM=' 'sha256-GBzafPHIs8jwwo0HDjZ9Q3a46U+ZNhV9rmNOoK8SjL4=' 'sha256-4haDnewu4uml7d+9faKeyfhuuMJdZMQDB7KX/EC+pWc=' 'sha256-xz+N3nkHhe5vES2Mby3Ph/9RH+t6tSU0ciTqHmFWw8M='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'sha256-b8vcRqnI9qaheOzKzEI649u5jec/l3QE/oI3Dn39f0I=' 'sha256-KUNaRf5B2gte3LTJiBp6WylpK742d41q74qC4jgwMGw=' 'sha256-cBaZ6Ho7HizpQji1m4eZ/DTNv9pn7sSWlZJv+sW7888=' 'sha256-Fe0RbGYYg9qtiX5GuCfPFCQ54ZIAWCyaFoYvlfkWC88=' 'sha256-TqPww9Kaub2UDHnehbyCoPAT8a+cRQmITWBC4G/Yyig=' 'sha256-WuJhzF57HMM7LIctHktAn+EKWHW9j+NPJuVooUa6ukM=' 'sha256-GBzafPHIs8jwwo0HDjZ9Q3a46U+ZNhV9rmNOoK8SjL4=' 'sha256-4haDnewu4uml7d+9faKeyfhuuMJdZMQDB7KX/EC+pWc=' 'sha256-bMGU4Vbw1c+K++OfM1eo3fPjfLXZRkKMWx5Zau7J9jI=' 'sha256-xz+N3nkHhe5vES2Mby3Ph/9RH+t6tSU0ciTqHmFWw8M='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
   Referrer-Policy: no-referrer
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Strict-Transport-Security: max-age=31536000
-  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=(), bluetooth=(), midi=(), display-capture=(), fullscreen=()
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=(), bluetooth=(), midi=(), display-capture=(), fullscreen=(self)
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: same-origin
   X-Permitted-Cross-Domain-Policies: none

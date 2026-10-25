@@ -4,6 +4,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {products,services} from '../content/search.mjs';
+import {studies,payradarDemo} from '../content/studies.mjs';
 import {securityHeaders} from '../src/security-headers.mjs';
 const dist=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../dist');
 const origin='https://voyagerroctechnologies.com';
@@ -36,4 +37,13 @@ for(const id of Object.keys(products)){
  assert.ok(home.includes('/urunler/'+id+'/'),'Product orphaned');
 }
 assert.ok(!fs.readFileSync(path.join(dist,'urunler/payradar/index.html'),'utf8').includes('henüz commit edilmemiş'));
+assert.ok(securityHeaders['Content-Security-Policy'].includes("media-src 'self'"),'Same-origin video must be allowed explicitly');
+for(const study of studies){
+ assert.ok(home.includes('/notlar/'+study.slug+'/'),'Study orphaned');
+ const html=fs.readFileSync(path.join(dist,'notlar',study.slug,'index.html'),'utf8');
+ assert.ok(html.includes('preload="none"'),'Do not load demo video before user playback');
+ assert.ok(html.includes(payradarDemo.captions),'Video needs captions');
+ assert.ok(html.includes('Fiziksel telefonda'),'Physical-device limits must be visible');
+}
+assert.ok(fs.readFileSync(path.join(dist,payradarDemo.captions),'utf8').startsWith('WEBVTT'));
 console.log('PASS: '+urls.length+' unique sitemap pages, canonical URLs, headings, internal links, structured data/CSP and product/service discovery.');
