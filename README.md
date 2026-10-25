@@ -78,3 +78,11 @@ The logo PNG is a raster brand asset, not a vector master. Fonts and Three.js re
 ## Development dependency note
 
 The deployed site has no npm runtime dependencies. The pinned Wrangler development tool currently reports three transitive audit findings (two moderate, one high, through Miniflare/Undici). These packages are used by local tooling and are not shipped in `dist/`. Review upstream fixes before exposing a local development server; it should remain bound to localhost.
+
+## Legal content and privacy controls
+
+The legal centre is served at `/yasal/`, with static Turkish notices for KVKK, privacy, browser storage, terms, intellectual property, data requests and operator contact. It covers this portfolio site, not all linked applications. The operator identity appears only where the legal notices require it; the main page uses the brand name.
+
+Edit `content/legal.mjs`, then run `npm run build:legal` to regenerate the eight HTML pages and sitemap. The deploy script runs generation and syntax checks first. Do not copy these identity-specific notices unchanged to another business, or treat their presence as a compliance certification. Provider transfer safeguards, actual retention settings, contact-information duties and rights/permissions require separate operational verification.
+
+`dist/_headers` applies no-transform to suppress automatically injected browser measurement, restricts scripts and connections to the same origin, and adds security/privacy headers. Only sessionStorage is used for an explicitly selected language; the former localStorage key is removed. The storage notice provides a targeted clear button. No consent-acceptance wall, advertising tracker or marketing form is added. Reassess policies and consent before adding any optional analytics, embeds, accounts, forms or payments.

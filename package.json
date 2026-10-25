@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "wrangler dev --port 8890",
     "deploy": "wrangler deploy",
-    "check": "node --check dist/app.js && node --check dist/motion.js && node --check dist/scene.js"
+    "check": "node --check dist/app.js && node --check dist/motion.js && node --check dist/scene.js && node --check dist/legal.js && node --check content/legal.mjs && node --check scripts/build-legal.mjs",
+    "build:legal": "node scripts/build-legal.mjs",
+    "predeploy": "npm run build:legal && npm run check"
   },
   "engines": {
     "node": ">=20"
