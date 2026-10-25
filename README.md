@@ -5,7 +5,7 @@ Corporate website for a product ecosystem spanning evidence-led recruitment, per
 **Website:** https://voyagerroctechnologies.com  
 **Cloudflare origin:** https://voyagerroc-technologies.voyagerroc.workers.dev
 
-The website runs independently on **Cloudflare Workers Static Assets**. It does not require OpenAI Sites, an OpenAI account, or an AI API key. All runtime scripts, fonts and 3D assets are served from the same origin.
+The website runs independently on **Cloudflare Workers Static Assets** with a small stateless HTTPS/canonical-host guard. It does not require OpenAI Sites, an OpenAI account, or an AI API key. All runtime scripts, fonts and 3D assets are served from the same origin.
 
 ## What is included
 
@@ -38,7 +38,7 @@ This checks JavaScript syntax. Browser checks should also cover both languages, 
 ## Deploy to your own Cloudflare account
 
 1. Change `name` in `wrangler.jsonc` to a unique Worker name.
-2. Remove `routes`, or replace the hostname with a domain you control in an active Cloudflare zone.
+2. Remove `routes`, or replace the hostname with a domain you control in an active Cloudflare zone. Set `vars.CANONICAL_ORIGIN` to your real HTTPS deployment URL.
 3. Replace company content, branding, contact addresses, canonical/social URLs, `robots.txt` and `sitemap.xml` for your deployment.
 4. Authenticate and deploy:
 
@@ -47,7 +47,7 @@ npx wrangler login
 npm run deploy
 ```
 
-For a first deployment, omit `routes` and verify the returned `workers.dev` address before adding a custom domain. A `custom_domain: true` route lets Cloudflare manage the Worker domain binding and certificate. Preserve unrelated DNS and email records. OpenAI verification TXT records and OpenAI Sites A targets are not used by this deployment.
+For a first deployment, omit `routes`, set `CANONICAL_ORIGIN` to your Worker HTTPS URL, and verify it before adding a custom domain. A `custom_domain: true` route lets Cloudflare manage the Worker domain binding and certificate. Preserve unrelated DNS and email records. OpenAI verification TXT records and OpenAI Sites A targets are not used by this deployment.
 
 Deployments are manual from the CLI; this repository does not configure automatic GitHub deployment or require a stored API token.
 
@@ -94,4 +94,4 @@ The redundant footer branding/domain/social block was removed. `/yasal/isbirligi
 
 ## Search and editorial configuration
 
-Five featured products have crawlable pages at `/urunler/{id}/`. The homepage includes WebSite/Brand/ItemList structured data, canonical/social metadata and direct product links. The alternate Workers hostname is noindex. See [security and SEO](docs/SECURITY-AND-SEO.md) and [editorial direction](docs/VOICE.md). Public terminology uses **Si** at the owner’s request; it does not claim achieved superintelligence.
+Five featured products have crawlable pages at `/urunler/{id}/`. The homepage includes WebSite/Brand/ItemList structured data, canonical/social metadata and direct product links. The alternate Workers hostname and HTTP requests redirect permanently to the canonical HTTPS host. See [security and SEO](docs/SECURITY-AND-SEO.md) and [editorial direction](docs/VOICE.md). Public terminology uses **Si** at the owner’s request; it does not claim achieved superintelligence.
