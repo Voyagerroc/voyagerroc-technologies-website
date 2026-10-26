@@ -30,6 +30,12 @@ for(const url of urls){
  }
 }
 const home=fs.readFileSync(path.join(dist,'index.html'),'utf8');
+const graphFrom=html=>JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];
+const homeGraph=graphFrom(home),identity=homeGraph.find(n=>n['@type']==='Brand');
+const aboutHtml=fs.readFileSync(path.join(dist,'hakkimizda/index.html'),'utf8'),aboutGraph=graphFrom(aboutHtml);
+assert.equal(aboutGraph.find(n=>n['@type']==='AboutPage').mainEntity['@id'],identity['@id'],'About page must identify the same brand');
+assert.equal(aboutGraph.find(n=>n['@type']==='Brand').name,identity.name,'Brand name differs across pages');
+assert.ok(home.includes('/hakkimizda/'),'Brand identity page orphaned');
 for(const service of services)assert.ok(home.includes('/calismalar/'+service.slug+'/'),'Service orphaned');
 for(const id of Object.keys(products)){
  const html=fs.readFileSync(path.join(dist,'urunler',id,'index.html'),'utf8');

@@ -1,0 +1,14 @@
+// Public brand identity, consistent with the portfolio and legal notices.
+export const brand = {
+  name: 'Voyagerroc Technologies',
+  shortName: 'Voyagerroc',
+  origin: 'https://voyagerroctechnologies.com',
+  aboutPath: '/hakkimizda/',
+  description: 'Voyagerroc Technologies; PayRadar, LaserDeck PTT ve EİP ürünleriyle web, mobil uygulamalar, SaaS çalışmaları ve Si iş akışlarına odaklanan yazılım markasıdır.',
+  intro: 'Voyagerroc Technologies, web ve mobil uygulamalar geliştiren bağımsız bir yazılım markasıdır. PayRadar, LaserDeck PTT ve EİP; SaaS ürün çalışmaları ve Si destekli iş akışlarıyla birlikte portföyün odağını oluşturur.',
+  spelling: 'Marka adı Voyagerroc Technologies olarak yazılır. Voyagerroc tek kelimedir; sonundaki “roc” marka adının parçasıdır. Kısa adımız Voyagerroc, resmî alan adımız voyagerroctechnologies.com adresidir.',
+  publicPages: [
+    ['GitHub', 'https://github.com/Voyagerroc'],
+    ['GitLab', 'https://gitlab.com/Voyagerroc/payradar/-/blob/main/docs/voyagerroc-technologies.md']
+  ]
+};
