@@ -26,3 +26,7 @@ The owner supplied https://www.linkedin.com/in/erol-t-66791821a/ . The site link
 
 ## Company LinkedIn page — 26 October follow-up
 The owner-managed company Page https://www.linkedin.com/company/voyagerroc-technologies/ was verified in the signed-in admin/member UI (company ID145365410). Its website, tagline and Turkish About text were verified. A square VT emblem and branded product cover were uploaded through native LinkedIn controls. They extend the existing vector brand system; original horizontal logo preserved. The company URL joins Brand.sameAs and public brand links; founder personal profile remains separate. First PayRadar product post published, LinkedIn showed its success confirmation, permalink https://www.linkedin.com/feed/update/urn:li:share:7520508307032129537 . No Google ranking or answer change is claimed.
+
+
+### Cover update requested by owner
+The LinkedIn cover now uses an imagegen adaptation of the original horizontal VT/VOYAGERROC TECHNOLOGIES logo on its dark background. LinkedIn native cropping keeps the lockup to the right of the square profile emblem; member view verified legible and uncropped. Source asset: brand/linkedin/linkedin-horizontal-logo-cover.png. The earlier product cover remains archived. Website CTA still resolves to https://voyagerroctechnologies.com/. This cover edit did not change website hosting or publish another post.
