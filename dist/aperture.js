@@ -12,18 +12,23 @@ if(renderer){
  const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(33,1,.1,40);camera.position.set(0,.35,9.2);
  renderer.setPixelRatio(Math.min(devicePixelRatio,mobile.matches?1.25:1.65));renderer.outputColorSpace=THREE.SRGBColorSpace;
  renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;renderer.setClearColor(0,0);
+ // Mobile keeps the same procedural sculpture with direct lighting. Avoid the
+ // environment-convolution pass and clearcoat shaders on constrained devices.
+ if(!mobile.matches){
  const lightCanvas=document.createElement('canvas');lightCanvas.width=1024;lightCanvas.height=512;
  const ctx=lightCanvas.getContext('2d');ctx.fillStyle='#060a13';ctx.fillRect(0,0,1024,512);
  [[70,50,100,410,'#c4d8f0'],[400,0,55,512,'#e4d8bf'],[670,80,160,330,'#527f9e']].forEach(([x,y,w,h,c])=>{ctx.fillStyle=c;ctx.fillRect(x,y,w,h);});
  const env=new THREE.CanvasTexture(lightCanvas);env.mapping=THREE.EquirectangularReflectionMapping;env.colorSpace=THREE.SRGBColorSpace;
  const pmrem=new THREE.PMREMGenerator(renderer),map=pmrem.fromEquirectangular(env);scene.environment=map.texture;env.dispose();pmrem.dispose();
+ }
  scene.add(new THREE.HemisphereLight(0x9caeca,0x030509,1.3));
  const key=new THREE.DirectionalLight(0xcbdcf6,5);key.position.set(-3,4,5);scene.add(key);
  const warm=new THREE.PointLight(0xe5c79c,19,12);warm.position.set(1.3,-.3,2);scene.add(warm);
  const rim=new THREE.PointLight(0x719ddf,32,12);rim.position.set(-2,1,-2);scene.add(rim);
  const sculpture=new THREE.Group();sculpture.rotation.set(.26,-.36,-.15);scene.add(sculpture);
- const metal=new THREE.MeshPhysicalMaterial({color:0x273445,metalness:1,roughness:.24,clearcoat:.7,envMapIntensity:1.6});
- const dark=new THREE.MeshPhysicalMaterial({color:0x0b111d,metalness:.95,roughness:.29,envMapIntensity:1.8});
+ const Surface=mobile.matches?THREE.MeshStandardMaterial:THREE.MeshPhysicalMaterial;
+ const metal=new Surface({color:0x273445,metalness:mobile.matches?.65:1,roughness:.24,...(!mobile.matches?{clearcoat:.7}:{}),envMapIntensity:1.6});
+ const dark=new Surface({color:0x0b111d,metalness:mobile.matches?.7:.95,roughness:.29,envMapIntensity:1.8});
  const pale=new THREE.MeshBasicMaterial({color:0x9fb9d7,transparent:true,opacity:.28});
  const lineMat=new THREE.LineBasicMaterial({color:0x8dadd1,transparent:true,opacity:.17});
  const torus=(r,t,arc=Math.PI*2)=>new THREE.TorusGeometry(r,t,6,100,arc);
@@ -39,10 +44,10 @@ if(renderer){
   sectors.push({group,insetMaterial,phase:i*Math.PI*2/5});
  }
  const core=new THREE.Group();sculpture.add(core);
- core.add(new THREE.Mesh(new THREE.SphereGeometry(.61,32,24),new THREE.MeshPhysicalMaterial({color:0x020409,metalness:1,roughness:.2,envMapIntensity:.7})));
+ core.add(new THREE.Mesh(new THREE.SphereGeometry(.61,32,24),new Surface({color:0x020409,metalness:1,roughness:.2,envMapIntensity:.7})));
  const halo=new THREE.Mesh(torus(.635,.015),new THREE.MeshBasicMaterial({color:0xd9c8a8}));halo.position.z=.13;core.add(halo);
  const innerHalo=new THREE.Mesh(torus(.68,.004),pale);innerHalo.position.z=.13;core.add(innerHalo);
- const prism=new THREE.Mesh(new THREE.OctahedronGeometry(.35),new THREE.MeshPhysicalMaterial({color:0xa3b8ce,metalness:1,roughness:.14,envMapIntensity:2}));prism.scale.set(.68,1.55,.65);prism.position.z=.7;core.add(prism);
+ const prism=new THREE.Mesh(new THREE.OctahedronGeometry(.35),new Surface({color:0xa3b8ce,metalness:1,roughness:.14,envMapIntensity:2}));prism.scale.set(.68,1.55,.65);prism.position.z=.7;core.add(prism);
  const seam=new THREE.Mesh(new THREE.BoxGeometry(.009,.77,.012),new THREE.MeshBasicMaterial({color:0xf4e7cd}));seam.position.z=.93;core.add(seam);
  const outer=new THREE.Group();sculpture.add(outer);
  [1.77,1.84,2.03].forEach((r,i)=>{const ring=new THREE.Mesh(torus(r,i===1?.009:.003),i===1?dark:pale);ring.position.z=-.28-i*.06;outer.add(ring);});
@@ -77,6 +82,8 @@ if(renderer){
  function start(){if(!raf&&!paused&&visible&&!document.hidden){last=performance.now();raf=requestAnimationFrame(tick);}}
  function stop(){if(raf)cancelAnimationFrame(raf);raf=0;}
  function resize(){const r=container.getBoundingClientRect();if(!r.width||!r.height)return;renderer.setSize(r.width,r.height,false);camera.aspect=r.width/r.height;camera.updateProjectionMatrix();pose(true);draw();}
+ // Wait for parallel shader compilation before any observer triggers a render.
+ await renderer.compileAsync(scene,camera);
  new ResizeObserver(resize).observe(container);new IntersectionObserver(es=>{visible=es[0].isIntersecting;if(visible)start();else stop();},{threshold:.03}).observe(container);
  container.addEventListener('pointermove',e=>{if(paused||e.pointerType==='touch')return;const r=container.getBoundingClientRect();pointer.x=(e.clientX-r.left)/r.width*2-1;pointer.y=(e.clientY-r.top)/r.height*2-1;},{passive:true});
  container.addEventListener('pointerleave',()=>{pointer.x=pointer.y=0;});

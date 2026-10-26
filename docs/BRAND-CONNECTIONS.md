@@ -17,3 +17,6 @@ New README commits passed redacted Gitleaks checks. Public website output, sourc
 
 ## Public visibility check
 Unauthenticated GitLab API confirms PayRadar is public. The LaserDeck and eip-core paths returned 404 without credentials (including lowercase LaserDeck); their public visibility is not established. No repository visibility was changed and those two README links are not counted as confirmed publicly crawlable mentions. GitHub profile and corporate product pages are public.
+
+## 26 October 2026: minimal public brand pages
+GitHub profile README now uses only the brand, factual product summaries and official website links. New profile and GitLab brand-document commits use the brand name and GitHub account noreply address. GitLab has an anonymously accessible brand document at https://gitlab.com/Voyagerroc/payradar/-/blob/main/docs/voyagerroc-technologies.md (public project, raw document HTTP200), linked from its README. No private repository was made public. The website visibly links to both verified public brand pages and lists them in Brand sameAs. New text contains no personal email, local path or credential. Existing account identity and historical commits were not deleted or rewritten; public publication is not anonymous or footprint-free.

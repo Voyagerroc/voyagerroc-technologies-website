@@ -2,11 +2,14 @@ import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import crypto from 'node:crypto';
+import {build as bundle} from 'esbuild';
 import {fileURLToPath} from 'node:url';
 import {privacyConfig} from '../content/privacy.mjs';
 import {products as searchProducts,services} from '../content/search.mjs';
 import {studies,payradarDemo} from '../content/studies.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),dist=path.join(root,'dist');
+// Preserve upstream sources/licenses; serve one tree-shaken, minified 3D module.
+await bundle({entryPoints:[path.join(dist,'aperture.js')],outfile:path.join(dist,'scene-3d.min.js'),bundle:true,minify:true,format:'esm',target:'es2022',sourcemap:false,legalComments:'eof'});
 function checkPublicFiles(dir){for(const entry of fs.readdirSync(dir,{withFileTypes:true})){const file=path.join(dir,entry.name);if(entry.isDirectory()){if(['.git','node_modules','.wrangler'].includes(entry.name))throw Error('Private directory in public output: '+file);checkPublicFiles(file);}else if(/^\.env|\.(?:map|pem|key|p12|pfx|jks|keystore|sqlite|db)$/i.test(entry.name)||['package.json','package-lock.json','wrangler.jsonc','signing-key-info.txt','keystore.properties'].includes(entry.name))throw Error('Sensitive/build artifact in public output: '+file);}}
 checkPublicFiles(dist);
 const origin='https://voyagerroctechnologies.com';
@@ -47,11 +50,12 @@ for(const study of studies){
  const dir=path.join(dist,'notlar',study.slug);fs.mkdirSync(dir,{recursive:true});fs.writeFileSync(path.join(dir,'index.html'),shell(study.title,'<meta name="description" content="'+escape(study.description)+'"><link rel="canonical" href="'+url+'">'+metadata(study.title,study.description,url)+jsonld(data),body));
 }
 let home=fs.readFileSync(path.join(dist,'index.html'),'utf8');
-home=home.replace(/<!-- seo:start -->[\s\S]*?<!-- seo:end -->\s*/g,'').replace(/<!-- products:start -->[\s\S]*?<!-- products:end -->/g,'').replace(/<!-- services:start -->[\s\S]*?<!-- services:end -->/g,'').replace(/<!-- studies:start -->[\s\S]*?<!-- studies:end -->/g,'');
+home=home.replace(/<!-- seo:start -->[\s\S]*?<!-- seo:end -->\s*/g,'').replace(/<!-- products:start -->[\s\S]*?<!-- products:end -->/g,'').replace(/<!-- services:start -->[\s\S]*?<!-- services:end -->/g,'').replace(/<!-- studies:start -->[\s\S]*?<!-- studies:end -->/g,'').replace(/<!-- brand-links:start -->[\s\S]*?<!-- brand-links:end -->/g,'');
 // Remove the legacy individual OG tags so each property has one authoritative value.
 home=home.replace(/<meta property="og:[^"]+"[^>]*>/g,'');
 const title=home.match(/<title>([^<]+)<\/title>/)[1],description=home.match(/<meta name="description" content="([^"]+)"/)[1];
-const schema={'@context':'https://schema.org','@graph':[{'@type':'WebSite','@id':origin+'/#website',url:origin+'/',name:'Voyagerroc Technologies',inLanguage:'tr',description,about:{'@id':origin+'/#brand'}},{'@type':'Brand','@id':origin+'/#brand',name:'Voyagerroc Technologies',url:origin+'/',logo:origin+'/assets/brand/voyagerroc-technologies-logo.png',sameAs:['https://github.com/Voyagerroc']},{'@type':'ItemList',name:'Voyagerroc Technologies ürün portföyü',itemListElement:featured.map((p,i)=>({'@type':'ListItem',position:i+1,name:p.name,url:origin+'/urunler/'+p.id+'/'}))}]};
+const publicBrandPages=[['GitHub','https://github.com/Voyagerroc'],['GitLab','https://gitlab.com/Voyagerroc/payradar/-/blob/main/docs/voyagerroc-technologies.md']];
+const schema={'@context':'https://schema.org','@graph':[{'@type':'WebSite','@id':origin+'/#website',url:origin+'/',name:'Voyagerroc Technologies',inLanguage:'tr',description,about:{'@id':origin+'/#brand'}},{'@type':'Brand','@id':origin+'/#brand',name:'Voyagerroc Technologies',url:origin+'/',logo:origin+'/assets/brand/voyagerroc-technologies-display.webp',sameAs:publicBrandPages.map(([,url])=>url)},{'@type':'ItemList',name:'Voyagerroc Technologies ürün portföyü',itemListElement:featured.map((p,i)=>({'@type':'ListItem',position:i+1,name:p.name,url:origin+'/urunler/'+p.id+'/'}))}]};
 home=home.replace('</head>','<!-- seo:start -->'+metadata(title,description,origin+'/')+jsonld(schema)+'<!-- seo:end -->\n</head>');
 const directory='<!-- products:start --><nav class="product-directory" aria-label="Ürün sayfaları"><span data-i18n="productPages">Ürün sayfaları</span>'+featured.map(p=>'<a href="/urunler/'+p.id+'/">'+escape(p.name)+' ↗</a>').join('')+'</nav><!-- products:end -->';
 home=home.replace('<div id="featured-projects" class="featured-grid"></div>','<div id="featured-projects" class="featured-grid"></div>'+directory);
@@ -59,12 +63,14 @@ const serviceDirectory='<!-- services:start --><nav class="product-directory ser
 home=home.replace(directory,directory+serviceDirectory);
 const studyDirectory='<!-- studies:start --><nav class="product-directory" aria-label="Ürün geliştirme notları"><span>Ürün geliştirme notları · TR</span>'+studies.map(s=>'<a href="/notlar/'+s.slug+'/">'+escape(s.heading)+' ↗</a>').join('')+'</nav><!-- studies:end -->';
 home=home.replace(serviceDirectory,serviceDirectory+studyDirectory);
-home=home.replace('assets/nexus-static.png','assets/aperture-static.png');
+home=home.replace(/assets\/(?:nexus-static|aperture-static)\.png/g,'assets/aperture-static.webp');
+const brandLinks='<!-- brand-links:start --><nav class="footer-brand-links" aria-label="Resmi marka sayfaları">'+publicBrandPages.map(([label,url])=>'<a href="'+url+'" target="_blank" rel="noopener noreferrer">'+label+' ↗</a>').join('')+'</nav><!-- brand-links:end -->';
+home=home.replace('<div class="footer-bottom">',brandLinks+'<div class="footer-bottom">');
 fs.writeFileSync(path.join(dist,'index.html'),home);
 let sitemap=fs.readFileSync(path.join(dist,'sitemap.xml'),'utf8');
 const existingUrls=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1]);
 const allUrls=[...new Set([...existingUrls,...featured.map(p=>origin+'/urunler/'+p.id+'/'),...services.map(s=>origin+'/calismalar/'+s.slug+'/'),...studies.map(s=>origin+'/notlar/'+s.slug+'/')])];
-sitemap='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+allUrls.map(url=>'<url><loc>'+url+'</loc><lastmod>2026-10-25</lastmod></url>').join('')+'</urlset>\n';fs.writeFileSync(path.join(dist,'sitemap.xml'),sitemap);
+sitemap='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+allUrls.map(url=>'<url><loc>'+url+'</loc><lastmod>'+(url===origin+'/'?'2026-10-26':'2026-10-25')+'</lastmod></url>').join('')+'</urlset>\n';fs.writeFileSync(path.join(dist,'sitemap.xml'),sitemap);
 fs.writeFileSync(path.join(dist,'404.html'),shell('Sayfa bulunamadı — Voyagerroc Technologies','<meta name="robots" content="noindex,nofollow">','<p class="kicker">404 / SAYFA BULUNAMADI</p><h1>Bu adreste bir sayfa yok.</h1><p class="lead">Ürünleri ana sayfadan inceleyebilirsiniz.</p><a class="product-link" href="/">Ana sayfaya dön ↗</a>'));
 const csp="default-src 'none'; script-src 'self' "+hashes.join(' ')+"; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests";
 const headers='/*\n  Cache-Control: public, max-age=0, must-revalidate, no-transform\n  Content-Security-Policy: '+csp+'\n  Referrer-Policy: no-referrer\n  X-Content-Type-Options: nosniff\n  X-Frame-Options: DENY\n  Strict-Transport-Security: max-age=31536000\n  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=(), bluetooth=(), midi=(), display-capture=(), fullscreen=(self)\n  Cross-Origin-Opener-Policy: same-origin\n  Cross-Origin-Resource-Policy: same-origin\n  X-Permitted-Cross-Domain-Policies: none\n  X-DNS-Prefetch-Control: off\n\nhttps://voyagerroc-technologies.voyagerroc.workers.dev/*\n  X-Robots-Tag: noindex, follow\n';

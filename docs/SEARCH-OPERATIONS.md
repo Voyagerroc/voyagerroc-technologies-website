@@ -25,3 +25,6 @@ A separate read-only Sitemaps check confirmed **Success**, type Sitemap, submitt
 
 ## Brand/demo follow-up
 The published sitemap now contains 19 URLs, including `/notlar/payradar-web-push-bildirimleri/`. This is the served XML count, not a new claim that Google has discovered or indexed all 19. The earlier independently verified Google sitemap report discovered 18 pages. A later homepage URL inspection reported URL unknown/not indexed and N/A crawl fields; manual Request indexing again returned the same Oops/Something went wrong error (tool reported two failed attempts), with no confirmation. The case page was not manually submitted after this failure. Do not interpret inconsistent new-property report wording as successful indexing, or processing reports as zero traffic.
+
+## 26 October 2026: confirmed indexed homepage
+Search Console URL Inspection now reports Page is indexed / URL is on Google for the exact HTTPS homepage. No manual indexing request was made because it is already indexed. Sitemap remains Success, last read25October with18discovered pages; served XML contains19 URLs. Performance reports still process data. This supersedes the previous day's unknown/not-indexed result, not a ranking guarantee. Local evidence: qa/seo-20261026/search-console-status.json (ignored).

@@ -44,3 +44,6 @@ Primary references: [Cloudflare static headers](https://developers.cloudflare.co
 
 ## Product evidence update
 A self-hosted, silent PayRadar demo uses sample records and actual browser UI. MP4 is user-initiated (`preload="none"`, no autoplay), with optional Turkish captions and a visible text summary. CSP allows only same-origin media; fullscreen is allowed only for the site itself. No remote video embed or analytics script was introduced. The technical case page at `/notlar/payradar-web-push-bildirimleri/` records the tested workerd fix and distinguishes provider acceptance from physical-phone delivery. Sitemap now has 19 pages.
+
+## Progressive 3D and image delivery
+Header logo and scene poster use stripped-metadata WebP derivatives; original brand assets are preserved. The scene loader paints the poster before loading the bundled, minified Three.js module. Reduced-motion and save-data users retain the poster until explicit opt-in. Visible content is no longer dimmed for scroll entrance effects; transforms retain the motion. Scene role and visual button names were corrected for accessibility. Bundling preserves the upstream license and emits no source map. This deployment adds neither trackers nor external scripts. Performance is measured with Lighthouse lab runs; those are not field Core Web Vitals or proof of ranking.
