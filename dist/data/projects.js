@@ -212,27 +212,29 @@ window.PORTFOLIO_PROJECTS = [
       "PWA",
       "PostgreSQL",
       "Google Cloud Run",
-      "Dixon-Coles"
+      "Dixon-Coles",
+      "ESPN API"
     ],
+    "image": "assets/tabela-icon.png",
     "live": "https://tabela-282269811202.europe-west1.run.app",
     "repo": "https://gitlab.com/Voyagerroc/Tabela",
+    "featured": true,
     "tr": {
-      "tag": "Yapay Zekâ / İstatistik ve Futbol",
-      "summary": "Tahmin et, gerekçeni gör, sonucunu karnene yaz.",
-      "description": "Dixon-Coles korelasyon düzeltmesi, dinamik Elo güç puanı ve canlı ESPN fikstürleriyle çalışan; tahminleri yapay zekâ gerekçesiyle birlikte deftere kaydedip başarı oranını ölçen futbol analiz uygulaması.",
-      "problem": "Çoğu tahmin aracı ezbere skor fırlatır; 0-0 ve 1-1 gibi kilit beraberlikleri ıskalar, tahminin neden yapıldığını açıklamaz ve geçmiş başarısını şeffafça ölçtürmez.",
-      "approach": "Standart Poisson'ın beraberlik zaafını gideren Dixon-Coles (rho = -0.13) modeli, 9x9 olasılık matrisi, beklenen puan optimizasyonu, NVIDIA NIM tabanlı robot yorumları ve cihazlar arası Postgres senkronizasyonu.",
-      "scope": "Canlı Google Cloud Run üzerinde 7/24 yayında. Tahminler istatistiksel olasılık üretir, kesin kazanç veya bahis garantisi vermez; defter karne tutmak ve modeli sınamak içindir."
+      "tag": "Yapay Zekâ / İstatistik & Canlı Futbol Analizi",
+      "summary": "2026-2027 sezonu canlı ESPN fikstürü, Dixon-Coles Poisson modeli, taktik çim saha ve yapay zekâ skor robotu.",
+      "description": "Dixon-Coles korelasyon düzeltmesi (rho = -0.13), dinamik lig gücü ve resmi ESPN maç takvimiyle çalışan; muhtemel 11'leri, formasyonları, FIFA kokartlı hakem atamalarını ve yapay zekâ maç gerekçelerini görsel bir taktik sahada sunup başarı oranını şeffafça karnede puanlayan profesyonel futbol analiz platformu.",
+      "problem": "Standart tahmin araçları düşük skorlu maçlarda (0-0 ve 1-1) beraberlik olasılığını matematiksel olarak ıskalar, jenerik tahminler üretir, güncel 2026-2027 kadrolarını ve resmi hakem atamalarını hesaba katmaz ve geriye dönük doğruluk karnesi sunmaz.",
+      "approach": "Standart bağımsız Poisson dağılımındaki beraberlik zafiyetini gideren çift değişkenli Dixon-Coles modeli, 9x9 olasılık matrisi, beklenen puan (E[puan]) optimizasyonu, 3 motion animasyonlu taktik çim saha, doğrulanmış 2026 kulüp armaları, resmi TFF/UEFA hakem ve VAR istatistikleri, NVIDIA NIM yapay zekâ analizleri ve Neon PostgreSQL cihazlar arası kalıcı defter senkronizasyonu.",
+      "scope": "Google Cloud Run üzerinde 7/24 canlı ve sıfır sunucu maliyetli. Tahminler olasılıksal modelleme ve analitik doğrulama amaçlıdır; bahis veya kesin sonuç vaadi içermez."
     },
     "en": {
-      "tag": "AI / Sports Analytics",
-      "summary": "Forecast scorelines, inspect reasoning, track your hit-rate.",
-      "description": "A football workspace combining the Dixon-Coles bivariate Poisson model, live ESPN feeds, and LLM-grounded reasoning with a verified prediction journal.",
-      "problem": "Standard prediction models quietly fail on low-scoring games (underestimating draws) while offering zero accountability or transparent scorekeeping.",
-      "approach": "Dixon-Coles correlation correction (rho = -0.13), dynamic Elo power ratings, expected-points score selection, and cloud-synced prediction journals over Postgres.",
-      "scope": "Running live on Google Cloud Run. Probabilistic modelling is for analytical benchmarking, not betting guarantees."
-    },
-    "featured": false
+      "tag": "AI / Probabilistic Football Analytics",
+      "summary": "2026-2027 live ESPN schedule, Dixon-Coles Poisson engine, tactical pitch & AI forecast workspace.",
+      "description": "A high-precision football intelligence workspace leveraging bivariate Dixon-Coles Poisson modelling (rho = -0.13), dynamic league ratings, and live ESPN feeds to deliver starting XI lineups, formations, official referee assignments, and AI-grounded tactical forecasts with transparent hit-rate tracking.",
+      "problem": "Ordinary prediction engines fail on low-scoring games (systematically underestimating draws), rely on stale squads, ignore match officials and VAR metrics, and lack transparent scorekeeping.",
+      "approach": "Dixon-Coles correlation correction across 9x9 scoreline matrices, expected-points optimization, 3-motion animated tactical pitch, confirmed 2026-2027 rosters and managers, official FIFA referees & VAR stats, NVIDIA NIM reasoning, and multi-device persistence over Postgres.",
+      "scope": "Running 24/7 on Google Cloud Run with zero hosting costs. Probabilistic forecasts benchmark tactical models without gambling claims."
+    }
   },
   {
     "id": "audit-trail",

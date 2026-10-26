@@ -1,0 +1,6 @@
+feat: showcase updated live Tabela app with 2026-2027 engine and tactical pitch
+
+- Updated Tabela entry in dist/data/projects.js to featured project with comprehensive 2026-2027 capabilities description.
+- Added official Tabela branding assets (tabela-icon.png, tabela-card.jpg).
+- Built static pages, updated CSP hashes and sitemaps.
+- Successfully deployed to Cloudflare production at voyagerroctechnologies.com.
