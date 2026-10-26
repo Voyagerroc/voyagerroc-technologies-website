@@ -33,7 +33,8 @@ window.PORTFOLIO_PROJECTS = [
       "scope": "The public landing interface is accessible. This does not establish end-to-end API, evaluation or mobile testing.",
       "visual": "The project's existing app icon."
     },
-    "androidTest": "https://play.google.com/store/apps/details?id=com.voyagerroc.eip"
+    "androidTest": "https://play.google.com/store/apps/details?id=com.voyagerroc.eip",
+    "androidAccess": "/android/#eip"
   },
   {
     "id": "payradar",
@@ -48,6 +49,7 @@ window.PORTFOLIO_PROJECTS = [
     ],
     "live": "https://payradar-bkp.pages.dev",
     "androidTest": "https://play.google.com/store/apps/details?id=com.payradar.app",
+    "androidAccess": "/android/#payradar",
     "image": "assets/payradar-current-demo.png",
     "featured": true,
     "tr": {
@@ -100,6 +102,7 @@ window.PORTFOLIO_PROJECTS = [
     },
     "featured": true,
     "androidTest": "https://play.google.com/store/apps/details?id=com.voyagerroc.laserdeck.ptt",
+    "androidAccess": "/android/#laserdeck",
     "androidGuide": "https://laserdeck-ptt.voyagerroc.workers.dev/test"
   },
   {

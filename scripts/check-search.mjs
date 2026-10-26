@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import vm from 'node:vm';
+import {androidAccess} from '../content/android.mjs';
 import {fileURLToPath} from 'node:url';
 import {products,services} from '../content/search.mjs';
 import {studies,payradarDemo} from '../content/studies.mjs';
@@ -55,4 +57,14 @@ for(const study of studies){
  assert.ok(html.includes('Fiziksel telefonda'),'Physical-device limits must be visible');
 }
 assert.ok(fs.readFileSync(path.join(dist,payradarDemo.captions),'utf8').startsWith('WEBVTT'));
+const android=fs.readFileSync(path.join(dist,'android/index.html'),'utf8');
+const portfolio={window:{}};vm.runInNewContext(fs.readFileSync(path.join(dist,'data/projects.js'),'utf8'),portfolio);
+for(const p of portfolio.window.PORTFOLIO_PROJECTS.filter(x=>x.androidTest)){
+ assert.equal(p.androidAccess,'/android/#'+p.id,'Android CTA must lead through enrollment guidance');
+ assert.ok(android.includes('id="'+p.id+'"'),'Missing product enrollment anchor');
+ assert.ok(fs.readFileSync(path.join(dist,'urunler',p.id,'index.html'),'utf8').includes('href="'+p.androidAccess+'"'),'Product bypasses enrollment guide');
+ const a=androidAccess[p.id];for(const key of ['groupUrl','enrollmentUrl'])if(a[key])assert.ok(android.includes('href="'+a[key]+'"'),'Configured participation link missing');
+}
+assert.ok(android.includes('Bu site Google hesabınızı veya testçi üyeliğinizi göremez'),'Do not imply the site can verify Google test consent');
+assert.ok(!android.includes('<form'),'Do not collect Google account data for test registration');
 console.log('PASS: '+urls.length+' unique sitemap pages, canonical URLs, headings, internal links, structured data/CSP and product/service discovery.');

@@ -9,7 +9,7 @@ export const products = {
     faq: [
       ['İnternet olmadan kullanabilir miyim?', 'Web uygulaması çevrimdışı kullanım için hazırlanmıştır. Bulut senkronizasyonu, yeni döviz verisi ve arka plan bildirimleri bağlantı gerektirir.'],
       ['Döviz kurları anlık mı?', 'Hayır. Kaynak günlük kur tablosu sağlar. Çevrimdışı kullanımda son bilinen tablo veya gömülü yedek kullanılabilir; bunlar anlık alış-satış fiyatı değildir.'],
-      ['Android sürümü herkese açık mı?', '1.1.0 sürümü Google Play iç test kanalında doğrulanmıştır. Erişim, ilgili test kanalına katılımınıza bağlıdır; mağaza bağlantısının bulunması herkese açık yayın anlamına gelmez.'],
+      ['Android sürümü herkese açık mı?', '1.1.0 sürümü Google Play iç test kanalında doğrulanmıştır. Android erişim sayfası testçi katılım adımlarını açıklar. Testçi listesine veya yetkili gruba erişim ve Google Play’de kendi hesabınızla onay gerekir; mağaza bağlantısı tek başına yeterli değildir.'],
       ['Bildirim her telefonda garanti mi?', 'Bildirim izni, tarayıcı ve cihazın arka plan ayarları teslimi etkileyebilir. Tanılama ve test akışı vardır; gerçek cihazda teslimi ayrıca kontrol etmek gerekir.']
     ]
   },
@@ -23,7 +23,7 @@ export const products = {
       ['İletişim için internet gerekiyor mu?', 'Cihazlar arasındaki iletişim Bluetooth Classic RFCOMM bağlantısını kullanır. Uygulamayı indirmek veya rehbere erişmek için internet gerekebilir.'],
       ['Ne kadar mesafede çalışır?', 'Sabit bir menzil taahhüdü yoktur. Telefon donanımı, engeller ve ortam koşulları bağlantıyı etkiler; gerçek kullanım alanında ölçüm yapılmalıdır.'],
       ['Lazer donanımı kullanıyor mu?', 'Hayır. LaserDeck PTT bu kapsamda Android ve Bluetooth tabanlı bir yazılım projesidir.'],
-      ['Test sürümünü nasıl edinebilirim?', 'Bu sayfadaki Google Play ve test kurulum rehberi bağlantılarını kullanın. Kapalı test erişimi hesap ve katılım koşullarına bağlı olabilir.']
+      ['Test sürümünü nasıl edinebilirim?', 'Android erişimi ve teste katılım bağlantısından başlayın. Testin yayımlanmış olması ve hesabınızın yetkili listede veya grupta bulunması gerekir; Google Play onayını kendiniz verirsiniz.']
     ]
   },
   eip: {
@@ -35,7 +35,7 @@ export const products = {
     faq: [
       ['EİP neyi bir araya getiriyor?', 'Aday kanıt merkezi, başvurular, işveren çalışma alanı ve raporlama aynı ürün kapsamında ele alınır. Canlı erişim tek başına bütün akışların uçtan uca doğrulandığını göstermez.'],
       ['Sistem tek başına işe alım kararı verir mi?', 'Bu sayfa otomatik veya hatasız işe alım kararı vaat etmez. Ürün yaklaşımı, belge ve çalışma örneklerini insan değerlendirmesine daha açık biçimde sunmaktır.'],
-      ['Ürünü nasıl inceleyebilirim?', 'Web arayüzünü ve Android test bağlantısını aşağıdan açabilirsiniz. Hesaba bağlı işlevlerin kapsamını bir değerlendirme görüşmesinde netleştirebiliriz.']
+      ['Ürünü nasıl inceleyebilirim?', 'Web arayüzünü doğrudan inceleyebilir; Android için erişim ve katılım rehberinden başlayabilirsiniz. Testçi erişimi Google Play hesabınıza ve test kanalının yayın durumuna bağlıdır.']
     ]
   }
 };
