@@ -22,3 +22,7 @@ Search Console inspected the new About page as not indexed / URL unknown. Reques
 
 ## Owner-provided LinkedIn
 The owner supplied https://www.linkedin.com/in/erol-t-66791821a/ . The site links to it as a personal founder profile in the homepage footer and About page; the public GitHub/GitLab brand documents also link to it. AboutPage.relatedLink describes the association. It is deliberately excluded from Brand.sameAs because a person's profile is not the same entity as the brand. No additional personal details were copied. LinkedIn blocked automated public retrieval (HTTP999), so profile contents and the reciprocal website field were not verified or edited. Adding an outbound link does not create an inbound link from LinkedIn or guarantee a Gemini answer.
+
+
+## Company LinkedIn page — 26 October follow-up
+The owner-managed company Page https://www.linkedin.com/company/voyagerroc-technologies/ was verified in the signed-in admin/member UI (company ID145365410). Its website, tagline and Turkish About text were verified. A square VT emblem and branded product cover were uploaded through native LinkedIn controls. They extend the existing vector brand system; original horizontal logo preserved. The company URL joins Brand.sameAs and public brand links; founder personal profile remains separate. First PayRadar product post published, LinkedIn showed its success confirmation, permalink https://www.linkedin.com/feed/update/urn:li:share:7520508307032129537 . No Google ranking or answer change is claimed.

@@ -12,6 +12,7 @@ export const brand = {
     url: 'https://www.linkedin.com/in/erol-t-66791821a/'
   },
   publicPages: [
+    ['LinkedIn', 'https://www.linkedin.com/company/voyagerroc-technologies/'],
     ['GitHub', 'https://github.com/Voyagerroc'],
     ['GitLab', 'https://gitlab.com/Voyagerroc/payradar/-/blob/main/docs/voyagerroc-technologies.md']
   ]
