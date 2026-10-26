@@ -2,5 +2,5 @@
 export const androidAccess = {
   eip: {mode: 'restricted', enrollmentUrl: null, groupUrl: null},
   payradar: {mode: 'restricted', enrollmentUrl: null, groupUrl: null},
-  laserdeck: {mode: 'restricted', enrollmentUrl: null, groupUrl: null}
+  laserdeck: {mode: 'pending', enrollmentUrl: null, groupUrl: null}
 };

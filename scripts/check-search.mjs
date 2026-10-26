@@ -63,7 +63,8 @@ for(const p of portfolio.window.PORTFOLIO_PROJECTS.filter(x=>x.androidTest)){
  assert.equal(p.androidAccess,'/android/#'+p.id,'Android CTA must lead through enrollment guidance');
  assert.ok(android.includes('id="'+p.id+'"'),'Missing product enrollment anchor');
  assert.ok(fs.readFileSync(path.join(dist,'urunler',p.id,'index.html'),'utf8').includes('href="'+p.androidAccess+'"'),'Product bypasses enrollment guide');
- const a=androidAccess[p.id];for(const key of ['groupUrl','enrollmentUrl'])if(a[key])assert.ok(android.includes('href="'+a[key]+'"'),'Configured participation link missing');
+ const a=androidAccess[p.id];if(a.mode==='pending'){const section=android.split('id="'+p.id+'"')[1].split('</section>')[0];assert.ok(!section.includes(p.androidTest),'Unpublished app must not offer a dead store download link');}
+ for(const key of ['groupUrl','enrollmentUrl'])if(a[key])assert.ok(android.includes('href="'+a[key]+'"'),'Configured participation link missing');
 }
 assert.ok(android.includes('Bu site Google hesabınızı veya testçi üyeliğinizi göremez'),'Do not imply the site can verify Google test consent');
 assert.ok(!android.includes('<form'),'Do not collect Google account data for test registration');

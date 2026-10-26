@@ -11,3 +11,6 @@ An internal test is limited and is not a public self-service distribution channe
 Sources: https://support.google.com/googleplay/android-developer/answer/9845334 and https://support.google.com/googleplay/android-developer/answer/14151465 .
 
 Status26October2026: guide and safe fallback implemented. Current CLI profile records LinkedIn only; Google Console login requested. No Play track, audience, Google Group or release was changed. Public tester self-enrollment is pending account access and verified enrollment configuration.
+
+
+Console follow-up: production/open-test access is not yet available on the inspected personal account. PayRadar and EİP have active closed tracks using existing email lists; these lists remain unchanged. LaserDeck has no closed-track release and is staged as pending, without a store-download CTA. A self-join group is prepared with owner-only conversation/post/member-list access, but Google human verification prevents final creation. No group or additional track is claimed created, and no enrollment URL has been published.
