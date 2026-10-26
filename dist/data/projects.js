@@ -210,24 +210,27 @@ window.PORTFOLIO_PROJECTS = [
       "JavaScript",
       "Node.js",
       "PWA",
-      "PostgreSQL"
+      "PostgreSQL",
+      "Google Cloud Run",
+      "Dixon-Coles"
     ],
-    "live": "https://futboltabela.netlify.app",
+    "live": "https://tabela-282269811202.europe-west1.run.app",
+    "repo": "https://gitlab.com/Voyagerroc/Tabela",
     "tr": {
-      "tag": "Veri / Futbol",
-      "summary": "Tahmini yaz. Sonucunu takip et.",
-      "description": "Maç verilerini, istatistiksel tahminleri ve kişisel analiz günlüğünü bir araya getiren futbol çalışma alanı.",
-      "problem": "Tahmin üretmek kolay; gerekçesini ve gerçekleşen sonuçla farkını izlemek daha zor.",
-      "approach": "Fikstür, istatistiksel modeller, isteğe bağlı Si analizi ve tahmin defteri.",
-      "scope": "Web sayfası erişilebilir. Bazı analizler kullanıcının sağlayıcı anahtarını gerektiriyor. Tahmin doğruluğu veya kazanç garantisi yok."
+      "tag": "Yapay Zekâ / İstatistik ve Futbol",
+      "summary": "Tahmin et, gerekçeni gör, sonucunu karnene yaz.",
+      "description": "Dixon-Coles korelasyon düzeltmesi, dinamik Elo güç puanı ve canlı ESPN fikstürleriyle çalışan; tahminleri yapay zekâ gerekçesiyle birlikte deftere kaydedip başarı oranını ölçen futbol analiz uygulaması.",
+      "problem": "Çoğu tahmin aracı ezbere skor fırlatır; 0-0 ve 1-1 gibi kilit beraberlikleri ıskalar, tahminin neden yapıldığını açıklamaz ve geçmiş başarısını şeffafça ölçtürmez.",
+      "approach": "Standart Poisson'ın beraberlik zaafını gideren Dixon-Coles (rho = -0.13) modeli, 9x9 olasılık matrisi, beklenen puan optimizasyonu, NVIDIA NIM tabanlı robot yorumları ve cihazlar arası Postgres senkronizasyonu.",
+      "scope": "Canlı Google Cloud Run üzerinde 7/24 yayında. Tahminler istatistiksel olasılık üretir, kesin kazanç veya bahis garantisi vermez; defter karne tutmak ve modeli sınamak içindir."
     },
     "en": {
-      "tag": "Data / Football",
-      "summary": "Make a prediction. Track its outcome.",
-      "description": "A football workspace combining match data, statistical predictions and a personal analysis log.",
-      "problem": "Producing predictions is easy; tracking reasoning and actual outcomes takes more care.",
-      "approach": "Fixtures, statistical modelling, optional Si analysis and a prediction journal.",
-      "scope": "The web interface is accessible. Some analyses require the user's provider key; no accuracy or financial return is guaranteed."
+      "tag": "AI / Sports Analytics",
+      "summary": "Forecast scorelines, inspect reasoning, track your hit-rate.",
+      "description": "A football workspace combining the Dixon-Coles bivariate Poisson model, live ESPN feeds, and LLM-grounded reasoning with a verified prediction journal.",
+      "problem": "Standard prediction models quietly fail on low-scoring games (underestimating draws) while offering zero accountability or transparent scorekeeping.",
+      "approach": "Dixon-Coles correlation correction (rho = -0.13), dynamic Elo power ratings, expected-points score selection, and cloud-synced prediction journals over Postgres.",
+      "scope": "Running live on Google Cloud Run. Probabilistic modelling is for analytical benchmarking, not betting guarantees."
     },
     "featured": false
   },
