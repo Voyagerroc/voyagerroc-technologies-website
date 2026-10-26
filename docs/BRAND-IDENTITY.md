@@ -18,4 +18,7 @@ Official references:
 - https://developers.google.com/search/docs/appearance/site-names
 - https://developers.google.com/search/docs/fundamentals/ai-optimization-guide
 
-The new page's Search Console indexing request result is recorded after the browser check. The previously indexed homepage is not proof that the new page is indexed or that Gemini now describes the brand correctly.
+Search Console inspected the new About page as not indexed / URL unknown. Request indexing was clicked once; the last visible state was Testing if live URL can be indexed. No final Indexing requested confirmation or failure was observed. This is an initiated check, not a confirmed indexing submission. The previously indexed homepage is not proof that the new page is indexed or that Gemini now describes the brand correctly.
+
+## Owner-provided LinkedIn
+The owner supplied https://www.linkedin.com/in/erol-t-66791821a/ . The site links to it as a personal founder profile in the homepage footer and About page; the public GitHub/GitLab brand documents also link to it. AboutPage.relatedLink describes the association. It is deliberately excluded from Brand.sameAs because a person's profile is not the same entity as the brand. No additional personal details were copied. LinkedIn blocked automated public retrieval (HTTP999), so profile contents and the reciprocal website field were not verified or edited. Adding an outbound link does not create an inbound link from LinkedIn or guarantee a Gemini answer.

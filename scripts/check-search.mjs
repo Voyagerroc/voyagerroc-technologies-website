@@ -35,6 +35,9 @@ const homeGraph=graphFrom(home),identity=homeGraph.find(n=>n['@type']==='Brand')
 const aboutHtml=fs.readFileSync(path.join(dist,'hakkimizda/index.html'),'utf8'),aboutGraph=graphFrom(aboutHtml);
 assert.equal(aboutGraph.find(n=>n['@type']==='AboutPage').mainEntity['@id'],identity['@id'],'About page must identify the same brand');
 assert.equal(aboutGraph.find(n=>n['@type']==='Brand').name,identity.name,'Brand name differs across pages');
+const personalProfile=aboutGraph.find(n=>n['@type']==='AboutPage').relatedLink;
+assert.ok(aboutHtml.includes('href="'+personalProfile+'"'),'Founder profile must be visibly linked');
+assert.ok(!identity.sameAs.includes(personalProfile),'Personal profile must not be equated with the brand');
 assert.ok(home.includes('/hakkimizda/'),'Brand identity page orphaned');
 for(const service of services)assert.ok(home.includes('/calismalar/'+service.slug+'/'),'Service orphaned');
 for(const id of Object.keys(products)){
