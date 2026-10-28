@@ -23,6 +23,8 @@ export default {
   const asset=await env.ASSETS.fetch(request),response=new Response(asset.body,asset);
   securityRecord(request,asset.status);
   for(const [key,value] of Object.entries(securityHeaders))response.headers.set(key,value);
+  // A dedicated public logo is embedded in email signatures on other origins.
+  if(url.pathname==='/assets/email-signature-logo.png'&&response.ok)response.headers.set('Cross-Origin-Resource-Policy','cross-origin');
   return response;
  }
 };

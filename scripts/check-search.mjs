@@ -40,6 +40,38 @@ assert.equal(aboutGraph.find(n=>n['@type']==='Brand').name,identity.name,'Brand 
 const personalProfile=aboutGraph.find(n=>n['@type']==='AboutPage').relatedLink;
 assert.ok(aboutHtml.includes('href="'+personalProfile+'"'),'Founder profile must be visibly linked');
 assert.ok(!identity.sameAs.includes(personalProfile),'Personal profile must not be equated with the brand');
+const website=homeGraph.find(n=>n['@type']==='WebSite');
+const operator=homeGraph.find(n=>n['@type']==='Person');
+assert.equal(website.name,'Voyagerroc Technologies');
+assert.ok(identity.alternateName.includes('voyagerroctechnologies'),'Compact brand spelling must resolve to the same brand entity');
+assert.ok(website.alternateName.includes('voyagerroctechnologies'),'Compact search spelling must identify the official website');
+assert.ok(aboutHtml.includes('voyagerroctechnologies araması hangi markayı ifade eder?'),'Exact search spelling needs a visible, factual identity answer');
+assert.equal(website.publisher['@id'],operator['@id'],'Website publisher must resolve to its real operator');
+assert.ok(operator.sameAs.includes(personalProfile),'Personal profile must identify the operator');
+assert.ok(identity.sameAs.includes('https://www.linkedin.com/company/voyagerroc-technologies/'),'Company identity must link to the exact company profile');
+assert.equal(homeGraph.find(n=>n['@type']==='WebPage').mainEntity['@id'],identity['@id']);
+assert.ok(home.includes('data-i18n="officialBrand"'),'Official identity must be discoverable from the hero');
+assert.ok(aboutHtml.includes('Voyager Technologies adının kısaltması veya alternatif yazımı değildir'),'Brand spelling distinction must be visible');
+assert.ok(aboutHtml.includes('Erol Taşcı'),'Structured operator must also be named visibly');
+const founderHtml=fs.readFileSync(path.join(dist,'erol-tasci/index.html'),'utf8');
+const founderGraph=graphFrom(founderHtml),profile=founderGraph.find(n=>n['@type']==='ProfilePage'),founder=founderGraph.find(n=>n['@type']==='Person');
+assert.equal(profile.mainEntity['@id'],operator['@id'],'Founder profile must identify the existing operator, not create a second identity');
+assert.equal(founder['@id'],operator['@id']);
+assert.equal(founder.name,'Erol Taşcı');
+assert.ok(founder.alternateName.includes('Erol Tasci')&&founder.alternateName.includes('Voyagerroc-Lab'));
+assert.ok(founderHtml.includes('Voyagerroc Technologies’in sahibi kim?'));
+assert.ok(home.includes('/erol-tasci/')&&aboutHtml.includes('/erol-tasci/'),'Founder profile must be discoverable through real links');
+assert.ok(!identity.sameAs.includes(founder.url),'Founder page and brand must remain distinct identities');
+const instagram='https://www.instagram.com/eroltascii94/';
+assert.ok(founder.sameAs.includes(instagram),'Exact user-supplied Instagram must identify the founder');
+assert.ok(!identity.sameAs.includes(instagram),'Personal Instagram must not be equated with the brand');
+assert.ok(founderHtml.includes('href="'+instagram+'"'),'Instagram identity must also be visibly linked');
+const portfolioHtml=fs.readFileSync(path.join(dist,'calismalar/index.html'),'utf8'),portfolioGraph=graphFrom(portfolioHtml),list=portfolioGraph.find(n=>n['@type']==='ItemList');
+assert.equal(list.numberOfItems,18);
+assert.equal(list.itemListElement.length,18);
+assert.ok(founderHtml.includes('href="/calismalar/"')&&home.includes('href="/calismalar/"'),'Complete portfolio must be discoverable');
+assert.equal((portfolioHtml.match(/class="portfolio-entry"/g)||[]).length,18);
+assert.ok(!home.includes('Voyager Technologies'),'Do not make the competing brand a homepage identity signal');
 assert.ok(home.includes('/hakkimizda/'),'Brand identity page orphaned');
 for(const service of services)assert.ok(home.includes('/calismalar/'+service.slug+'/'),'Service orphaned');
 for(const id of Object.keys(products)){
@@ -59,6 +91,12 @@ for(const study of studies){
 assert.ok(fs.readFileSync(path.join(dist,payradarDemo.captions),'utf8').startsWith('WEBVTT'));
 const android=fs.readFileSync(path.join(dist,'android/index.html'),'utf8');
 const portfolio={window:{}};vm.runInNewContext(fs.readFileSync(path.join(dist,'data/projects.js'),'utf8'),portfolio);
+const story=home.match(/<section id="product-story"[\s\S]*?<\/section>/)[0];
+assert.ok(!story.includes('href="https://play.google.com/'),'Static story must not bypass Android enrollment guidance');
+for(const p of portfolio.window.PORTFOLIO_PROJECTS){
+ for(const language of ['tr','en'])for(const field of ['tag','summary','description','problem','approach','scope',...(p.image?['visual']:[])])assert.ok(p[language]?.[field],'Missing project content: '+p.id+'/'+language+'/'+field);
+ if(p.androidTest)assert.ok(story.includes('href="'+p.androidAccess+'"'),'Static story must discover Android guide: '+p.id);
+}
 for(const p of portfolio.window.PORTFOLIO_PROJECTS.filter(x=>x.androidTest)){
  assert.equal(p.androidAccess,'/android/#'+p.id,'Android CTA must lead through enrollment guidance');
  assert.ok(android.includes('id="'+p.id+'"'),'Missing product enrollment anchor');

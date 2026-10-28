@@ -1,5 +1,18 @@
 // Public, evidence-based copy. Do not add client claims or unverified release promises.
 export const products = {
+  tabela: {
+    title: 'Tabela — Futbol Analizi ve Tahmin Defteri | Voyagerroc Technologies',
+    description: 'Fikstürü, maç analizini ve tahmin geçmişini Tabela ile inceleyin. Si analizi için gereken API anahtarını ve olasılıksal tahminlerin sınırlarını öğrenin.',
+    heading: 'Maç analizi ve tahminlerin sonuçlarla karşılaştırılması',
+    intro: 'Lig ve maç bilgilerini, analizleri ve tahmin geçmişini bir arada incelemek için hazırlanmış deneysel bir çalışma alanıdır. Tahminin değeri, gerçek sonuçla karşılaştırılarak değerlendirilir.',
+    steps: ['Si analizi için desteklenen model sağlayıcısının API anahtarını uygulamada tanımlayın.', 'İnceleyeceğiniz ligi ve maçı seçin; analizin dayandığı bilgileri ve kaynakları kontrol edin.', 'Maç bittikten sonra gerçek skoru tahmin defterine kaydedip sonuçları karşılaştırın.'],
+    faq: [
+      ['API anahtarı gerekiyor mu?', 'Si destekli analiz için desteklenen bir model sağlayıcısının API anahtarı gerekir. Anahtarı bu portföy sitesine veya iletişim mesajına göndermeyin; ilgili uygulamanın kendi akışını kullanın.'],
+      ['Veriler ve tahminler her zaman güncel mi?', 'Fikstür, haber ve analiz kapsamı dış veri kaynaklarına ve model sağlayıcısına bağlıdır. Eksik veya doğrulanamayan bilgiler olabilir; önemli ayrıntıları kaynaklarından kontrol edin.'],
+      ['Tahmin defteri nasıl değerlendirilir?', 'Gerçek skorlar kaydedildikçe tahminlerle karşılaştırılır. Boş veya küçük bir tahmin geçmişi kanıtlanmış başarı oranı olarak değerlendirilmez.'],
+      ['Kesin sonuç ya da kazanç garantisi var mı?', 'Hayır. Tabela deneysel ve olasılıksal analiz sunar; kesin skor veya bahis kazancı vaat etmez.']
+    ]
+  },
   payradar: {
     title: 'PayRadar — Abonelik ve Ödeme Takibi | Voyagerroc Technologies',
     description: 'Kira, abonelik ve taksitleri PayRadar ile takip edin. Çevrimdışı web uygulaması, farklı para birimleri ve Android test sürümü hakkında bilgi alın.',
@@ -20,6 +33,7 @@ export const products = {
     intro: 'Yakın mesafedeki iki Android cihaz arasında doğrudan iletişim kurmaya odaklanır. Kullanım senaryosu, internet hesabına bağlı bir sohbet hizmetinden farklıdır: bağlantı cihazlar arasında Bluetooth ile kurulur.',
     steps: ['Kurulum rehberinden desteklenen sürümü ve gereken Android izinlerini kontrol edin.', 'İki cihazda Bluetooth bağlantısını kurun ve eşleşmeyi doğrulayın.', 'PTT, arama ve aktarım işlevlerini kullanacağınız ortamda iki cihazla deneyin.'],
     faq: [
+      ['LazerDeck mi, LaserDeck mi?', 'Bu sitedeki ürünün resmî adı LaserDeck PTT’dir. LazerDeck yazımıyla aranan Bluetooth bas-konuş çalışması için de bu ürünün kapsam ve erişim bilgilerini inceleyebilirsiniz.'],
       ['İletişim için internet gerekiyor mu?', 'Cihazlar arasındaki iletişim Bluetooth Classic RFCOMM bağlantısını kullanır. Uygulamayı indirmek veya rehbere erişmek için internet gerekebilir.'],
       ['Ne kadar mesafede çalışır?', 'Sabit bir menzil taahhüdü yoktur. Telefon donanımı, engeller ve ortam koşulları bağlantıyı etkiler; gerçek kullanım alanında ölçüm yapılmalıdır.'],
       ['Lazer donanımı kullanıyor mu?', 'Hayır. LaserDeck PTT bu kapsamda Android ve Bluetooth tabanlı bir yazılım projesidir.'],
@@ -33,6 +47,7 @@ export const products = {
     intro: 'Bir başvuruyu yalnızca özgeçmişteki ifadelerle değerlendirmek yerine, adayın sunduğu belgeleri ve çalışma örneklerini aynı süreçte inceleme yaklaşımıdır. Amaç, değerlendirmede hangi bilginin neye dayandığını görünür kılmaktır.',
     steps: ['Değerlendirilecek rolün gereksinimlerini ve kabul edilecek çalışma örneklerini belirleyin.', 'Aday belgeleri, başvuru bilgileri ve örnekleri birlikte inceleyin.', 'Değerlendirme gerekçelerini raporlayın; işe alım kararını sorumlu kişilerle sonuçlandırın.'],
     faq: [
+      ['EİP ve EIP neyi ifade ediyor?', 'Bu sitede EİP, Evidence Intelligence Platform adının kısaltmasıdır. Türkçe karakter kullanılmadan EIP biçiminde de yazılabilir. Voyagerroc Technologies ürün çalışmaları kapsamında aday belgelerini ve çalışma örneklerini bir araya getirir.'],
       ['EİP neyi bir araya getiriyor?', 'Aday kanıt merkezi, başvurular, işveren çalışma alanı ve raporlama aynı ürün kapsamında ele alınır. Canlı erişim tek başına bütün akışların uçtan uca doğrulandığını göstermez.'],
       ['Sistem tek başına işe alım kararı verir mi?', 'Bu sayfa otomatik veya hatasız işe alım kararı vaat etmez. Ürün yaklaşımı, belge ve çalışma örneklerini insan değerlendirmesine daha açık biçimde sunmaktır.'],
       ['Ürünü nasıl inceleyebilirim?', 'Web arayüzünü doğrudan inceleyebilir; Android için erişim ve katılım rehberinden başlayabilirsiniz. Testçi erişimi Google Play hesabınıza ve test kanalının yayın durumuna bağlıdır.']

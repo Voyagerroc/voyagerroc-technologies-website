@@ -58,7 +58,7 @@ window.PORTFOLIO_PROJECTS = [
       "description": "Kira, abonelik ve taksitleri bir araya getiren; çevrimdışı kullanımı ve cihazdaki veri kontrolünü öne alan ödeme takip uygulaması.",
       "problem": "Düzenli ödemeler farklı yerlerde durunca yenileme tarihlerini ve toplam yükü görmek zorlaşıyor.",
       "approach": "Yerel kasa, mobil ödeme özeti, ertelenen ödemeler ve bildirim paneli. İsteğe bağlı senkronizasyon ile Cloudflare tabanlı arka plan hatırlatma kaynakları aynı ürün ailesinde geliştiriliyor.",
-      "scope": "Web uygulaması erişilebilir. Android 1.1.0 sürümü Google Play iç test kanalında yayınlandı. Orbit 3D teması ve bildirim tanılama akışı web sürümünde mevcut. Gerçek telefonda arka plan bildirim teslimi ayrıca test gerektirir. iOS için App Store yayını iddiası yoktur; bulut senkronizasyonu E2EE olarak sunulmaz.",
+      "scope": "Web uygulaması erişilebilir. Android 1.1.0 sürümü Google Play iç test kanalında yayımlandı. Orbit 3D teması ve bildirim tanılama akışı web sürümünde mevcut. Günlük bildirim uyarısı ve hatırlatma saati tanılaması 27 Ekim 2026’da güncellendi. Gerçek telefonda arka plan bildiriminin görünmesi ayrıca doğrulanmalıdır. Bulut senkronizasyonu uçtan uca şifreli olarak sunulmaz.",
       "visual": "Güncel yerel arayüzün örnek ödeme verileriyle görünümü; kişisel hesap kaydı değildir."
     },
     "en": {
@@ -67,7 +67,7 @@ window.PORTFOLIO_PROJECTS = [
       "description": "A recurring-payment tracker that brings rent, subscriptions and instalments together, with offline use and control over on-device data.",
       "problem": "Scattered recurring payments make renewals and total spending hard to see.",
       "approach": "A local vault, mobile payment overview, deferred payments and a notification panel. Optional sync and Cloudflare-based background reminder sources are developed within the same product family.",
-      "scope": "The web app is available. Android 1.1.0 is available to internal testers on Google Play. The web release includes the Orbit 3D theme and notification diagnostics. Background notification delivery still requires physical-device verification. No App Store release is claimed; cloud sync is not presented as E2EE.",
+      "scope": "The web app is available. Android 1.1.0 is available to internal testers on Google Play. The web release includes the Orbit 3D theme and notification diagnostics, updated on 27 October 2026 for daily alerts and reminder-time status. Background notification display still requires physical-device verification. Cloud sync is not presented as end-to-end encrypted.",
       "visual": "The current local interface with sample payment data, not a personal account record."
     }
   },
@@ -220,20 +220,22 @@ window.PORTFOLIO_PROJECTS = [
     "repo": "https://gitlab.com/Voyagerroc/Tabela",
     "featured": true,
     "tr": {
-      "tag": "Yapay Zekâ / İstatistik & Canlı Futbol Analizi",
-      "summary": "2026-2027 sezonu canlı ESPN fikstürü, Dixon-Coles Poisson modeli, taktik çim saha ve yapay zekâ skor robotu.",
-      "description": "Dixon-Coles korelasyon düzeltmesi (rho = -0.13), dinamik lig gücü ve resmi ESPN maç takvimiyle çalışan; muhtemel 11'leri, formasyonları, FIFA kokartlı hakem atamalarını ve yapay zekâ maç gerekçelerini görsel bir taktik sahada sunup başarı oranını şeffafça karnede puanlayan profesyonel futbol analiz platformu.",
-      "problem": "Standart tahmin araçları düşük skorlu maçlarda (0-0 ve 1-1) beraberlik olasılığını matematiksel olarak ıskalar, jenerik tahminler üretir, güncel 2026-2027 kadrolarını ve resmi hakem atamalarını hesaba katmaz ve geriye dönük doğruluk karnesi sunmaz.",
-      "approach": "Standart bağımsız Poisson dağılımındaki beraberlik zafiyetini gideren çift değişkenli Dixon-Coles modeli, 9x9 olasılık matrisi, beklenen puan (E[puan]) optimizasyonu, 3 motion animasyonlu taktik çim saha, doğrulanmış 2026 kulüp armaları, resmi TFF/UEFA hakem ve VAR istatistikleri, NVIDIA NIM yapay zekâ analizleri ve Neon PostgreSQL cihazlar arası kalıcı defter senkronizasyonu.",
-      "scope": "Google Cloud Run üzerinde 7/24 canlı ve sıfır sunucu maliyetli. Tahminler olasılıksal modelleme ve analitik doğrulama amaçlıdır; bahis veya kesin sonuç vaadi içermez."
+      "tag": "Si / İstatistiksel futbol analizi",
+      "summary": "Fikstür, maç analizi ve sonuçlarla karşılaştırılabilen tahmin defteri.",
+      "description": "Fikstür, maç haberleri, olasılıksal skor tahminleri ve tahmin geçmişini aynı çalışma alanında bir araya getiren futbol analiz uygulaması.",
+      "problem": "Maç öncesi bilgileri birlikte değerlendirmek ve üretilen tahminleri gerçek sonuçlarla karşılaştırmak.",
+      "approach": "Dixon-Coles düzeltmeli Poisson skor olasılıkları, Si destekli maç analizi, taktik saha görünümü ve sonuçların kaydedilebildiği tahmin defteri.",
+      "scope": "Web arayüzü erişilebilir. Si destekli analiz için desteklenen bir model sağlayıcısının API anahtarı gerekir. Veri kapsamı ve güncelliği kaynaklara bağlıdır. Tahminler deneysel ve olasılıksaldır; kesin sonuç veya bahis kazancı vaat edilmez.",
+      "visual": "Tabela uygulamasının mevcut ikonu."
     },
     "en": {
-      "tag": "AI / Probabilistic Football Analytics",
-      "summary": "2026-2027 live ESPN schedule, Dixon-Coles Poisson engine, tactical pitch & AI forecast workspace.",
-      "description": "A high-precision football intelligence workspace leveraging bivariate Dixon-Coles Poisson modelling (rho = -0.13), dynamic league ratings, and live ESPN feeds to deliver starting XI lineups, formations, official referee assignments, and AI-grounded tactical forecasts with transparent hit-rate tracking.",
-      "problem": "Ordinary prediction engines fail on low-scoring games (systematically underestimating draws), rely on stale squads, ignore match officials and VAR metrics, and lack transparent scorekeeping.",
-      "approach": "Dixon-Coles correlation correction across 9x9 scoreline matrices, expected-points optimization, 3-motion animated tactical pitch, confirmed 2026-2027 rosters and managers, official FIFA referees & VAR stats, NVIDIA NIM reasoning, and multi-device persistence over Postgres.",
-      "scope": "Running 24/7 on Google Cloud Run with zero hosting costs. Probabilistic forecasts benchmark tactical models without gambling claims."
+      "tag": "Si / Probabilistic football analytics",
+      "summary": "Fixtures, match analysis and forecasts you can compare with results.",
+      "description": "A football analysis workspace bringing fixtures, match news, probabilistic score forecasts and prediction history together.",
+      "problem": "Reviewing pre-match information together and comparing predictions with actual results.",
+      "approach": "Poisson score probabilities with a Dixon-Coles correction, Si-assisted match analysis, a tactical pitch view and a forecast ledger for recording results.",
+      "scope": "The web interface is accessible. Si-assisted analysis requires an API key from a supported model provider. Data coverage and freshness depend on the sources. Predictions are experimental and probabilistic; no guaranteed result or betting return is promised.",
+      "visual": "The existing Tabela application icon."
     }
   },
   {
@@ -455,7 +457,7 @@ window.PORTFOLIO_PROJECTS = [
       "description": "Günlük ilerleme ve saha verilerini cihazda tutarak baskıya hazır A4 raporlarına dönüştüren araç.",
       "problem": "Dağınık saha notlarını paylaşılabilir, tutarlı bir günlük rapora çevirmek.",
       "approach": "Yerel veri, form, canlı rapor önizlemesi ve dışa aktarım.",
-      "scope": "PWA ve rapor kaynakları incelendi. Eski GitHub Pages adresi erişilemediği için canlı bağlantı sunulmuyor.",
+      "scope": "PWA ve raporlama kaynak çalışmasıdır. Bu portföyde canlı kullanıma açık bir sürüm bağlantısı bulunmuyor.",
       "visual": "Mevcut depo içindeki arayüz illüstrasyonu."
     },
     "en": {
@@ -464,7 +466,7 @@ window.PORTFOLIO_PROJECTS = [
       "description": "A local-first tool turning daily construction progress into print-ready A4 reports.",
       "problem": "Turning scattered field notes into consistent, shareable daily reporting.",
       "approach": "Local data, forms, report previews and exports.",
-      "scope": "PWA/report source inspected. The old GitHub Pages link was unavailable.",
+      "scope": "A PWA and reporting source project. This portfolio does not provide a publicly accessible live release link.",
       "visual": "The existing repository's interface illustration."
     },
     "featured": false
@@ -520,7 +522,7 @@ window.PORTFOLIO_PROJECTS = [
       "description": "Mimari projeleri, etkileşimli 3D modelleri ve görsel anlatımı aynı dijital deneyimde buluşturan çalışma ailesi.",
       "problem": "Teknik çizimler, projeyi ilk kez gören herkes için yeterince anlaşılır olmayabiliyor.",
       "approach": "WebGL model, dolaşılabilir sahne ve akıcı web etkileşimleriyle yapının ilişkilerini görünür kılıyor. Eski statik vitrin ile yeni etkileşimli kaynaklar birlikte değerlendirildi.",
-      "scope": "Kaynaklar ve görseller incelendi. Eski Railway adresi erişilebilir olmadığı için canlı demo bağlantısı sunulmuyor.",
+      "scope": "Portföyde kaynak çalışmaları ve konsept görselleri yer alır. Canlı demo bağlantısı sunulmuyor.",
       "visual": "Dolunay konsept 3D görselleştirmesi; tamamlanmış yapı fotoğrafı değildir."
     },
     "en": {
@@ -529,7 +531,7 @@ window.PORTFOLIO_PROJECTS = [
       "description": "A family of architectural presentations combining interactive 3D models, visual storytelling and responsive web experiences.",
       "problem": "Technical drawings are not equally accessible to everyone encountering a project.",
       "approach": "WebGL scenes and interactive presentations make spatial relationships easier to understand.",
-      "scope": "Source and visuals inspected. The old Railway URL was unavailable, so no live demo is presented.",
+      "scope": "Source work and concept visuals are presented in the portfolio. No live demo link is provided.",
       "visual": "Dolunay concept rendering; not a photograph of completed construction."
     }
   },
@@ -549,7 +551,7 @@ window.PORTFOLIO_PROJECTS = [
       "description": "Karadeniz'de A-frame bungalovlar için hazırlanmış konsept ve dijital sunum.",
       "problem": "Bir konaklama fikrinin atmosferini, yerleşimini ve deneyimini anlaşılır biçimde anlatmak.",
       "approach": "Kendi içinde paketlenmiş statik konsept vitrini.",
-      "scope": "Mevcut kaynak statik arşiv sunumu. Eski README'deki React web/ dizini bu kopyada yok. Yapıların tamamlandığı veya rezervasyonun çalıştığı iddia edilmiyor."
+      "scope": "Konsept ve dijital sunum çalışmasıdır. Tamamlanmış yapı, açık rezervasyon veya işletilen tesis olarak sunulmaz."
     },
     "en": {
       "tag": "Space / Concept",
@@ -557,7 +559,7 @@ window.PORTFOLIO_PROJECTS = [
       "description": "A concept and digital presentation for A-frame bungalows on the Black Sea coast.",
       "problem": "Communicating the atmosphere and layout of a hospitality concept.",
       "approach": "A self-contained static concept presentation.",
-      "scope": "The current source is an archived static showcase. The old README's React web directory is absent. No completed construction or booking flow is claimed."
+      "scope": "A concept and digital presentation project. It is not presented as completed construction, an open booking service or an operating property."
     },
     "featured": false
   },

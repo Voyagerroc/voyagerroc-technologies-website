@@ -5,7 +5,8 @@
   "workers_dev": true,
   "preview_urls": false,
   "routes": [
-    { "pattern": "voyagerroctechnologies.com", "custom_domain": true }
+    { "pattern": "voyagerroctechnologies.com", "custom_domain": true },
+    { "pattern": "www.voyagerroctechnologies.com", "custom_domain": true }
   ],
   "assets": {
     "directory": "./dist",
