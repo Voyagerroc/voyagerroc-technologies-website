@@ -14,6 +14,17 @@ export const products = {
     ]
   },
   payradar: {
+    modified: '2026-10-30',
+    update: {
+      heading: '30 Ekim 2026 güncellemesi',
+      items: [
+        'Arka plan bildirimleri için otomatik yeniden deneme ve süresi dolan aboneliği yenileme eklendi. Günlük hatırlatmalar yerel saat 09.00 sonrasında beş dakikalık kontrollerle değerlendirilir.',
+        'Bağlantı kontrolü, sağlayıcının gönderimi kabul etmesi ile cihazın bildirim gösterme işlemini onaylamasını ayrı gösterir. Gösterim onayı, bildirimin okunduğu veya ses çaldığı anlamına gelmez.',
+        'Uygulama gece boyunca açık kaldığında ve uygulamaya geri dönüldüğünde kalan gün ve gecikme sayaçlarının eski günde kalması düzeltildi.',
+        'Aylık tekrar takvim ayına göre ilerler: 31 günlük bir dönemde iki gün gecikmiş ödeme sonrası 29 gün, 30 günlük dönemde 28 gün kalır. Geç ödeme sonraki vadeyi ödeme gününden yeniden başlatmaz.'
+      ],
+      note: 'Web sürümü yayımlandı. Bildirim izni ve cihazın arka plan ayarları teslimatı etkileyebilir; fiziksel telefonda görünürlük ayrıca test edilmelidir.'
+    },
     title: 'PayRadar — Abonelik ve Ödeme Takibi | Voyagerroc Technologies',
     description: 'Kira, abonelik ve taksitleri PayRadar ile takip edin. Çevrimdışı web uygulaması, farklı para birimleri ve Android test sürümü hakkında bilgi alın.',
     heading: 'Abonelik ve ödeme takibi',

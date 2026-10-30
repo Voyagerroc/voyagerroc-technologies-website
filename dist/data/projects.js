@@ -58,7 +58,7 @@ window.PORTFOLIO_PROJECTS = [
       "description": "Kira, abonelik ve taksitleri bir araya getiren; çevrimdışı kullanımı ve cihazdaki veri kontrolünü öne alan ödeme takip uygulaması.",
       "problem": "Düzenli ödemeler farklı yerlerde durunca yenileme tarihlerini ve toplam yükü görmek zorlaşıyor.",
       "approach": "Yerel kasa, mobil ödeme özeti, ertelenen ödemeler ve bildirim paneli. İsteğe bağlı senkronizasyon ile Cloudflare tabanlı arka plan hatırlatma kaynakları aynı ürün ailesinde geliştiriliyor.",
-      "scope": "Web uygulaması erişilebilir. Android 1.1.0 sürümü Google Play iç test kanalında yayımlandı. Orbit 3D teması ve bildirim tanılama akışı web sürümünde mevcut. Günlük bildirim uyarısı ve hatırlatma saati tanılaması 27 Ekim 2026’da güncellendi. Gerçek telefonda arka plan bildiriminin görünmesi ayrıca doğrulanmalıdır. Bulut senkronizasyonu uçtan uca şifreli olarak sunulmaz.",
+      "scope": "Web uygulaması erişilebilir. Android 1.1.0 sürümü Google Play iç test kanalında yayımlandı. 30 Ekim 2026 web güncellemesi; bildirimlerde otomatik yeniden deneme, abonelik yenileme, cihaz gösterim onayı ve gece yarısında yenilenen gün sayaçlarını içerir. Aylık vadeler takvim ayına göre korunur. Gerçek telefonda arka plan bildiriminin görünmesi ayrıca doğrulanmalıdır. Bulut senkronizasyonu uçtan uca şifreli olarak sunulmaz.",
       "visual": "Güncel yerel arayüzün örnek ödeme verileriyle görünümü; kişisel hesap kaydı değildir."
     },
     "en": {
@@ -67,7 +67,7 @@ window.PORTFOLIO_PROJECTS = [
       "description": "A recurring-payment tracker that brings rent, subscriptions and instalments together, with offline use and control over on-device data.",
       "problem": "Scattered recurring payments make renewals and total spending hard to see.",
       "approach": "A local vault, mobile payment overview, deferred payments and a notification panel. Optional sync and Cloudflare-based background reminder sources are developed within the same product family.",
-      "scope": "The web app is available. Android 1.1.0 is available to internal testers on Google Play. The web release includes the Orbit 3D theme and notification diagnostics, updated on 27 October 2026 for daily alerts and reminder-time status. Background notification display still requires physical-device verification. Cloud sync is not presented as end-to-end encrypted.",
+      "scope": "The web app is available. Android 1.1.0 is available to internal testers on Google Play. The 30 October 2026 web update adds notification retries, subscription renewal, device display-operation confirmation and day counters that refresh at midnight. Monthly due dates retain their calendar-month schedule. Background notification display still requires physical-device verification. Cloud sync is not presented as end-to-end encrypted.",
       "visual": "The current local interface with sample payment data, not a personal account record."
     }
   },

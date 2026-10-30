@@ -9,12 +9,22 @@ export const payradarDemo = {
 export const studies = [{
   slug: 'payradar-web-push-bildirimleri',
   title: 'PayRadar Web Push Bildirimleri: Sorun, Düzeltme ve Test | Voyagerroc Technologies',
-  heading: 'PayRadar’da bildirim isteğini durduran ayrıntı',
-  description: 'PayRadar Web Push çalışmasında tarayıcı kaydı, kaydedilmemiş ayarlar ve Cloudflare workerd uyumluluğu nasıl incelendi? Düzeltmeler ve doğrulama sınırları.',
+  heading: 'PayRadar bildirimleri: hata sonrası toparlanan motor',
+  description: '30 Ekim PayRadar güncellemesi: otomatik yeniden deneme, abonelik yenileme, cihaz gösterim onayı ve gün sayacı düzeltmesi. Geliştirme notları ve doğrulama sınırları.',
   date: '2026-10-25',
-  modified: '2026-10-27',
+  modified: '2026-10-30',
   intro: 'Telefona bildirim gelmediğinde tek bir düğmeyi düzeltmek yetmiyor. Tarayıcının izni, abonelik kaydı, sunucudaki plan ve push servisine çıkan istek ayrı ayrı kontrol edilmeli. PayRadar’da da sorun bu hattın birden fazla yerindeydi.',
   sections: [
+    {heading: '30 Ekim güncellemesi: hata sonrası toparlanan bildirim motoru', paragraphs: [
+      'Arka plan bildirimleri için kalıcı gönderim günlüğü eklendi. Aynı günlük gönderim eşzamanlı işlemlerde korunur; işlem yarıda kalırsa süreli kilit açılarak yeniden denenebilir. Geçici bağlantı ve sağlayıcı hatalarında artan aralıklarla, en fazla altı deneme yapılır. Sağlayıcının yeniden deneme için bildirdiği bekleme süresi de dikkate alınır.',
+      'Günlük kontrol beş dakikada bir çalışır; uygun vadeler yerel saat 09.00 sonrasında değerlendirilir. Süresi dolan aboneliğin tekrar kaydedilmesi yerine yenilenmesi sağlandı. Ayarlar ekranındaki tanılama, gönderim durumunu ve günlük kontrol motorunun çalışmasını ayrı gösterir.',
+      'Cihaz, bildirim gösterme işlemi tamamlandıktan sonra imzalı bir onay gönderir. İnternet kesilirse bu onay cihazda saklanır ve bağlantı olduğunda tekrar iletilir. Bu kayıt, insanın bildirimi gördüğünü, okuduğunu veya ses duyduğunu kanıtlamaz; yalnızca bildirim gösterme işleminin cihaz tarafından onaylandığını belirtir.',
+      '39 mantık/Worker testi ve 59 tarayıcı testi geçti. Worker ve web sürümü 30 Ekim’de canlıya alındı; canlı dosya eşleşmesi, kayıt yetkilendirmesi ve sahte onayların reddedilmesi doğrulandı. Yeni zamanlayıcının ilk canlı çalışması Türkiye saatiyle 12.55’te hatasız tamamlandı. Fiziksel Android teslimatı bu otomatik kontrollerden ayrı bir kabul testidir.'
+    ]},
+    {heading: '30 Ekim güncellemesi: gecikmiş ödeme ve gün sayacı', paragraphs: [
+      'Aylık ödeme, sabit 30 gün değil bir takvim ayı olarak ilerler. 28 Ekim vadeli ödeme 30 Ekim’de ödendiğinde yeni vade 28 Kasım olur ve 29 gün kalır. 28 Kasım vadeli ödeme 30 Kasım’da ödendiğinde ise 28 Aralık’a 28 gün kalır. Ödeme işlemi eski vadeden bir dönem ilerler; gecikme yeni döneme eklenmez ve diğer ödenmemiş dönemler atlanmaz.',
+      'İncelemede ayrı bir gösterim hatası bulundu: uygulama gece açık bırakıldığında gün sayacı eski tarihi gösterebiliyordu. Kartlar ve ana özet artık yerel gece yarısında ve uygulamaya dönüldüğünde yenileniyor. Takvim ayına bağlı mevcut vade günleri korunuyor.'
+    ]},
     {heading: 'İlk sorun: ekrandaki ayar ile gönderilen ayar aynı değildi', paragraphs: [
       'Bildirimler ayar ekranında açılmışken, arka plan kaydı bazı adımlarda henüz kaydedilmemiş tercihi kullanmıyordu. Kullanıcı düğmeyi açtığını görse de kayıt işlemi önceki kasa durumuyla ilerleyebiliyordu.',
       'Arka plan etkinleştirmesi güncel ayar taslağıyla çalışacak şekilde düzenlendi. Kontrol yalnızca düğmenin rengine bağlanmadı: tarayıcı aboneliği ve sunucudaki kayıt durumu da tanılama akışına eklendi.'
