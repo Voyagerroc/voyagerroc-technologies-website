@@ -64,3 +64,11 @@ LinkedIn copy uses the official name **Evidence Intelligence Platform (EİP)**,
 describes documents/work samples/human review, and links to the current product
 scope. It does not claim proven hiring accuracy, autonomous decisions, a public
 production Android release or completed end-to-end EIP acceptance testing.
+
+Publication completed: https://www.linkedin.com/feed/update/urn:li:share:7521889500009062400
+The company author and exact opening paragraph were independently verified read-only
+by TinyFish run `6c2045b6-1ea8-4b75-818f-511506659424` (`verified=true`, no blocker).
+Earlier native input attempts did not publish. The successful browser controller
+selected `.ql-editor` (excluding Quill clipboard), verified every paragraph against
+the approved source, and clicked Post exactly once. Rendering adds extra newlines
+to `innerText`; paragraph DOM text was used for exact verification instead.
