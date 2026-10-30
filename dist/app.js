@@ -7,7 +7,7 @@
     tr: {
       whatsappCta:"Kurucu ile irtibat kurabilirsiniz",
       officialBrand:"Voyagerroc Technologies · Resmî marka bilgileri ↗",
-      founderBio:"Erol Taşcı · Kurucu profili",allProjectPages:"Tüm çalışmalar",
+      founderBio:"Erol Taşcı · Kurucu profili",allProjectPages:"Tüm çalışmalar",programSupport:"Program destekleri",
       compactBrand:"Bitişik yazım: voyagerroctechnologies",
       tabelaTitle:"Maçı ve tahmini birlikte incele.",tabelaNote:"Fikstür · Analiz · Tahmin defteri",
       whatsappLabel:"KURUCU / WHATSAPP / +90 544 421 93 22",emailLabel:"Kurumsal e-posta gönder",brandLinksLabel:"Marka ve kurucu bağlantıları",
@@ -19,7 +19,7 @@
     en: {
       whatsappCta:"Contact the founder on WhatsApp",
       officialBrand:"Voyagerroc Technologies · Official brand information (TR) ↗",
-      founderBio:"Erol Taşcı · Founder profile (TR)",allProjectPages:"All projects (TR)",
+      founderBio:"Erol Taşcı · Founder profile (TR)",allProjectPages:"All projects (TR)",programSupport:"Program support (TR)",
       compactBrand:"Compact spelling: voyagerroctechnologies",
       tabelaTitle:"Review the match and forecast together.",tabelaNote:"Fixtures · Analysis · Forecast ledger",
       whatsappLabel:"FOUNDER / WHATSAPP / +90 544 421 93 22",emailLabel:"Send a business email",brandLinksLabel:"Brand and founder links",
