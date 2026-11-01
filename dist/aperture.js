@@ -1,96 +1,521 @@
 import * as THREE from './vendor/three.module.js';
 
-// APERTURE: five product domains in a conceptual routing study, not live data.
-const container=document.getElementById('scene-container'),canvas=document.getElementById('nexus-canvas'),toggle=document.getElementById('motion-toggle');
-const reduced=matchMedia('(prefers-reduced-motion: reduce)'),mobile=matchMedia('(max-width: 760px)');
-const ids=['eip','payradar','laserdeck','pharos','bungalow'];
-const names=['Evidence Intelligence','PayRadar','LaserDeck PTT','Pharos','Bungalow OS'];
-const colors=[0x9cbfff,0xc3b5f5,0xe9c79c,0x87d7cb,0xa0c9e0];
-function fallback(){document.body.dataset.webgl='fallback';toggle.hidden=true;}
-let renderer;try{renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'low-power'});}catch{fallback();}
-if(renderer){
- const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(33,1,.1,40);camera.position.set(0,.35,9.2);
- renderer.setPixelRatio(Math.min(devicePixelRatio,mobile.matches?1.25:1.65));renderer.outputColorSpace=THREE.SRGBColorSpace;
- renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;renderer.setClearColor(0,0);
- // Mobile keeps the same procedural sculpture with direct lighting. Avoid the
- // environment-convolution pass and clearcoat shaders on constrained devices.
- if(!mobile.matches){
- const lightCanvas=document.createElement('canvas');lightCanvas.width=1024;lightCanvas.height=512;
- const ctx=lightCanvas.getContext('2d');ctx.fillStyle='#060a13';ctx.fillRect(0,0,1024,512);
- [[70,50,100,410,'#c4d8f0'],[400,0,55,512,'#e4d8bf'],[670,80,160,330,'#527f9e']].forEach(([x,y,w,h,c])=>{ctx.fillStyle=c;ctx.fillRect(x,y,w,h);});
- const env=new THREE.CanvasTexture(lightCanvas);env.mapping=THREE.EquirectangularReflectionMapping;env.colorSpace=THREE.SRGBColorSpace;
- const pmrem=new THREE.PMREMGenerator(renderer),map=pmrem.fromEquirectangular(env);scene.environment=map.texture;env.dispose();pmrem.dispose();
- }
- scene.add(new THREE.HemisphereLight(0x9caeca,0x030509,1.3));
- const key=new THREE.DirectionalLight(0xcbdcf6,5);key.position.set(-3,4,5);scene.add(key);
- const warm=new THREE.PointLight(0xe5c79c,19,12);warm.position.set(1.3,-.3,2);scene.add(warm);
- const rim=new THREE.PointLight(0x719ddf,32,12);rim.position.set(-2,1,-2);scene.add(rim);
- const sculpture=new THREE.Group();sculpture.rotation.set(.26,-.36,-.15);scene.add(sculpture);
- const Surface=mobile.matches?THREE.MeshStandardMaterial:THREE.MeshPhysicalMaterial;
- const metal=new Surface({color:0x273445,metalness:mobile.matches?.65:1,roughness:.24,...(!mobile.matches?{clearcoat:.7}:{}),envMapIntensity:1.6});
- const dark=new Surface({color:0x0b111d,metalness:mobile.matches?.7:.95,roughness:.29,envMapIntensity:1.8});
- const pale=new THREE.MeshBasicMaterial({color:0x9fb9d7,transparent:true,opacity:.28});
- const lineMat=new THREE.LineBasicMaterial({color:0x8dadd1,transparent:true,opacity:.17});
- const torus=(r,t,arc=Math.PI*2)=>new THREE.TorusGeometry(r,t,6,100,arc);
- const sectors=[];
- for(let i=0;i<5;i++){
-  const group=new THREE.Group();group.rotation.z=i*Math.PI*2/5;sculpture.add(group);
-  const body=new THREE.Mesh(torus(1.16,.205,Math.PI*2/5-.14),metal);body.rotation.z=.07;group.add(body);
-  const lip=new THREE.Mesh(torus(1.38,.018,Math.PI*2/5-.22),metal);lip.rotation.z=.11;lip.position.z=.09;group.add(lip);
-  const insetMaterial=new THREE.MeshBasicMaterial({color:colors[i],transparent:true,opacity:.7});
-  const inset=new THREE.Mesh(torus(.965,.009,Math.PI*2/5-.24),insetMaterial);inset.rotation.z=.12;inset.position.z=.08;group.add(inset);
-  for(let j=0;j<8;j++){const a=.14+j*.135,rib=new THREE.Mesh(new THREE.BoxGeometry(.025,.23,.27),dark);rib.position.set(Math.cos(a)*1.21,Math.sin(a)*1.21,.02);rib.rotation.z=a-Math.PI/2;group.add(rib);}
-  const plate=new THREE.Mesh(new THREE.BoxGeometry(.3,.13,.19),metal),a=Math.PI/5;plate.position.set(Math.cos(a)*1.58,Math.sin(a)*1.58,-.11);plate.rotation.z=a;group.add(plate);
-  sectors.push({group,insetMaterial,phase:i*Math.PI*2/5});
- }
- const core=new THREE.Group();sculpture.add(core);
- core.add(new THREE.Mesh(new THREE.SphereGeometry(.61,32,24),new Surface({color:0x020409,metalness:1,roughness:.2,envMapIntensity:.7})));
- const halo=new THREE.Mesh(torus(.635,.015),new THREE.MeshBasicMaterial({color:0xd9c8a8}));halo.position.z=.13;core.add(halo);
- const innerHalo=new THREE.Mesh(torus(.68,.004),pale);innerHalo.position.z=.13;core.add(innerHalo);
- const prism=new THREE.Mesh(new THREE.OctahedronGeometry(.35),new Surface({color:0xa3b8ce,metalness:1,roughness:.14,envMapIntensity:2}));prism.scale.set(.68,1.55,.65);prism.position.z=.7;core.add(prism);
- const seam=new THREE.Mesh(new THREE.BoxGeometry(.009,.77,.012),new THREE.MeshBasicMaterial({color:0xf4e7cd}));seam.position.z=.93;core.add(seam);
- const outer=new THREE.Group();sculpture.add(outer);
- [1.77,1.84,2.03].forEach((r,i)=>{const ring=new THREE.Mesh(torus(r,i===1?.009:.003),i===1?dark:pale);ring.position.z=-.28-i*.06;outer.add(ring);});
- const ticks=[];for(let i=0;i<70;i++){const a=i/70*Math.PI*2,r=1.92,len=i%14===0?.1:.035;ticks.push(new THREE.Vector3(Math.cos(a)*r,Math.sin(a)*r,-.39),new THREE.Vector3(Math.cos(a)*(r+len),Math.sin(a)*(r+len),-.39));}
- outer.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(ticks),lineMat));
- const nodes=[];
- for(let i=0;i<5;i++){
-  const a=i*Math.PI*2/5+Math.PI/5,p=new THREE.Vector3(Math.cos(a)*2.03,Math.sin(a)*2.03,-.24),mat=new THREE.MeshBasicMaterial({color:colors[i]});
-  const node=new THREE.Mesh(new THREE.OctahedronGeometry(.065),mat);node.position.copy(p);outer.add(node);
-  const curve=new THREE.CubicBezierCurve3(p,new THREE.Vector3(p.x*.8,p.y*.8,.15),new THREE.Vector3(p.x*.3,p.y*.3,.3),new THREE.Vector3(0,0,.45));
-  const track=new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve.getPoints(35)),new THREE.LineBasicMaterial({color:colors[i],transparent:true,opacity:.2}));outer.add(track);
-  const signal=new THREE.Mesh(new THREE.SphereGeometry(.021,8,6),mat);outer.add(signal);nodes.push({node,signal,curve,track});
- }
- let seed=971;const random=()=>{seed=(seed*16807)%2147483647;return(seed-1)/2147483646;};
- const pts=[];for(let i=0;i<390;i++)pts.push((random()-.5)*8,(random()-.5)*5,(random()-.5)*3-1.8);
- scene.add(new THREE.Points(new THREE.BufferGeometry().setAttribute('position',new THREE.Float32BufferAttribute(pts,3)),new THREE.PointsMaterial({color:0x93b7de,size:.012,transparent:true,opacity:.32,depthWrite:false})));
- let paused=reduced.matches,visible=true,raf=0,last=0,time=0,frame=0,focus=-1,progress=0,selected=-2;
- let story={active:false,index:0,progress:0};const pointer={x:0,y:0},smooth={x:0,y:0},stateLabel=document.getElementById('scene-state');
- function updateState(){const en=document.documentElement.lang==='en',n=story.active?story.index:focus;stateLabel.textContent=n<0?(en?'05 DOMAINS / CONCEPT STUDY':'05 ALAN / KAVRAMSAL GÖRSEL'):String(n+1).padStart(2,'0')+' / '+names[n];canvas.dataset.focus=String(n);}
- function label(){const en=document.documentElement.lang==='en';toggle.textContent=paused?(en?'Resume motion':'Hareketi başlat'):(en?'Pause motion':'Hareketi durdur');toggle.setAttribute('aria-pressed',String(paused));document.body.dataset.motion=paused?'paused':'running';updateState();}
- function draw(){renderer.render(scene,camera);canvas.dataset.frames=String(++frame);}
- function pose(instant=false){
-  const l=instant?1:.055,n=story.active?story.index:focus;progress=THREE.MathUtils.lerp(progress,story.progress,l);
-  smooth.x=THREE.MathUtils.lerp(smooth.x,pointer.x,l);smooth.y=THREE.MathUtils.lerp(smooth.y,pointer.y,l);
-  sculpture.rotation.y=-.36+smooth.x*.15+Math.sin(time*.12)*.1;sculpture.rotation.x=.26+smooth.y*.1;sculpture.rotation.z=-.15+time*.025+(story.active?progress*.7:0);
-  sectors.forEach((s,i)=>{const active=i===n,d=story.active?.12+progress*.12:0,opening=d+(active?.12:0),a=s.phase+Math.PI/5;s.group.position.lerp(new THREE.Vector3(Math.cos(a)*opening,Math.sin(a)*opening,active?.15:0),l);s.insetMaterial.opacity=THREE.MathUtils.lerp(s.insetMaterial.opacity,active?1:n<0?.65:.2,l);});
-  nodes.forEach((node,i)=>{const active=n<0||i===n;node.node.scale.setScalar(i===n?1.55:1);node.track.material.opacity=active?.32:.06;node.signal.visible=active;node.signal.position.copy(node.curve.getPoint((time*.1+i*.2)%1));});
-  prism.rotation.y=time*.14;prism.rotation.z=.16+Math.sin(time*.2)*.08;camera.position.z=THREE.MathUtils.lerp(camera.position.z,story.active?8.55:9.2,l);camera.lookAt(0,0,0);
-  if(selected!==n){selected=n;updateState();}canvas.dataset.storyStep=String(story.index);canvas.dataset.scrollProgress=progress.toFixed(3);
- }
- function tick(now){raf=0;if(paused||!visible||document.hidden)return;const elapsed=now-last;if(elapsed<1000/(mobile.matches?24:30)){raf=requestAnimationFrame(tick);return;}time+=Math.min(elapsed/1000,.08);last=now;pose();draw();raf=requestAnimationFrame(tick);}
- function start(){if(!raf&&!paused&&visible&&!document.hidden){last=performance.now();raf=requestAnimationFrame(tick);}}
- function stop(){if(raf)cancelAnimationFrame(raf);raf=0;}
- function resize(){const r=container.getBoundingClientRect();if(!r.width||!r.height)return;renderer.setSize(r.width,r.height,false);camera.aspect=r.width/r.height;camera.updateProjectionMatrix();pose(true);draw();}
- // Wait for parallel shader compilation before any observer triggers a render.
- await renderer.compileAsync(scene,camera);
- new ResizeObserver(resize).observe(container);new IntersectionObserver(es=>{visible=es[0].isIntersecting;if(visible)start();else stop();},{threshold:.03}).observe(container);
- container.addEventListener('pointermove',e=>{if(paused||e.pointerType==='touch')return;const r=container.getBoundingClientRect();pointer.x=(e.clientX-r.left)/r.width*2-1;pointer.y=(e.clientY-r.top)/r.height*2-1;},{passive:true});
- container.addEventListener('pointerleave',()=>{pointer.x=pointer.y=0;});
- toggle.addEventListener('click',()=>{paused=!paused;label();if(paused)stop();else start();});
- reduced.addEventListener('change',()=>{paused=reduced.matches;label();if(paused){stop();pose(true);draw();}else start();});
- document.addEventListener('visibilitychange',()=>document.hidden?stop():start());window.addEventListener('portfolio:language',label);
- window.addEventListener('portfolio:story',e=>{story=e.detail;if(paused){pose(true);draw();}updateState();});
- window.addEventListener('portfolio:product-focus',e=>{focus=ids.indexOf(e.detail);updateState();if(paused){pose(true);draw();}});
- canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();stop();fallback();});document.body.dataset.webgl='ready';label();resize();start();
+// APERTURE: Voyagerroc Phoenix 3D Motion Sculpture
+const container = document.getElementById('scene-container');
+const canvas = document.getElementById('nexus-canvas');
+const toggle = document.getElementById('motion-toggle');
+const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+const mobile = matchMedia('(max-width: 760px)');
+
+const ids = ['eip', 'payradar', 'laserdeck', 'pharos', 'bungalow'];
+const names = ['Evidence Intelligence', 'PayRadar', 'LaserDeck PTT', 'Pharos', 'Bungalow OS'];
+const colors = [0x5073a8, 0xc82a3a, 0x3d8b7a, 0x8e527a, 0xb07d42];
+
+function fallback() {
+  document.body.dataset.webgl = 'fallback';
+  if (toggle) toggle.hidden = true;
+}
+
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({
+    canvas,
+    alpha: true,
+    antialias: true,
+    powerPreference: 'low-power'
+  });
+} catch {
+  fallback();
+}
+
+if (renderer) {
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 40);
+  camera.position.set(0, 0.2, 9.4);
+
+  renderer.setPixelRatio(Math.min(devicePixelRatio, mobile.matches ? 1.25 : 1.75));
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.35;
+  renderer.setClearColor(0, 0);
+
+  // High-key clean studio lighting tuned for pure white / crimson theme
+  const ambient = new THREE.HemisphereLight(0xfff6f7, 0xfce8eb, 1.8);
+  scene.add(ambient);
+
+  const keyLight = new THREE.DirectionalLight(0xfff0f2, 4.2);
+  keyLight.position.set(-3.5, 4.5, 5.0);
+  scene.add(keyLight);
+
+  const fillLight = new THREE.DirectionalLight(0xffd8dc, 2.4);
+  fillLight.position.set(4.0, -1.0, 3.0);
+  scene.add(fillLight);
+
+  const rimLight = new THREE.PointLight(0xffffff, 28, 14);
+  rimLight.position.set(-2.0, 3.0, -3.0);
+  scene.add(rimLight);
+
+  const rubyGlow = new THREE.PointLight(0xc82a3a, 22, 10);
+  rubyGlow.position.set(0, 0.5, 2.2);
+  scene.add(rubyGlow);
+
+  const sculpture = new THREE.Group();
+  sculpture.rotation.set(0.18, -0.22, 0);
+  scene.add(sculpture);
+
+  const Surface = mobile.matches ? THREE.MeshStandardMaterial : THREE.MeshPhysicalMaterial;
+
+  const rubyMat = new Surface({
+    color: 0xc82a3a,
+    metalness: mobile.matches ? 0.6 : 0.85,
+    roughness: 0.18,
+    ...(!mobile.matches ? { clearcoat: 0.95, clearcoatRoughness: 0.12 } : {}),
+    envMapIntensity: 1.6
+  });
+
+  const deepBurgundyMat = new Surface({
+    color: 0x80101d,
+    metalness: mobile.matches ? 0.7 : 0.9,
+    roughness: 0.22,
+    ...(!mobile.matches ? { clearcoat: 0.85 } : {})
+  });
+
+  const roseGoldMat = new Surface({
+    color: 0xe84a5f,
+    metalness: 0.8,
+    roughness: 0.15,
+    ...(!mobile.matches ? { clearcoat: 0.9 } : {})
+  });
+
+  const lineMat = new THREE.LineBasicMaterial({
+    color: 0xe89ca6,
+    transparent: true,
+    opacity: 0.35
+  });
+
+  // Phoenix Root Group
+  const phoenix = new THREE.Group();
+  sculpture.add(phoenix);
+
+  // 1. Central Body & Spine
+  const bodyCurve = new THREE.CubicBezierCurve3(
+    new THREE.Vector3(0, -1.5, -0.35),
+    new THREE.Vector3(0, -0.4, 0.2),
+    new THREE.Vector3(0, 0.75, 0.32),
+    new THREE.Vector3(0, 1.45, 0.08)
+  );
+  const bodyMesh = new THREE.Mesh(
+    new THREE.TubeGeometry(bodyCurve, 32, 0.17, 12, false),
+    deepBurgundyMat
+  );
+  phoenix.add(bodyMesh);
+
+  // 2. Head & Beak & Crown Crest
+  const headGroup = new THREE.Group();
+  headGroup.position.set(0, 1.5, 0.1);
+  const headMesh = new THREE.Mesh(new THREE.SphereGeometry(0.18, 20, 16), deepBurgundyMat);
+  headMesh.scale.set(0.85, 1.15, 1.05);
+  headGroup.add(headMesh);
+
+  const beak = new THREE.Mesh(
+    new THREE.ConeGeometry(0.08, 0.35, 12),
+    rubyMat
+  );
+  beak.rotation.x = Math.PI / 2 + 0.25;
+  beak.position.set(0, -0.04, 0.26);
+  headGroup.add(beak);
+
+  // Crown Plumes
+  const crestPlumes = [];
+  [-0.07, 0, 0.07].forEach((ox, idx) => {
+    const cCurve = new THREE.CubicBezierCurve3(
+      new THREE.Vector3(ox, 0.1, 0.05),
+      new THREE.Vector3(ox * 1.4, 0.42, -0.18),
+      new THREE.Vector3(ox * 2.2, 0.72 + idx * 0.1, -0.42 - idx * 0.08),
+      new THREE.Vector3(ox * 1.8, 0.98 + idx * 0.12, -0.68)
+    );
+    const cMesh = new THREE.Mesh(
+      new THREE.TubeGeometry(cCurve, 18, 0.032 - idx * 0.005, 8, false),
+      idx === 1 ? roseGoldMat : rubyMat
+    );
+    headGroup.add(cMesh);
+    crestPlumes.push(cMesh);
+  });
+  phoenix.add(headGroup);
+
+  // Luminous Phoenix Heart Jewel
+  const heart = new THREE.Mesh(
+    new THREE.OctahedronGeometry(0.18),
+    new THREE.MeshStandardMaterial({
+      color: 0xff3b56,
+      emissive: 0xc82a3a,
+      emissiveIntensity: 0.75,
+      roughness: 0.1
+    })
+  );
+  heart.position.set(0, 0.32, 0.26);
+  phoenix.add(heart);
+
+  // 3. Dual Soaring Wings (Left & Right)
+  const leftWingGroup = new THREE.Group();
+  const rightWingGroup = new THREE.Group();
+  leftWingGroup.position.set(-0.2, 0.45, 0.05);
+  rightWingGroup.position.set(0.2, 0.45, 0.05);
+  phoenix.add(leftWingGroup);
+  phoenix.add(rightWingGroup);
+
+  const featherCount = 5;
+  const leftFeathers = [];
+  const rightFeathers = [];
+
+  for (let i = 0; i < featherCount; i++) {
+    const t = i / (featherCount - 1);
+    const spanX = 1.1 + t * 1.85;
+    const liftY = 0.95 - t * 0.65;
+    const sweepZ = -0.25 + t * 0.35;
+
+    // Left feather curve
+    const lCurve = new THREE.CubicBezierCurve3(
+      new THREE.Vector3(0, -i * 0.08, 0),
+      new THREE.Vector3(-spanX * 0.42, liftY * 0.85 + 0.3, sweepZ * 0.5),
+      new THREE.Vector3(-spanX * 0.82, liftY * 1.12 + 0.35, sweepZ * 0.8),
+      new THREE.Vector3(-spanX * 1.25, liftY * 0.85 - i * 0.12, sweepZ)
+    );
+
+    // Right feather curve
+    const rCurve = new THREE.CubicBezierCurve3(
+      new THREE.Vector3(0, -i * 0.08, 0),
+      new THREE.Vector3(spanX * 0.42, liftY * 0.85 + 0.3, sweepZ * 0.5),
+      new THREE.Vector3(spanX * 0.82, liftY * 1.12 + 0.35, sweepZ * 0.8),
+      new THREE.Vector3(spanX * 1.25, liftY * 0.85 - i * 0.12, sweepZ)
+    );
+
+    const rad = 0.072 - i * 0.009;
+    const fMat = i % 2 === 0 ? rubyMat : roseGoldMat;
+
+    const lMesh = new THREE.Mesh(new THREE.TubeGeometry(lCurve, 24, rad, 8, false), fMat);
+    const rMesh = new THREE.Mesh(new THREE.TubeGeometry(rCurve, 24, rad, 8, false), fMat);
+
+    leftWingGroup.add(lMesh);
+    rightWingGroup.add(rMesh);
+
+    leftFeathers.push({ mesh: lMesh, index: i });
+    rightFeathers.push({ mesh: rMesh, index: i });
+  }
+
+  // 4. Flowing Tail Plumes
+  const tailGroup = new THREE.Group();
+  tailGroup.position.set(0, -1.5, -0.3);
+  phoenix.add(tailGroup);
+  const tailPlumes = [];
+  [-0.18, 0, 0.18].forEach((tx, idx) => {
+    const tCurve = new THREE.CubicBezierCurve3(
+      new THREE.Vector3(tx * 0.4, 0, 0),
+      new THREE.Vector3(tx * 1.1, -0.7, -0.25),
+      new THREE.Vector3(tx * 1.5, -1.45, -0.55),
+      new THREE.Vector3(tx * 0.7, -2.25 - idx * 0.25, -0.85)
+    );
+    const tMesh = new THREE.Mesh(
+      new THREE.TubeGeometry(tCurve, 20, 0.042 - idx * 0.007, 8, false),
+      idx === 1 ? rubyMat : deepBurgundyMat
+    );
+    tailGroup.add(tMesh);
+    tailPlumes.push(tMesh);
+  });
+
+  // 5. Orbital Product Nodes (Five domains connecting to Phoenix)
+  const outer = new THREE.Group();
+  sculpture.add(outer);
+
+  // Subtle orbital halo rings
+  [2.15, 2.35].forEach((r, i) => {
+    const ringGeo = new THREE.TorusGeometry(r, i === 0 ? 0.008 : 0.004, 6, 80);
+    const ring = new THREE.Mesh(ringGeo, lineMat);
+    ring.rotation.x = Math.PI / 2.3;
+    ring.position.y = -0.15;
+    outer.add(ring);
+  });
+
+  const nodes = [];
+  for (let i = 0; i < 5; i++) {
+    const angle = (i * Math.PI * 2) / 5 - Math.PI / 2;
+    const radius = 2.45;
+    const np = new THREE.Vector3(Math.cos(angle) * radius, Math.sin(angle) * 0.7 - 0.2, Math.sin(angle) * radius * 0.55);
+    const nMat = new THREE.MeshStandardMaterial({
+      color: colors[i],
+      emissive: colors[i],
+      emissiveIntensity: 0.55,
+      roughness: 0.2
+    });
+    const nMesh = new THREE.Mesh(new THREE.OctahedronGeometry(0.08), nMat);
+    nMesh.position.copy(np);
+    outer.add(nMesh);
+
+    // Energy track from node towards Phoenix heart
+    const curve = new THREE.CubicBezierCurve3(
+      np,
+      new THREE.Vector3(np.x * 0.6, np.y * 0.6 + 0.3, np.z * 0.6),
+      new THREE.Vector3(np.x * 0.25, np.y * 0.3 + 0.4, np.z * 0.3),
+      new THREE.Vector3(0, 0.32, 0.26)
+    );
+    const track = new THREE.Line(
+      new THREE.BufferGeometry().setFromPoints(curve.getPoints(28)),
+      new THREE.LineBasicMaterial({ color: colors[i], transparent: true, opacity: 0.22 })
+    );
+    outer.add(track);
+
+    const pulse = new THREE.Mesh(new THREE.SphereGeometry(0.024, 8, 6), nMat);
+    outer.add(pulse);
+    nodes.push({ node: nMesh, pulse, curve, track, color: colors[i] });
+  }
+
+  // Sparkling Ember Points (Rose and Gold sparks floating around the Phoenix)
+  let seed = 971;
+  const random = () => {
+    seed = (seed * 16807) % 2147483647;
+    return (seed - 1) / 2147483646;
+  };
+  const sparkPts = [];
+  for (let i = 0; i < 240; i++) {
+    sparkPts.push(
+      (random() - 0.5) * 8.5,
+      (random() - 0.5) * 5.5,
+      (random() - 0.5) * 4.0 - 0.5
+    );
+  }
+  const sparkGeo = new THREE.BufferGeometry();
+  sparkGeo.setAttribute('position', new THREE.Float32BufferAttribute(sparkPts, 3));
+  const sparkMat = new THREE.PointsMaterial({
+    color: 0xc82a3a,
+    size: 0.018,
+    transparent: true,
+    opacity: 0.45,
+    depthWrite: false
+  });
+  scene.add(new THREE.Points(sparkGeo, sparkMat));
+
+  let paused = reduced.matches;
+  let visible = true;
+  let raf = 0;
+  let last = 0;
+  let time = 0;
+  let frame = 0;
+  let focus = -1;
+  let progress = 0;
+  let selected = -2;
+  let story = { active: false, index: 0, progress: 0 };
+  const pointer = { x: 0, y: 0 };
+  const smooth = { x: 0, y: 0 };
+  const stateLabel = document.getElementById('scene-state');
+
+  function updateState() {
+    const en = document.documentElement.lang === 'en';
+    const n = story.active ? story.index : focus;
+    if (stateLabel) {
+      stateLabel.textContent =
+        n < 0
+          ? en
+            ? '05 DOMAINS / PHOENIX STUDY'
+            : '05 ALAN / ANKA SİSTEMİ'
+          : String(n + 1).padStart(2, '0') + ' / ' + names[n];
+    }
+    canvas.dataset.focus = String(n);
+  }
+
+  function label() {
+    const en = document.documentElement.lang === 'en';
+    if (toggle) {
+      toggle.textContent = paused
+        ? en
+          ? 'Resume motion'
+          : 'Hareketi başlat'
+        : en
+        ? 'Pause motion'
+        : 'Hareketi durdur';
+      toggle.setAttribute('aria-pressed', String(paused));
+    }
+    document.body.dataset.motion = paused ? 'paused' : 'running';
+    updateState();
+  }
+
+  function draw() {
+    renderer.render(scene, camera);
+    canvas.dataset.frames = String(++frame);
+  }
+
+  function pose(instant = false) {
+    const l = instant ? 1 : 0.055;
+    const n = story.active ? story.index : focus;
+    progress = THREE.MathUtils.lerp(progress, story.progress, l);
+    smooth.x = THREE.MathUtils.lerp(smooth.x, pointer.x, l);
+    smooth.y = THREE.MathUtils.lerp(smooth.y, pointer.y, l);
+
+    // Dynamic Phoenix Wingspan & Elevation on Scroll
+    // Below scroll in story: Wings become PROMINENT, spreading wide and soaring!
+    const scrollLift = story.active ? 0.28 + progress * 0.42 : 0;
+    const wingSpan = story.active ? 1.05 + progress * 0.55 : 0.95;
+    const wingFlap = Math.sin(time * 1.8) * 0.07;
+
+    leftWingGroup.scale.set(wingSpan, wingSpan, wingSpan);
+    rightWingGroup.scale.set(wingSpan, wingSpan, wingSpan);
+
+    leftWingGroup.rotation.z = 0.12 + wingFlap + scrollLift;
+    leftWingGroup.rotation.y = -0.15 - (story.active ? progress * 0.35 : 0);
+
+    rightWingGroup.rotation.z = -0.12 - wingFlap - scrollLift;
+    rightWingGroup.rotation.y = 0.15 + (story.active ? progress * 0.35 : 0);
+
+    // Tail undulating wave
+    tailPlumes.forEach((tp, i) => {
+      tp.rotation.x = Math.sin(time * 2.2 + i * 0.7) * 0.12;
+      tp.rotation.z = Math.cos(time * 1.7 + i * 0.5) * 0.09;
+    });
+
+    // Heart pulsation & active glow
+    heart.scale.setScalar(1.0 + Math.sin(time * 3.2) * 0.12 + (story.active ? 0.25 : 0));
+    heart.rotation.y = time * 0.8;
+
+    // Head subtle movement
+    headGroup.rotation.y = Math.sin(time * 0.9) * 0.1 + smooth.x * 0.15;
+    headGroup.rotation.x = Math.sin(time * 1.1) * 0.05 + smooth.y * 0.1;
+
+    // Banking & interactive pointer tilt
+    sculpture.rotation.y = -0.22 + smooth.x * 0.22 + Math.sin(time * 0.14) * 0.09;
+    sculpture.rotation.x = 0.18 + smooth.y * 0.14 + (story.active ? -0.12 + progress * 0.22 : 0);
+    sculpture.rotation.z = Math.sin(time * 0.1) * 0.04;
+
+    // Orbital nodes animation & project focus
+    nodes.forEach((node, i) => {
+      const active = n < 0 || i === n;
+      node.node.scale.setScalar(i === n ? 1.7 : active ? 1.1 : 0.75);
+      node.track.material.opacity = active ? (i === n ? 0.65 : 0.28) : 0.06;
+      node.pulse.visible = active;
+      const pulseT = (time * 0.12 + i * 0.2) % 1;
+      node.pulse.position.copy(node.curve.getPoint(pulseT));
+    });
+
+    // Camera framing adapts dynamically
+    camera.position.z = THREE.MathUtils.lerp(camera.position.z, story.active ? 8.6 : 9.4, l);
+    camera.lookAt(0, 0, 0);
+
+    if (selected !== n) {
+      selected = n;
+      updateState();
+    }
+    canvas.dataset.storyStep = String(story.index);
+    canvas.dataset.scrollProgress = progress.toFixed(3);
+  }
+
+  function tick(now) {
+    raf = 0;
+    if (paused || !visible || document.hidden) return;
+    const elapsed = now - last;
+    if (elapsed < 1000 / (mobile.matches ? 24 : 30)) {
+      raf = requestAnimationFrame(tick);
+      return;
+    }
+    time += Math.min(elapsed / 1000, 0.08);
+    last = now;
+    pose();
+    draw();
+    raf = requestAnimationFrame(tick);
+  }
+
+  function start() {
+    if (!raf && !paused && visible && !document.hidden) {
+      last = performance.now();
+      raf = requestAnimationFrame(tick);
+    }
+  }
+
+  function stop() {
+    if (raf) cancelAnimationFrame(raf);
+    raf = 0;
+  }
+
+  function resize() {
+    const r = container.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    renderer.setSize(r.width, r.height, false);
+    camera.aspect = r.width / r.height;
+    camera.updateProjectionMatrix();
+    pose(true);
+    draw();
+  }
+
+  await renderer.compileAsync(scene, camera);
+  new ResizeObserver(resize).observe(container);
+  new IntersectionObserver(
+    es => {
+      visible = es[0].isIntersecting;
+      if (visible) start();
+      else stop();
+    },
+    { threshold: 0.03 }
+  ).observe(container);
+
+  container.addEventListener(
+    'pointermove',
+    e => {
+      if (paused || e.pointerType === 'touch') return;
+      const r = container.getBoundingClientRect();
+      pointer.x = ((e.clientX - r.left) / r.width) * 2 - 1;
+      pointer.y = ((e.clientY - r.top) / r.height) * 2 - 1;
+    },
+    { passive: true }
+  );
+
+  container.addEventListener('pointerleave', () => {
+    pointer.x = 0;
+    pointer.y = 0;
+  });
+
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      paused = !paused;
+      label();
+      if (paused) stop();
+      else start();
+    });
+  }
+
+  reduced.addEventListener('change', () => {
+    paused = reduced.matches;
+    label();
+    if (paused) {
+      stop();
+      pose(true);
+      draw();
+    } else start();
+  });
+
+  document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+  window.addEventListener('portfolio:language', label);
+  window.addEventListener('portfolio:story', e => {
+    story = e.detail;
+    if (paused) {
+      pose(true);
+      draw();
+    }
+    updateState();
+  });
+  window.addEventListener('portfolio:product-focus', e => {
+    focus = ids.indexOf(e.detail);
+    updateState();
+    if (paused) {
+      pose(true);
+      draw();
+    }
+  });
+
+  canvas.addEventListener('webglcontextlost', e => {
+    e.preventDefault();
+    stop();
+    fallback();
+  });
+
+  document.body.dataset.webgl = 'ready';
+  label();
+  resize();
+  start();
 }
