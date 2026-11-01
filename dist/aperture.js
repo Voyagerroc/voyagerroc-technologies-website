@@ -1,6 +1,6 @@
 import * as THREE from './vendor/three.module.js';
 
-// APERTURE: Voyagerroc Phoenix 3D Motion Sculpture
+// APERTURE: Voyagerroc Phoenix 3D Motion — Authentic Brand Logo in 3D
 const container = document.getElementById('scene-container');
 const canvas = document.getElementById('nexus-canvas');
 const toggle = document.getElementById('motion-toggle');
@@ -30,8 +30,8 @@ try {
 
 if (renderer) {
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 40);
-  camera.position.set(0, 0.2, 9.4);
+  const camera = new THREE.PerspectiveCamera(33, 1, 0.1, 40);
+  camera.position.set(0, 0.1, 8.8);
 
   renderer.setPixelRatio(Math.min(devicePixelRatio, mobile.matches ? 1.25 : 1.75));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -39,196 +39,157 @@ if (renderer) {
   renderer.toneMappingExposure = 1.35;
   renderer.setClearColor(0, 0);
 
-  // High-key clean studio lighting tuned for pure white / crimson theme
-  const ambient = new THREE.HemisphereLight(0xfff6f7, 0xfce8eb, 1.8);
+  // Clean, high-key studio lighting for white background
+  const ambient = new THREE.HemisphereLight(0xffffff, 0xfce8eb, 2.0);
   scene.add(ambient);
 
-  const keyLight = new THREE.DirectionalLight(0xfff0f2, 4.2);
+  const keyLight = new THREE.DirectionalLight(0xfff5f6, 4.5);
   keyLight.position.set(-3.5, 4.5, 5.0);
   scene.add(keyLight);
 
-  const fillLight = new THREE.DirectionalLight(0xffd8dc, 2.4);
+  const fillLight = new THREE.DirectionalLight(0xffd8dc, 2.2);
   fillLight.position.set(4.0, -1.0, 3.0);
   scene.add(fillLight);
 
-  const rimLight = new THREE.PointLight(0xffffff, 28, 14);
-  rimLight.position.set(-2.0, 3.0, -3.0);
+  const rimLight = new THREE.PointLight(0xffffff, 25, 12);
+  rimLight.position.set(-2.0, 2.5, -3.0);
   scene.add(rimLight);
 
-  const rubyGlow = new THREE.PointLight(0xc82a3a, 22, 10);
-  rubyGlow.position.set(0, 0.5, 2.2);
+  const rubyGlow = new THREE.PointLight(0xc82a3a, 24, 10);
+  rubyGlow.position.set(0, 0.3, 2.4);
   scene.add(rubyGlow);
 
   const sculpture = new THREE.Group();
-  sculpture.rotation.set(0.18, -0.22, 0);
+  sculpture.rotation.set(0.14, -0.2, 0);
   scene.add(sculpture);
 
   const Surface = mobile.matches ? THREE.MeshStandardMaterial : THREE.MeshPhysicalMaterial;
 
-  const rubyMat = new Surface({
+  const rubyWingMat = new Surface({
     color: 0xc82a3a,
-    metalness: mobile.matches ? 0.6 : 0.85,
+    metalness: mobile.matches ? 0.65 : 0.82,
     roughness: 0.18,
-    ...(!mobile.matches ? { clearcoat: 0.95, clearcoatRoughness: 0.12 } : {}),
-    envMapIntensity: 1.6
+    ...(!mobile.matches ? { clearcoat: 0.95, clearcoatRoughness: 0.1 } : {}),
+    envMapIntensity: 1.8
   });
 
-  const deepBurgundyMat = new Surface({
-    color: 0x80101d,
-    metalness: mobile.matches ? 0.7 : 0.9,
+  const roseWingMat = new Surface({
+    color: 0xdf384b,
+    metalness: mobile.matches ? 0.65 : 0.82,
+    roughness: 0.18,
+    ...(!mobile.matches ? { clearcoat: 0.95, clearcoatRoughness: 0.1 } : {}),
+    envMapIntensity: 1.8
+  });
+
+  const bodyMat = new Surface({
+    color: 0x881422,
+    metalness: mobile.matches ? 0.7 : 0.88,
     roughness: 0.22,
-    ...(!mobile.matches ? { clearcoat: 0.85 } : {})
-  });
-
-  const roseGoldMat = new Surface({
-    color: 0xe84a5f,
-    metalness: 0.8,
-    roughness: 0.15,
-    ...(!mobile.matches ? { clearcoat: 0.9 } : {})
+    ...(!mobile.matches ? { clearcoat: 0.9 } : {}),
+    envMapIntensity: 1.5
   });
 
   const lineMat = new THREE.LineBasicMaterial({
     color: 0xe89ca6,
     transparent: true,
-    opacity: 0.35
+    opacity: 0.38
   });
 
-  // Phoenix Root Group
+  // Helper to parse official SVG path into THREE.Shape
+  function parseSvgPath(d, scale = 0.021, ox = -128, oy = -135) {
+    const shape = new THREE.Shape();
+    const tokens = d.match(/([A-Z])|([-+]?[0-9]*\.?[0-9]+)/gi);
+    let i = 0;
+    let cmd = '';
+    while (i < tokens.length) {
+      if (/^[A-Z]$/i.test(tokens[i])) {
+        cmd = tokens[i++];
+      }
+      if (cmd === 'M') {
+        const x = (parseFloat(tokens[i++]) + ox) * scale;
+        const y = -(parseFloat(tokens[i++]) + oy) * scale;
+        shape.moveTo(x, y);
+      } else if (cmd === 'L') {
+        const x = (parseFloat(tokens[i++]) + ox) * scale;
+        const y = -(parseFloat(tokens[i++]) + oy) * scale;
+        shape.lineTo(x, y);
+      } else if (cmd === 'C') {
+        const cp1x = (parseFloat(tokens[i++]) + ox) * scale;
+        const cp1y = -(parseFloat(tokens[i++]) + oy) * scale;
+        const cp2x = (parseFloat(tokens[i++]) + ox) * scale;
+        const cp2y = -(parseFloat(tokens[i++]) + oy) * scale;
+        const x = (parseFloat(tokens[i++]) + ox) * scale;
+        const y = -(parseFloat(tokens[i++]) + oy) * scale;
+        shape.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y);
+      } else if (cmd === 'Z') {
+        shape.closePath();
+      }
+    }
+    return shape;
+  }
+
+  // Exact Official Phoenix 04 Plume Brand Vector Paths
+  const pLeft = 'M124 162C79 148 45 116 26 73C19 56 14 39 13 23C37 57 63 82 93 100C72 72 59 47 55 23C93 54 118 89 131 126L124 162Z';
+  const pRight = 'M135 153C171 145 203 121 222 89C235 68 241 47 243 25C220 53 194 80 165 100C185 74 196 52 201 29C170 53 148 82 134 114L135 153Z';
+  const pCenter = 'M136 32L146 40C151 39 155 41 159 44L169 48L155 54C148 55 144 64 142 77C138 101 139 126 147 145C159 172 150 199 130 219C119 230 106 238 91 242C108 228 119 212 124 197C130 180 127 164 118 150C108 134 112 117 120 101C129 83 140 60 136 32Z';
+
+  const shapeLeft = parseSvgPath(pLeft);
+  const shapeRight = parseSvgPath(pRight);
+  const shapeCenter = parseSvgPath(pCenter);
+
+  const extrudeOpts = {
+    depth: 0.16,
+    bevelEnabled: true,
+    bevelSegments: 4,
+    steps: 1,
+    bevelSize: 0.035,
+    bevelThickness: 0.035
+  };
+
   const phoenix = new THREE.Group();
   sculpture.add(phoenix);
 
-  // 1. Central Body & Spine
-  const bodyCurve = new THREE.CubicBezierCurve3(
-    new THREE.Vector3(0, -1.5, -0.35),
-    new THREE.Vector3(0, -0.4, 0.2),
-    new THREE.Vector3(0, 0.75, 0.32),
-    new THREE.Vector3(0, 1.45, 0.08)
-  );
-  const bodyMesh = new THREE.Mesh(
-    new THREE.TubeGeometry(bodyCurve, 32, 0.17, 12, false),
-    deepBurgundyMat
-  );
-  phoenix.add(bodyMesh);
+  // 1. Central Spine, Head and Crest
+  const centerMesh = new THREE.Mesh(new THREE.ExtrudeGeometry(shapeCenter, extrudeOpts), bodyMat);
+  phoenix.add(centerMesh);
 
-  // 2. Head & Beak & Crown Crest
-  const headGroup = new THREE.Group();
-  headGroup.position.set(0, 1.5, 0.1);
-  const headMesh = new THREE.Mesh(new THREE.SphereGeometry(0.18, 20, 16), deepBurgundyMat);
-  headMesh.scale.set(0.85, 1.15, 1.05);
-  headGroup.add(headMesh);
-
-  const beak = new THREE.Mesh(
-    new THREE.ConeGeometry(0.08, 0.35, 12),
-    rubyMat
-  );
-  beak.rotation.x = Math.PI / 2 + 0.25;
-  beak.position.set(0, -0.04, 0.26);
-  headGroup.add(beak);
-
-  // Crown Plumes
-  const crestPlumes = [];
-  [-0.07, 0, 0.07].forEach((ox, idx) => {
-    const cCurve = new THREE.CubicBezierCurve3(
-      new THREE.Vector3(ox, 0.1, 0.05),
-      new THREE.Vector3(ox * 1.4, 0.42, -0.18),
-      new THREE.Vector3(ox * 2.2, 0.72 + idx * 0.1, -0.42 - idx * 0.08),
-      new THREE.Vector3(ox * 1.8, 0.98 + idx * 0.12, -0.68)
-    );
-    const cMesh = new THREE.Mesh(
-      new THREE.TubeGeometry(cCurve, 18, 0.032 - idx * 0.005, 8, false),
-      idx === 1 ? roseGoldMat : rubyMat
-    );
-    headGroup.add(cMesh);
-    crestPlumes.push(cMesh);
-  });
-  phoenix.add(headGroup);
-
-  // Luminous Phoenix Heart Jewel
+  // Luminous Ember Heart in Center
   const heart = new THREE.Mesh(
-    new THREE.OctahedronGeometry(0.18),
+    new THREE.OctahedronGeometry(0.19),
     new THREE.MeshStandardMaterial({
       color: 0xff3b56,
       emissive: 0xc82a3a,
-      emissiveIntensity: 0.75,
+      emissiveIntensity: 0.85,
       roughness: 0.1
     })
   );
-  heart.position.set(0, 0.32, 0.26);
+  heart.position.set(0.08, 0.25, 0.24);
   phoenix.add(heart);
 
-  // 3. Dual Soaring Wings (Left & Right)
-  const leftWingGroup = new THREE.Group();
-  const rightWingGroup = new THREE.Group();
-  leftWingGroup.position.set(-0.2, 0.45, 0.05);
-  rightWingGroup.position.set(0.2, 0.45, 0.05);
-  phoenix.add(leftWingGroup);
-  phoenix.add(rightWingGroup);
+  // 2. Left Wing Pivot Group
+  const leftWingPivot = new THREE.Group();
+  leftWingPivot.position.set(-0.08, -0.58, 0.02);
+  phoenix.add(leftWingPivot);
 
-  const featherCount = 5;
-  const leftFeathers = [];
-  const rightFeathers = [];
+  const leftMesh = new THREE.Mesh(new THREE.ExtrudeGeometry(shapeLeft, extrudeOpts), rubyWingMat);
+  leftMesh.position.set(0.08, 0.58, -0.02);
+  leftWingPivot.add(leftMesh);
 
-  for (let i = 0; i < featherCount; i++) {
-    const t = i / (featherCount - 1);
-    const spanX = 1.1 + t * 1.85;
-    const liftY = 0.95 - t * 0.65;
-    const sweepZ = -0.25 + t * 0.35;
+  // 3. Right Wing Pivot Group
+  const rightWingPivot = new THREE.Group();
+  rightWingPivot.position.set(0.12, -0.4, 0.02);
+  phoenix.add(rightWingPivot);
 
-    // Left feather curve
-    const lCurve = new THREE.CubicBezierCurve3(
-      new THREE.Vector3(0, -i * 0.08, 0),
-      new THREE.Vector3(-spanX * 0.42, liftY * 0.85 + 0.3, sweepZ * 0.5),
-      new THREE.Vector3(-spanX * 0.82, liftY * 1.12 + 0.35, sweepZ * 0.8),
-      new THREE.Vector3(-spanX * 1.25, liftY * 0.85 - i * 0.12, sweepZ)
-    );
+  const rightMesh = new THREE.Mesh(new THREE.ExtrudeGeometry(shapeRight, extrudeOpts), roseWingMat);
+  rightMesh.position.set(-0.12, 0.4, -0.02);
+  rightWingPivot.add(rightMesh);
 
-    // Right feather curve
-    const rCurve = new THREE.CubicBezierCurve3(
-      new THREE.Vector3(0, -i * 0.08, 0),
-      new THREE.Vector3(spanX * 0.42, liftY * 0.85 + 0.3, sweepZ * 0.5),
-      new THREE.Vector3(spanX * 0.82, liftY * 1.12 + 0.35, sweepZ * 0.8),
-      new THREE.Vector3(spanX * 1.25, liftY * 0.85 - i * 0.12, sweepZ)
-    );
-
-    const rad = 0.072 - i * 0.009;
-    const fMat = i % 2 === 0 ? rubyMat : roseGoldMat;
-
-    const lMesh = new THREE.Mesh(new THREE.TubeGeometry(lCurve, 24, rad, 8, false), fMat);
-    const rMesh = new THREE.Mesh(new THREE.TubeGeometry(rCurve, 24, rad, 8, false), fMat);
-
-    leftWingGroup.add(lMesh);
-    rightWingGroup.add(rMesh);
-
-    leftFeathers.push({ mesh: lMesh, index: i });
-    rightFeathers.push({ mesh: rMesh, index: i });
-  }
-
-  // 4. Flowing Tail Plumes
-  const tailGroup = new THREE.Group();
-  tailGroup.position.set(0, -1.5, -0.3);
-  phoenix.add(tailGroup);
-  const tailPlumes = [];
-  [-0.18, 0, 0.18].forEach((tx, idx) => {
-    const tCurve = new THREE.CubicBezierCurve3(
-      new THREE.Vector3(tx * 0.4, 0, 0),
-      new THREE.Vector3(tx * 1.1, -0.7, -0.25),
-      new THREE.Vector3(tx * 1.5, -1.45, -0.55),
-      new THREE.Vector3(tx * 0.7, -2.25 - idx * 0.25, -0.85)
-    );
-    const tMesh = new THREE.Mesh(
-      new THREE.TubeGeometry(tCurve, 20, 0.042 - idx * 0.007, 8, false),
-      idx === 1 ? rubyMat : deepBurgundyMat
-    );
-    tailGroup.add(tMesh);
-    tailPlumes.push(tMesh);
-  });
-
-  // 5. Orbital Product Nodes (Five domains connecting to Phoenix)
+  // 4. Orbital Domain Nodes (Five Product Domains)
   const outer = new THREE.Group();
   sculpture.add(outer);
 
   // Subtle orbital halo rings
-  [2.15, 2.35].forEach((r, i) => {
+  [2.35, 2.65].forEach((r, i) => {
     const ringGeo = new THREE.TorusGeometry(r, i === 0 ? 0.008 : 0.004, 6, 80);
     const ring = new THREE.Mesh(ringGeo, lineMat);
     ring.rotation.x = Math.PI / 2.3;
@@ -239,15 +200,15 @@ if (renderer) {
   const nodes = [];
   for (let i = 0; i < 5; i++) {
     const angle = (i * Math.PI * 2) / 5 - Math.PI / 2;
-    const radius = 2.45;
+    const radius = 2.65;
     const np = new THREE.Vector3(Math.cos(angle) * radius, Math.sin(angle) * 0.7 - 0.2, Math.sin(angle) * radius * 0.55);
     const nMat = new THREE.MeshStandardMaterial({
       color: colors[i],
       emissive: colors[i],
-      emissiveIntensity: 0.55,
+      emissiveIntensity: 0.6,
       roughness: 0.2
     });
-    const nMesh = new THREE.Mesh(new THREE.OctahedronGeometry(0.08), nMat);
+    const nMesh = new THREE.Mesh(new THREE.OctahedronGeometry(0.085), nMat);
     nMesh.position.copy(np);
     outer.add(nMesh);
 
@@ -256,11 +217,11 @@ if (renderer) {
       np,
       new THREE.Vector3(np.x * 0.6, np.y * 0.6 + 0.3, np.z * 0.6),
       new THREE.Vector3(np.x * 0.25, np.y * 0.3 + 0.4, np.z * 0.3),
-      new THREE.Vector3(0, 0.32, 0.26)
+      new THREE.Vector3(0.08, 0.25, 0.24)
     );
     const track = new THREE.Line(
       new THREE.BufferGeometry().setFromPoints(curve.getPoints(28)),
-      new THREE.LineBasicMaterial({ color: colors[i], transparent: true, opacity: 0.22 })
+      new THREE.LineBasicMaterial({ color: colors[i], transparent: true, opacity: 0.25 })
     );
     outer.add(track);
 
@@ -269,14 +230,14 @@ if (renderer) {
     nodes.push({ node: nMesh, pulse, curve, track, color: colors[i] });
   }
 
-  // Sparkling Ember Points (Rose and Gold sparks floating around the Phoenix)
+  // Sparkling Ember Points
   let seed = 971;
   const random = () => {
     seed = (seed * 16807) % 2147483647;
     return (seed - 1) / 2147483646;
   };
   const sparkPts = [];
-  for (let i = 0; i < 240; i++) {
+  for (let i = 0; i < 220; i++) {
     sparkPts.push(
       (random() - 0.5) * 8.5,
       (random() - 0.5) * 5.5,
@@ -289,7 +250,7 @@ if (renderer) {
     color: 0xc82a3a,
     size: 0.018,
     transparent: true,
-    opacity: 0.45,
+    opacity: 0.4,
     depthWrite: false
   });
   scene.add(new THREE.Points(sparkGeo, sparkMat));
@@ -351,38 +312,28 @@ if (renderer) {
     smooth.y = THREE.MathUtils.lerp(smooth.y, pointer.y, l);
 
     // Dynamic Phoenix Wingspan & Elevation on Scroll
-    // Below scroll in story: Wings become PROMINENT, spreading wide and soaring!
-    const scrollLift = story.active ? 0.28 + progress * 0.42 : 0;
-    const wingSpan = story.active ? 1.05 + progress * 0.55 : 0.95;
-    const wingFlap = Math.sin(time * 1.8) * 0.07;
+    // When user scrolls down: Wings spread wide, lift, and become distinctly prominent!
+    const scrollLift = story.active ? 0.32 + progress * 0.48 : 0;
+    const wingSpan = story.active ? 1.08 + progress * 0.45 : 1.0;
+    const wingFlap = Math.sin(time * 1.8) * 0.05;
 
-    leftWingGroup.scale.set(wingSpan, wingSpan, wingSpan);
-    rightWingGroup.scale.set(wingSpan, wingSpan, wingSpan);
+    leftWingPivot.scale.set(wingSpan, wingSpan, wingSpan);
+    rightWingPivot.scale.set(wingSpan, wingSpan, wingSpan);
 
-    leftWingGroup.rotation.z = 0.12 + wingFlap + scrollLift;
-    leftWingGroup.rotation.y = -0.15 - (story.active ? progress * 0.35 : 0);
+    leftWingPivot.rotation.z = -wingFlap + scrollLift;
+    leftWingPivot.rotation.y = -0.12 - (story.active ? progress * 0.35 : 0);
 
-    rightWingGroup.rotation.z = -0.12 - wingFlap - scrollLift;
-    rightWingGroup.rotation.y = 0.15 + (story.active ? progress * 0.35 : 0);
+    rightWingPivot.rotation.z = wingFlap - scrollLift;
+    rightWingPivot.rotation.y = 0.12 + (story.active ? progress * 0.35 : 0);
 
-    // Tail undulating wave
-    tailPlumes.forEach((tp, i) => {
-      tp.rotation.x = Math.sin(time * 2.2 + i * 0.7) * 0.12;
-      tp.rotation.z = Math.cos(time * 1.7 + i * 0.5) * 0.09;
-    });
-
-    // Heart pulsation & active glow
-    heart.scale.setScalar(1.0 + Math.sin(time * 3.2) * 0.12 + (story.active ? 0.25 : 0));
-    heart.rotation.y = time * 0.8;
-
-    // Head subtle movement
-    headGroup.rotation.y = Math.sin(time * 0.9) * 0.1 + smooth.x * 0.15;
-    headGroup.rotation.x = Math.sin(time * 1.1) * 0.05 + smooth.y * 0.1;
+    // Heart pulsation
+    heart.scale.setScalar(1.0 + Math.sin(time * 3.2) * 0.14 + (story.active ? 0.25 : 0));
+    heart.rotation.y = time * 0.7;
 
     // Banking & interactive pointer tilt
-    sculpture.rotation.y = -0.22 + smooth.x * 0.22 + Math.sin(time * 0.14) * 0.09;
-    sculpture.rotation.x = 0.18 + smooth.y * 0.14 + (story.active ? -0.12 + progress * 0.22 : 0);
-    sculpture.rotation.z = Math.sin(time * 0.1) * 0.04;
+    sculpture.rotation.y = -0.18 + smooth.x * 0.22 + Math.sin(time * 0.14) * 0.08;
+    sculpture.rotation.x = 0.14 + smooth.y * 0.14 + (story.active ? -0.1 + progress * 0.18 : 0);
+    sculpture.rotation.z = Math.sin(time * 0.1) * 0.03;
 
     // Orbital nodes animation & project focus
     nodes.forEach((node, i) => {
@@ -394,8 +345,7 @@ if (renderer) {
       node.pulse.position.copy(node.curve.getPoint(pulseT));
     });
 
-    // Camera framing adapts dynamically
-    camera.position.z = THREE.MathUtils.lerp(camera.position.z, story.active ? 8.6 : 9.4, l);
+    camera.position.z = THREE.MathUtils.lerp(camera.position.z, story.active ? 8.2 : 8.8, l);
     camera.lookAt(0, 0, 0);
 
     if (selected !== n) {
