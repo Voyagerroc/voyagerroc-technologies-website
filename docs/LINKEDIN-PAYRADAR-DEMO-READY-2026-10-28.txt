@@ -1,0 +1,17 @@
+Recurring payments need a clear record: the amount, currency, renewal date and repeat interval.
+
+PayRadar, our own product project at Voyagerroc Technologies, brings those details into one view.
+
+Our recorded web demo shows three concrete steps:
+- Adding a sample payment.
+- Exploring the Orbit 3D view.
+- Reopening the app after disconnecting the network.
+
+The recording uses sample data. Notification delivery on a physical phone requires a separate test.
+
+For a business workflow, we start with the same practical questions: who creates the record, what happens next, and what example will show that the flow works?
+
+Watch the demo and review the current scope:
+https://voyagerroctechnologies.com/urunler/payradar/?utm_source=linkedin&utm_medium=organic_social&utm_campaign=202610_workflow_pilot&utm_content=payradar_demo
+
+#VoyagerrocTechnologies #ProductDevelopment #PWA

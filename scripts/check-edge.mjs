@@ -18,3 +18,8 @@ for(const [route,policy] of [['/assets/email-signature-logo.png','cross-origin']
 }
 const missingLogo=await edge.fetch(new Request(env.CANONICAL_ORIGIN+'/assets/email-signature-logo.png'),env);assert.equal(missingLogo.headers.get('Cross-Origin-Resource-Policy'),'same-origin');
 console.log('PASS: email logo embeds across origins; other responses retain origin isolation.');
+const failure=await edge.fetch(new Request(env.CANONICAL_ORIGIN+'/secret-query?email=fixture@example.invalid'),{...env,ASSETS:{fetch:async()=>{throw new Error('private provider detail');}}});
+assert.equal(failure.status,503);assert.equal(failure.headers.get('Cache-Control'),'no-store');
+assert.doesNotMatch(await failure.text(),/private provider detail|fixture@example/);
+assert.match(failure.headers.get('Content-Security-Policy'),/script-src-attr 'none'/);
+console.log('PASS: upstream failure returns a generic uncached error with security headers.');

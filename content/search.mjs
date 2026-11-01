@@ -14,27 +14,27 @@ export const products = {
     ]
   },
   payradar: {
-    modified: '2026-10-30',
+    modified: '2026-11-01',
     update: {
-      heading: '30 Ekim 2026 güncellemesi',
+      heading: '1 Kasım 2026 — Phoenix Arayüzü ve Android 2.1.0 Sürümü',
       items: [
-        'Arka plan bildirimleri için otomatik yeniden deneme ve süresi dolan aboneliği yenileme eklendi. Günlük hatırlatmalar yerel saat 09.00 sonrasında beş dakikalık kontrollerle değerlendirilir.',
-        'Bağlantı kontrolü, sağlayıcının gönderimi kabul etmesi ile cihazın bildirim gösterme işlemini onaylamasını ayrı gösterir. Gösterim onayı, bildirimin okunduğu veya ses çaldığı anlamına gelmez.',
-        'Uygulama gece boyunca açık kaldığında ve uygulamaya geri dönüldüğünde kalan gün ve gecikme sayaçlarının eski günde kalması düzeltildi.',
-        'Aylık tekrar takvim ayına göre ilerler: 31 günlük bir dönemde iki gün gecikmiş ödeme sonrası 29 gün, 30 günlük dönemde 28 gün kalır. Geç ödeme sonraki vadeyi ödeme gününden yeniden başlatmaz.'
+        'Ivory (açık) ve Ember (koyu) renk modlarıyla baştan tasarlanan özgün Phoenix görsel kimliği',
+        'Material 3 takvim destekli pratik tarih seçici ve esnek tarih girişi (GG.AA.YYYY veya ISO)',
+        'Android native versionCode 7 (2.1.0-phoenix) sürümü hazırlandı ve emülatör kabul testlerinden geçti',
+        'Çevrimdışı Keystore şifreli yerel kasa ve isteğe bağlı Google/Supabase eşitlemesi korundu'
       ],
-      note: 'Web sürümü yayımlandı. Bildirim izni ve cihazın arka plan ayarları teslimatı etkileyebilir; fiziksel telefonda görünürlük ayrıca test edilmelidir.'
+      note: 'Güncelleme Android native ve web ürün kapsamına uygulanmıştır.'
     },
-    title: 'PayRadar — Abonelik ve Ödeme Takibi | Voyagerroc Technologies',
-    description: 'Kira, abonelik ve taksitleri PayRadar ile takip edin. Çevrimdışı web uygulaması, farklı para birimleri ve Android test sürümü hakkında bilgi alın.',
-    heading: 'Abonelik ve ödeme takibi',
-    intro: 'Kira, taksit ve abonelik yenilemelerini aynı listede izlemek isteyenler için. Her ödemenin tarihi ve tutarı kayıtta kalır; özet ekranı yaklaşan yükümlülükleri birlikte gösterir.',
-    steps: ['Ödemeyi tutarı, para birimi ve tekrar aralığıyla kaydedin.', 'Yaklaşan ödemeleri ve dönem toplamını özet ekranından kontrol edin.', 'Hatırlatmaları kullanacaksanız bildirim iznini açın ve cihazınızda test edin.'],
+    title: 'PayRadar — Phoenix Arayüzü ile Abonelik ve Ödeme Takibi | Voyagerroc Technologies',
+    description: 'Kira, fatura, abonelik ve taksitleri PayRadar ile takip edin. Phoenix teması, Material 3 tarih seçici, çevrimdışı kasa ve Android sürümü hakkında bilgi alın.',
+    heading: 'Phoenix Arayüzü ile Abonelik ve Ödeme Takibi',
+    intro: 'Kira, fatura, taksit ve abonelik yenilemelerini aynı listede izlemek isteyenler için. Phoenix görsel sistemiyle her ödemenin tarihi ve tutarı düzenlenir; takvim seçiciyle vadeler belirlenir.',
+    steps: ['Ödemeyi tutarı, para birimi ve vade tarihiyle kaydedin.', 'Material 3 takviminden veya elle esnek biçimde (GG.AA.YYYY) tarihi belirleyin.', 'Yaklaşan ödemeleri ve dönem toplamını özet ekranından kontrol edin.', 'Hatırlatmaları kullanacaksanız bildirim iznini açın ve cihazınızda test edin.'],
     faq: [
-      ['İnternet olmadan kullanabilir miyim?', 'Web uygulaması çevrimdışı kullanım için hazırlanmıştır. Bulut senkronizasyonu, yeni döviz verisi ve arka plan bildirimleri bağlantı gerektirir.'],
-      ['Döviz kurları anlık mı?', 'Hayır. Kaynak günlük kur tablosu sağlar. Çevrimdışı kullanımda son bilinen tablo veya gömülü yedek kullanılabilir; bunlar anlık alış-satış fiyatı değildir.'],
-      ['Android sürümü herkese açık mı?', '1.1.0 sürümü Google Play iç test kanalında doğrulanmıştır. Android erişim sayfası testçi katılım adımlarını açıklar. Testçi listesine veya yetkili gruba erişim ve Google Play’de kendi hesabınızla onay gerekir; mağaza bağlantısı tek başına yeterli değildir.'],
-      ['Bildirim her telefonda garanti mi?', 'Bildirim izni, tarayıcı ve cihazın arka plan ayarları teslimi etkileyebilir. Tanılama ve test akışı vardır; gerçek cihazda teslimi ayrıca kontrol etmek gerekir.']
+      ['Phoenix teması nedir?', 'PayRadar 2.1.0 ile gelen Phoenix görsel kimliği; sıcak Ivory (açık) ve derin Ember (koyu) renk modları, Material 3 takvim seçicisi ve ergonomik kart düzeni sunar.'],
+      ['İnternet olmadan kullanabilir miyim?', 'Evet. Kayıtlar cihazınızda Android Keystore ile şifrelenir. İnternet olmadan ödeme ekleyebilir, düzenleyebilir ve yerel hatırlatma alabilirsiniz. Bulut eşitlemesi isteğe bağlıdır.'],
+      ['PayRadar banka hesabıma bağlanır mı?', 'Hayır. PayRadar banka hesabına bağlanmaz, para transferi yapmaz veya ödeme gerçekleştirmez. Kayıtları kullanıcı elle girer; uygulama kişisel not ve hatırlatıcıdır.'],
+      ['Android sürümü nasıl edinilir?', 'Android native 2.1.0-phoenix (versionCode 7) sürümü hazırlanmıştır. Android erişim sayfası testçi katılım adımlarını açıklar.']
     ]
   },
   laserdeck: {

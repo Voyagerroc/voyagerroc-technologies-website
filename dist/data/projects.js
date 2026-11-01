@@ -40,8 +40,11 @@ window.PORTFOLIO_PROJECTS = [
     "id": "payradar",
     "name": "PayRadar",
     "category": "apps",
-    "status": "web",
+    "status": "beta",
     "stack": [
+      "Kotlin",
+      "Jetpack Compose",
+      "Material 3",
       "React",
       "TypeScript",
       "PWA",
@@ -50,25 +53,25 @@ window.PORTFOLIO_PROJECTS = [
     "live": "https://payradar-bkp.pages.dev",
     "androidTest": "https://play.google.com/store/apps/details?id=com.payradar.app",
     "androidAccess": "/android/#payradar",
-    "image": "assets/payradar-current-demo.png",
+    "image": "assets/payradar-phoenix-demo.png",
     "featured": true,
     "tr": {
       "tag": "Günlük hayat / Finans",
-      "summary": "Abonelik, taksit ve düzenli ödeme takibi.",
-      "description": "Kira, abonelik ve taksitleri bir araya getiren; çevrimdışı kullanımı ve cihazdaki veri kontrolünü öne alan ödeme takip uygulaması.",
+      "summary": "Phoenix arayüzlü abonelik, taksit ve düzenli ödeme takibi.",
+      "description": "Kira, abonelik, fatura ve taksitleri bir araya getiren; Phoenix görsel kimliği, Material 3 takvim tarih seçicisi, çevrimdışı kullanımı ve cihazdaki veri kontrolünü öne alan Android native ve web ödeme takip uygulaması.",
       "problem": "Düzenli ödemeler farklı yerlerde durunca yenileme tarihlerini ve toplam yükü görmek zorlaşıyor.",
-      "approach": "Yerel kasa, mobil ödeme özeti, ertelenen ödemeler ve bildirim paneli. İsteğe bağlı senkronizasyon ile Cloudflare tabanlı arka plan hatırlatma kaynakları aynı ürün ailesinde geliştiriliyor.",
-      "scope": "Web uygulaması erişilebilir. Android 1.1.0 sürümü Google Play iç test kanalında yayımlandı. 30 Ekim 2026 web güncellemesi; bildirimlerde otomatik yeniden deneme, abonelik yenileme, cihaz gösterim onayı ve gece yarısında yenilenen gün sayaçlarını içerir. Aylık vadeler takvim ayına göre korunur. Gerçek telefonda arka plan bildiriminin görünmesi ayrıca doğrulanmalıdır. Bulut senkronizasyonu uçtan uca şifreli olarak sunulmaz.",
-      "visual": "Güncel yerel arayüzün örnek ödeme verileriyle görünümü; kişisel hesap kaydı değildir."
+      "approach": "Phoenix (Ivory / Ember) görsel sistemi, Material 3 takvimli tarih seçici, yerel şifreli kasa, mobil ödeme özeti ve Android yerel bildirimleri. İsteğe bağlı Google/Supabase eşitlemesi ile arka plan hatırlatma kaynakları aynı ürün ailesinde geliştiriliyor.",
+      "scope": "Web uygulaması ve Android 2.1.0-phoenix (versionCode 7) Kotlin native sürümü hazır. Phoenix teması, Ivory ve Ember renk modları, Material 3 takvim tarih seçici, çevrimdışı Keystore şifreli kasa ve yerel bildirimler içerir. Aylık vadeler takvim ayına göre korunur. Bulut senkronizasyonu sunucudan gizli uçtan uca şifreli olarak sunulmaz.",
+      "visual": "Güncel Phoenix Android arayüzünün örnek ödeme verileriyle görünümü; kişisel hesap kaydı değildir."
     },
     "en": {
       "tag": "Everyday tools / Finance",
-      "summary": "Track subscriptions, instalments and recurring payments.",
-      "description": "A recurring-payment tracker that brings rent, subscriptions and instalments together, with offline use and control over on-device data.",
+      "summary": "Phoenix-powered subscription, instalment and recurring payment tracking.",
+      "description": "A recurring-payment tracker that brings rent, subscriptions and instalments together, with the Phoenix design system, Material 3 calendar date picker, offline use and on-device data control.",
       "problem": "Scattered recurring payments make renewals and total spending hard to see.",
-      "approach": "A local vault, mobile payment overview, deferred payments and a notification panel. Optional sync and Cloudflare-based background reminder sources are developed within the same product family.",
-      "scope": "The web app is available. Android 1.1.0 is available to internal testers on Google Play. The 30 October 2026 web update adds notification retries, subscription renewal, device display-operation confirmation and day counters that refresh at midnight. Monthly due dates retain their calendar-month schedule. Background notification display still requires physical-device verification. Cloud sync is not presented as end-to-end encrypted.",
-      "visual": "The current local interface with sample payment data, not a personal account record."
+      "approach": "Phoenix (Ivory / Ember) design system, Material 3 calendar date picker, local encrypted vault, payment summaries and native Android reminders. Optional Google/Supabase cloud sync available.",
+      "scope": "Web app and Android 2.1.0-phoenix (versionCode 7) Kotlin native release ready. Features Phoenix design, Ivory and Ember color modes, Material 3 calendar picker, Keystore encryption and local alarms. Cloud sync is not presented as end-to-end encrypted.",
+      "visual": "Current Phoenix Android interface with sample payment data, not a personal account record."
     }
   },
   {

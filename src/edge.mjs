@@ -6,6 +6,7 @@ export default {
  async fetch(request,env){
   const url=new URL(request.url),canonical=new URL(env.CANONICAL_ORIGIN);
   const headers=new Headers(securityHeaders);
+  try {
   if(url.protocol!=='https:'||url.host!==canonical.host){
    // Never resolve untrusted paths against the base: // paths can replace a host.
    const destination=new URL(canonical);destination.pathname=url.pathname;destination.search=url.search;destination.hash='';
@@ -26,5 +27,10 @@ export default {
   // A dedicated public logo is embedded in email signatures on other origins.
   if(url.pathname==='/assets/email-signature-logo.png'&&response.ok)response.headers.set('Cross-Origin-Resource-Policy','cross-origin');
   return response;
+  } catch {
+   securityRecord(request,503);
+   headers.set('Content-Type','text/plain; charset=utf-8');headers.set('Cache-Control','no-store');
+   return new Response('Service temporarily unavailable',{status:503,headers});
+  }
  }
 };

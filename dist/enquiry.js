@@ -18,7 +18,8 @@
   for(const [key,label] of [['name',en?'Name / team':'Ad / ekip'],['type',en?'Area':'Çalışma alanı'],['stage',en?'Stage':'Aşama'],['goal',en?'Need and expected outcome':'İhtiyaç ve beklenen sonuç'],['timing',en?'Timing':'Hedef zaman']]){const value=String(values.get(key)||'').trim();if(value)parts.push(label+': '+value);}
   const text=parts.join('\n\n');preview.textContent=text;
   document.getElementById('brief-email').href='mailto:voyagerroc@voyagerroctechnologies.com?subject='+encodeURIComponent(en?'Project enquiry':'Proje görüşmesi')+'&body='+encodeURIComponent(text);
-  document.getElementById('brief-whatsapp').href='https://wa.me/905444219322?text='+encodeURIComponent(text);
+  // Never place the visitor's brief in a third-party URL or query string.
+  document.getElementById('brief-whatsapp').href='https://wa.me/905444219322';
   status.textContent='';result.hidden=false;result.focus();
  });
  form.addEventListener('input',()=>{document.getElementById('brief-goal').setCustomValidity('');result.hidden=true;status.textContent='';});
