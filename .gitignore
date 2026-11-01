@@ -19,3 +19,5 @@ graphify-out/
 signing-key-info.txt
 credentials*.json
 service-account*.json
+
+.github/
