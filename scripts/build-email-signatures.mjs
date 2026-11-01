@@ -3,7 +3,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const out=path.join(root,'docs','email-signatures');fs.mkdirSync(out,{recursive:true});
-const accounts=[['erol-company','erol@voyagerroctechnologies.com'],['voyagerroc-company','voyagerroc@voyagerroctechnologies.com'],['tascierol24-gmail','tascierol24@gmail.com'],['eroltasci94-gmail','eroltasci94@gmail.com']];
+const accounts=[['erol-company','erol@voyagerroctechnologies.com'],['tascierol24-gmail','tascierol24@gmail.com'],['eroltasci94-gmail','eroltasci94@gmail.com']];
 const site='https://voyagerroctechnologies.com',logo=site+'/assets/email-signature-logo.png',linkedin='https://www.linkedin.com/in/erol-t-66791821a/';
 const cards=[];
 for(const [id,email] of accounts){

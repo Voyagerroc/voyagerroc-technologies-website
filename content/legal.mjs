@@ -1,7 +1,7 @@
 export const updated='25 Ekim 2026';
 const law=(id,label)=>'<a href="https://www.mevzuat.gov.tr/mevzuatmetin/1.'+(id==='5846'?'3':'5')+'.'+id+'.pdf" target="_blank" rel="noopener noreferrer">'+label+'</a>';
 const kvkk=law('6698','6698 sayılı Kişisel Verilerin Korunması Kanunu');
-const contact='<a href="mailto:voyagerroc@voyagerroctechnologies.com">voyagerroc@voyagerroctechnologies.com</a>';
+const contact='<a href="mailto:erol@voyagerroctechnologies.com">erol@voyagerroctechnologies.com</a>';
 const sources=body=>'<section class="legal-sources"><h2>Dayanaklar ve ilgili kaynaklar</h2>'+body+'</section>';
 export const pages=[
 {slug:'',updated:'31 Ekim 2026',title:'Hukuki bilgiler',description:'Gizlilik, kişisel veriler, tarayıcı depolaması, içerik hakları ve başvuru yolları hakkında açık bilgiler.',body:`

@@ -68,7 +68,7 @@ wrangler.jsonc           Cloudflare static deployment and custom domain
 
 The logo PNG is a raster brand asset, not a vector master. Fonts and Three.js retain their included upstream license files. No general open-source license is granted for the original code or brand assets in this repository. Replace Voyagerroc branding and product content before publishing a derivative site.
 
-**Contact:** voyagerroc@voyagerroctechnologies.com
+**Contact:** erol@voyagerroctechnologies.com
 
 ## Preview
 

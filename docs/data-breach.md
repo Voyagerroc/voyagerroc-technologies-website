@@ -5,7 +5,7 @@ Bu dosya işletim prosedürüdür; gerçekleşmiş bir ihlal kaydı veya tamamla
 
 ## Sorumluluk ve erişim
 
-- Birincil ürün/teknik koordinasyon: Erol Taşcı; iletişim: voyagerroc@voyagerroctechnologies.com.
+- Birincil ürün/teknik koordinasyon: Erol Taşcı; iletişim: erol@voyagerroctechnologies.com.
 - Yedek koordinatör: henüz atanmadı. Üretim kabulünden önce isim, telefon, erişim yetkisi ve tatbikat kaydı tamamlanmalı.
 - Veri sorumlusu adına bildirim kararı/gönderimi: yetkili kişi tarafından yürütülür; görevlendirme olay kaydına yazılır.
 - Sağlayıcı kanalları: Cloudflare, Google, WhatsApp hesaplarının resmî destek/güvenlik kanalları.
