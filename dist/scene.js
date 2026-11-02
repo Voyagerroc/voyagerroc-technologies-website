@@ -4,24 +4,25 @@ const toggle = document.getElementById('motion-toggle');
 const poster = target?.querySelector('.scene-fallback');
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 let started = false;
+
 const load = () => {
   if (started || !target) return;
   started = true;
   document.body.dataset.webgl = 'loading';
+  cleanup();
   import('./scene-3d.min.js').catch(() => {
     document.body.dataset.webgl = 'fallback';
     if (toggle) toggle.hidden = true;
   });
 };
-const idle = () => {
-  if ('requestIdleCallback' in window) requestIdleCallback(load, {timeout: 1200});
-  else setTimeout(load, 0);
+
+const triggers = ['pointerdown', 'touchstart', 'scroll'];
+const onTrigger = () => load();
+const cleanup = () => {
+  triggers.forEach(t => window.removeEventListener(t, onTrigger, {passive: true}));
+  target?.removeEventListener('pointerenter', onTrigger);
 };
-const afterPaint = () => requestAnimationFrame(() => requestAnimationFrame(idle));
-const visible = () => {
-  if (poster && !poster.complete) { poster.addEventListener('load', afterPaint, {once: true}); poster.addEventListener('error', afterPaint, {once: true}); }
-  else afterPaint();
-};
+
 if (target) {
   document.body.dataset.webgl = 'poster';
   if (toggle) {
@@ -30,11 +31,14 @@ if (target) {
   }
   // Save-data and reduced-motion visitors keep the light poster unless they opt in.
   if (!reduced.matches && !navigator.connection?.saveData) {
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(entries => {
-        if (entries.some(entry => entry.isIntersecting)) { observer.disconnect(); visible(); }
-      }, {rootMargin: '100px'});
-      observer.observe(target);
-    } else visible();
+    triggers.forEach(t => window.addEventListener(t, onTrigger, {once: true, passive: true}));
+    target.addEventListener('pointerenter', onTrigger, {once: true, passive: true});
+    // Idle fallback: only load after page load + 3.5s idle window to keep initial TBT at 0ms
+    window.addEventListener('load', () => {
+      const schedule = 'requestIdleCallback' in window 
+        ? (cb) => requestIdleCallback(cb, {timeout: 4000}) 
+        : (cb) => setTimeout(cb, 3500);
+      schedule(load);
+    }, {once: true});
   }
 }

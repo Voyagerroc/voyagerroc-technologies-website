@@ -129,13 +129,17 @@ let sitemap=fs.readFileSync(path.join(dist,'sitemap.xml'),'utf8');
 const existingUrls=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1]);
 const allUrls=[...new Set([...existingUrls,portfolioUrl,founderUrl,supportUrl,...enquiryUrls,origin+brand.aboutPath,origin+'/android/',...featured.map(p=>origin+'/urunler/'+p.id+'/'),...services.map(s=>origin+'/calismalar/'+s.slug+'/'),...studies.map(s=>origin+'/notlar/'+s.slug+'/')])];
 sitemap='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+allUrls.map(url=>'<url><loc>'+url+'</loc><lastmod>'+([portfolioUrl,founderUrl,...enquiryUrls,...featured.map(p=>origin+'/urunler/'+p.id+'/'),...services.map(s=>origin+'/calismalar/'+s.slug+'/'),origin+'/',aboutUrl,origin+'/android/',origin+'/yasal/cerezler/',origin+'/yasal/kvkk/',origin+'/urunler/pharos/',origin+'/urunler/tabela/',...studies.filter(s=>s.modified).map(s=>origin+'/notlar/'+s.slug+'/'),...androidProducts.map(p=>origin+'/urunler/'+p.id+'/')].includes(url)?'2026-10-27':'2026-10-25')+'</lastmod></url>').join('')+'</urlset>\n';fs.writeFileSync(path.join(dist,'sitemap.xml'),sitemap);
+const today='2026-11-02';
 const modifiedPages=new Map([
- ...['/yasal/','/yasal/gizlilik/','/yasal/kvkk/','/yasal/cerezler/','/proje-gorusmesi/','/en/project-enquiry/'].map(route=>[origin+route,'2026-10-31']),
- [supportUrl,supportPage.modified],
- [aboutUrl,supportPage.modified],
- [origin+'/',supportPage.modified],
- ...featured.filter(p=>searchProducts[p.id]?.modified).map(p=>[origin+'/urunler/'+p.id+'/',searchProducts[p.id].modified]),
- ...studies.filter(s=>s.modified).map(s=>[origin+'/notlar/'+s.slug+'/',s.modified])
+  ...['/yasal/','/yasal/gizlilik/','/yasal/kvkk/','/yasal/cerezler/','/proje-gorusmesi/','/en/project-enquiry/'].map(route=>[origin+route,'2026-10-31']),
+  [supportUrl,supportPage.modified],
+  ...studies.filter(s=>s.modified).map(s=>[origin+'/notlar/'+s.slug+'/',s.modified]),
+  [aboutUrl,today],
+  [founderUrl,today],
+  [portfolioUrl,today],
+  [origin+'/',today],
+  [origin+'/android/',today],
+  ...featured.map(p=>[origin+'/urunler/'+p.id+'/',today])
 ]);
 sitemap=sitemap.replace(/<url><loc>([^<]+)<\/loc><lastmod>[^<]+<\/lastmod><\/url>/g,(entry,url)=>modifiedPages.has(url)?'<url><loc>'+url+'</loc><lastmod>'+modifiedPages.get(url)+'</lastmod></url>':entry);
 fs.writeFileSync(path.join(dist,'sitemap.xml'),sitemap);
