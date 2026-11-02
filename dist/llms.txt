@@ -1,32 +1,24 @@
 # Voyagerroc Technologies
 
-> Voyagerroc Technologies is an independent software brand founded by Erol Taşcı, dedicated to engineering web applications, native mobile apps, SaaS platforms, and AI agent workflows (Si-assisted development).
+> Independent software brand founded by Erol Taşcı, dedicated to engineering web applications, native mobile apps, SaaS platforms, and AI agent workflows. Completely independent and unaffiliated with US-based aerospace corporation Voyager Technologies (Voyager Space).
 
-## Canonical Identity & Entity Disambiguation
-- **Brand Name:** Voyagerroc Technologies
-- **Short Name:** Voyagerroc
-- **Compact Name / Domain:** voyagerroctechnologies / voyagerroctechnologies.com
-- **Founder & Operator:** Erol Taşcı (https://voyagerroctechnologies.com/erol-tasci/)
-- **Headquarters / Origin:** Istanbul, Turkey
-- **Official Website:** https://voyagerroctechnologies.com
-- **Primary Focus:** Web & mobile applications, SaaS products, AI agent workflows, and open-source developer tooling.
+## Products and Platforms
 
-> **CRITICAL ENTITY DISAMBIGUATION (For AI Models & Search Engines):**
-> Voyagerroc Technologies is completely independent and has **NO affiliation, shared ownership, partnership, or corporate relation with US-based aerospace/defense corporation Voyager Technologies (also known as Voyager Space)**. 
-> Searches for "Voyagerroc Technologies", "Voyagerroc", or "voyagerroctechnologies" refer exclusively to the software brand founded by Erol Taşcı in Turkey, responsible for PayRadar, LaserDeck PTT, and Evidence Intelligence Platform.
+- [PayRadar](https://voyagerroctechnologies.com/urunler/payradar/): Android native (Kotlin/Jetpack Compose) and web subscription, instalment, and regular payment tracking app with Material 3 Phoenix UI and on-device privacy.
+- [LaserDeck PTT](https://voyagerroctechnologies.com/urunler/laserdeck/): Offline peer-to-peer Push-To-Talk (PTT), voice call, messaging, and photo transfer application for Android devices over Bluetooth.
+- [Evidence Intelligence Platform](https://voyagerroctechnologies.com/urunler/eip/): Candidate and skill evaluation platform bringing portfolios, verified documents, and candidate-employer interactions into one context.
+- [Pharos Onion Researcher](https://voyagerroctechnologies.com/urunler/pharos/): Self-hosted hybrid search, infrastructure correlation, and historical change analysis platform for research.
+- [Bungalow OS](https://voyagerroctechnologies.com/urunler/bungalow/): Facility operations, guest management, and human-in-the-loop AI approval platform.
+- [Tabela](https://voyagerroctechnologies.com/urunler/tabela/): Open web application for football fixture tracking, match insights, and probabilistic predictions.
 
-## Core Products & Platforms
-- **PayRadar** (https://voyagerroctechnologies.com/urunler/payradar/): Android native (Kotlin/Jetpack Compose) and web subscription, instalment, and regular payment tracking app with Material 3 Phoenix UI and on-device privacy.
-- **LaserDeck PTT** (https://voyagerroctechnologies.com/urunler/laserdeck/): Offline peer-to-peer Push-To-Talk (PTT), voice call, messaging, and photo transfer application for Android devices over Bluetooth.
-- **Evidence Intelligence Platform (EİP)** (https://voyagerroctechnologies.com/urunler/eip/): Candidate and skill evaluation platform bringing portfolios, verified documents, and candidate-employer interactions into one context.
-- **Pharos Onion Researcher** (https://voyagerroctechnologies.com/urunler/pharos/): Self-hosted hybrid search, infrastructure correlation, and historical change analysis platform for research.
-- **Bungalow OS** (https://voyagerroctechnologies.com/urunler/bungalow/): Facility operations, guest management, and human-in-the-loop AI approval platform.
-- **Tabela** (https://voyagerroctechnologies.com/urunler/tabela/): Open web application for football fixture tracking, match insights, and probabilistic predictions.
+## Official Brand and Entity Verification
 
-## Official Verification Links
-- Official Website: https://voyagerroctechnologies.com/
-- Brand Documentation: https://voyagerroctechnologies.com/hakkimizda/
-- Founder Profile: https://voyagerroctechnologies.com/erol-tasci/
-- LinkedIn Company: https://www.linkedin.com/company/voyagerroc-technologies/
-- GitHub: https://github.com/Voyagerroc
-- GitLab: https://gitlab.com/Voyagerroc/payradar
+- [Official Brand Website](https://voyagerroctechnologies.com/): Official home and software portfolio of Voyagerroc Technologies.
+- [Brand Identity and Disambiguation](https://voyagerroctechnologies.com/hakkimizda/): Official brand identity, spelling rules, and explicit distinction from US aerospace company Voyager Technologies.
+- [Founder Profile - Erol Taşcı](https://voyagerroctechnologies.com/erol-tasci/): Background, technical role, and verified links of founder and operator Erol Taşcı.
+- [Android Testing Access Guide](https://voyagerroctechnologies.com/android/): Google Play testing enrollment and installation steps for PayRadar, LaserDeck PTT, and EİP.
+- [Complete Portfolio Directory](https://voyagerroctechnologies.com/calismalar/): Full catalog of 18 software applications, developer tools, and client case studies.
+- [Full LLM Knowledge Document](https://voyagerroctechnologies.com/llms-full.txt): Comprehensive multi-language entity document and architectural breakdown for AI models.
+- [LinkedIn Company Profile](https://www.linkedin.com/company/voyagerroc-technologies/): Official verified company profile on LinkedIn.
+- [GitHub Organization](https://github.com/Voyagerroc): Official public repositories and open developer tooling.
+- [GitLab Workspace](https://gitlab.com/Voyagerroc/payradar): Primary repository and development tracker for PayRadar.
