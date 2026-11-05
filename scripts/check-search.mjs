@@ -58,7 +58,7 @@ const founderGraph=graphFrom(founderHtml),profile=founderGraph.find(n=>n['@type'
 assert.equal(profile.mainEntity['@id'],operator['@id'],'Founder profile must identify the existing operator, not create a second identity');
 assert.equal(founder['@id'],operator['@id']);
 assert.equal(founder.name,'Erol Taşcı');
-assert.ok(founder.alternateName.includes('Erol Tasci')&&founder.alternateName.includes('Voyagerroc-Lab'));
+assert.ok(founder.alternateName.includes('Erol Tasci')&&!founder.alternateName.includes('Voyagerroc-Lab'));
 assert.ok(founderHtml.includes('Voyagerroc Technologies’in sahibi kim?'));
 assert.ok(home.includes('/erol-tasci/')&&aboutHtml.includes('/erol-tasci/'),'Founder profile must be discoverable through real links');
 assert.ok(!identity.sameAs.includes(founder.url),'Founder page and brand must remain distinct identities');

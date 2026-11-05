@@ -16,14 +16,13 @@ export const brand = {
   founderProfile: {
     name: 'Erol Taşcı',
     path: '/erol-tasci/',
-    alternateNames: ['Erol Tasci', 'ErolTasci', 'eroltasci', 'ErolTaşcı', 'Voyagerroc-Lab'],
+    alternateNames: ['Erol Tasci', 'ErolTasci', 'eroltasci', 'ErolTaşcı'],
     label: 'Kurucunun LinkedIn profili',
     url: 'https://www.linkedin.com/in/erol-t-66791821a/',
     instagram: 'https://www.instagram.com/eroltascii94/'
   },
   publicPages: [
     ['LinkedIn', 'https://www.linkedin.com/company/voyagerroc-technologies/'],
-    ['GitHub', 'https://github.com/Voyagerroc'],
-    ['GitLab', 'https://gitlab.com/Voyagerroc/payradar/-/blob/main/docs/voyagerroc-technologies.md']
+    ['GitHub', 'https://github.com/Voyagerroc']
   ]
 };
