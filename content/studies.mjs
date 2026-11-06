@@ -1,12 +1,12 @@
 export const payradarDemo = {
-  src: '/assets/demos/payradar-native-tour-20261106.mp4',
-  poster: '/assets/demos/payradar-native-tour-20261106.jpg',
-  captions: '/assets/demos/payradar-native-tour-20261106.tr.vtt',
-  englishCaptions: '/assets/demos/payradar-native-tour-20261106.en.vtt',
+  src: '/assets/demos/payradar-native-v12-20261106.mp4',
+  poster: '/assets/demos/payradar-native-v12-20261106.jpg',
+  captions: '/assets/demos/payradar-native-v12-20261106.tr.vtt',
+  englishCaptions: '/assets/demos/payradar-native-v12-20261106.en.vtt',
   width: 720, height: 1600, native: true,
-  title: 'PayRadar Android native — ekran turu',
-  note: 'Kotlin Android native uygulamasının gerçek ekran görüntülerinden hazırlanan sessiz ekran turu: ana ekran, ödeme ekleme, Material 3 tarih seçici ve ayarlar. Görüntüler emülatör önizlemesine aittir; canlı işlem kaydı veya fiziksel cihaz testi değildir. Eski web arayüzünü göstermez.',
-  summary: ['Android native ana ekranında cihazdaki kayıtlar, arama ve kategoriler gösterilir.', 'Yeni ödeme ekranındaki ad, tutar, vade ve tekrar alanları gösterilir.', 'Material 3 tarih seçicisi ile hesap ve yerel hatırlatma ayarları gösterilir.']
+  title: 'PayRadar 2.1.5 — yeni Android ekran turu',
+  note: '2.1.5-phoenix (12) sürüm adayının gerçek Android emülatör ekranlarından hazırlanan 36 saniyelik sessiz tur. Ödeme özeti, kartlar, form, ayrı KVKK bölümü, koyu tema ve tablet düzeni yalnız örnek kayıtlarla gösterilir. Bu adayın mağaza yayını doğrulanmadı; video canlı işlem kaydı veya fiziksel cihaz testi değildir.',
+  summary: ['Ödeme özetinde vadeler ve her para birimi için ayrı aylık tahmin gösterilir.', 'Yenilenen kartlar ve ödeme formundaki giriş açıklamaları incelenir.', 'Ayarlar içindeki ayrı KVKK aydınlatma metni gösterilir; bilgilendirme rıza değildir.', 'Phoenix Ember koyu tema ve ortalanmış tablet görünümü gösterilir.']
 };
 
 // Historical technical notes now link to the current native tour.
@@ -16,11 +16,17 @@ export const studies = [{
   slug: 'payradar-web-push-bildirimleri',
   title: 'PayRadar Web Push Bildirimleri: Sorun, Düzeltme ve Test | Voyagerroc Technologies',
   heading: 'PayRadar bildirimleri: hata sonrası toparlanan motor',
-  description: '30 Ekim PayRadar güncellemesi: otomatik yeniden deneme, abonelik yenileme, cihaz gösterim onayı ve gün sayacı düzeltmesi. Geliştirme notları ve doğrulama sınırları.',
+  description: '6 Kasım PayRadar Android güncelleme adayı: internetsiz bildirim telafisi, güncel native ekranlar ve doğrulama sınırları. Önceki web push çalışması tarihsel kayıt olarak korunur.',
   date: '2026-10-25',
-  modified: '2026-10-30',
-  intro: 'Telefona bildirim gelmediğinde tek bir düğmeyi düzeltmek yetmiyor. Tarayıcının izni, abonelik kaydı, sunucudaki plan ve push servisine çıkan istek ayrı ayrı kontrol edilmeli. PayRadar’da da sorun bu hattın birden fazla yerindeydi.',
+  modified: '2026-11-06',
+  intro: 'PayRadar güncel Kotlin Android uygulamasında cihaz üzerinde yerel hatırlatma kullanır. 6 Kasım geliştirmeleri 2.1.5 sürüm adayı için hazırlandı; mağaza yayını henüz doğrulanmadı. Aşağıdaki önceki web push çalışmaları tarihsel kayıttır ve güncel Android bildirim hattıyla karıştırılmamalıdır.',
   sections: [
+    {heading: '6 Kasım: Android yerel hatırlatma ve yeni arayüz', paragraphs: [
+      'Kaçırılan yerel hatırlatmalar için internete bağlı olmayan kalıcı bir telafi işi eklendi. Uygulama yeniden açıldığında da uygun vadeler kontrol edilir. Aynı hesap ve gün için tekrar önleme kaydı tutulur; önceki okunmamış bildirimin sonraki uyarıyı sessizleştirmesi giderildi.',
+      'Ödeme özeti, para birimine göre ayrı aylık tahminler, Türkçe arama ve telefon/tablet düzeni yenilendi. Geçersiz takvim günleri reddedilir; eşzamanlı değişen bir kayıt eski form verisiyle ezilmez. Kullanım koşulları, KVKK aydınlatma ve gizlilik metinleri ayrı bölümlerdir; metin eklemek bütün hukuki işletim yükümlülüklerinin tamamlandığını göstermez.',
+      '48 birim testi ve 11 Android emülatör senaryosu geçti. Ayrı bir süreç kapanması kontrolünde uygulama süreci yokken kalıcı telafi işi başlatıldığında bildirim oluşturuldu. Bu sonuçlar doğal zamanlayıcı teslim süresi, insanın ses duyması veya bütün fiziksel telefonlarda başarı garantisi değildir. Android bildirim izni, güç yönetimi ve zorla durdurma kısıtları geçerlidir.',
+      'Aşağıdaki 36 saniyelik tur 2.1.5-phoenix (12) sürüm adayının gerçek Android emülatör ekranlarını yalnız örnek kayıtlarla gösterir. Mağazada bu adayın yayımlandığı veya eski web uygulamasının geri getirildiği anlamına gelmez.'
+    ]},
     {heading: '30 Ekim güncellemesi: hata sonrası toparlanan bildirim motoru', paragraphs: [
       'Arka plan bildirimleri için kalıcı gönderim günlüğü eklendi. Aynı günlük gönderim eşzamanlı işlemlerde korunur; işlem yarıda kalırsa süreli kilit açılarak yeniden denenebilir. Geçici bağlantı ve sağlayıcı hatalarında artan aralıklarla, en fazla altı deneme yapılır. Sağlayıcının yeniden deneme için bildirdiği bekleme süresi de dikkate alınır.',
       'Günlük kontrol beş dakikada bir çalışır; uygun vadeler yerel saat 09.00 sonrasında değerlendirilir. Süresi dolan aboneliğin tekrar kaydedilmesi yerine yenilenmesi sağlandı. Ayarlar ekranındaki tanılama, gönderim durumunu ve günlük kontrol motorunun çalışmasını ayrı gösterir.',

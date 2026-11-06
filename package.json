@@ -9,6 +9,7 @@
     "check": "node --check dist/app.js && node --check dist/motion.js && node --check dist/scene.js && node --check dist/scene-3d.min.js && node --check dist/legal.js && node --check content/legal.mjs && node --check scripts/build-legal.mjs && node --check dist/aperture.js && node --check scripts/build-site.mjs && node --check src/edge.mjs && node --check src/security-headers.mjs && node --check dist/consent.js && node --check src/telemetry.mjs && node --check dist/enquiry.js && node --check scripts/build-enquiry.mjs && node --check scripts/build-founder.mjs && node --check scripts/build-portfolio.mjs && node --check scripts/refine-home.mjs && node --check scripts/build-english.mjs && node --check scripts/portfolio-tools.mjs && node --check dist/portfolio.js",
     "build:legal": "node scripts/build-legal.mjs",
     "build:payradar-video": "node scripts/build-payradar-native-video.mjs",
+    "check:payradar-video": "node scripts/check-payradar-demo.cjs",
     "predeploy": "npm run build && npm run check && npm run check:edge && npm run check:telemetry && npm run check:search && npm run check:security",
     "build": "npm run build:legal && node scripts/build-site.mjs",
     "check:edge": "node scripts/check-edge.mjs",

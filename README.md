@@ -53,6 +53,8 @@ Configured for next-generation AI search engines (Google Gemini / AI Overview, O
 5. **Bungalow OS** (`/urunler/bungalow/`): Facility operations, reservation management, and human-in-the-loop AI approval workflows.
 6. **Tabela** (`/urunler/tabela/`): Open web application for football fixture tracking, match insights, and probabilistic score predictions.
 
+PayRadar's 6 November update presents the **2.1.5-phoenix (12) candidate** separately from the owner-reported current store version **2.1.4-phoenix (11)**. Its 36-second native screen tour uses authentic Android emulator screens and sample records: payment overview, cards, editor, KVKK notice, dark theme and tablet layout. Rebuild with `npm run build:payradar-video`; check responsive playback with `npm run check:payradar-video`. This website update does not publish an Android app to Play.
+
 ---
 
 ## 📸 Preview

@@ -14,22 +14,23 @@ export const products = {
     ]
   },
   payradar: {
-    modified: '2026-11-05',
+    modified: '2026-11-06',
     update: {
-      heading: '5 Kasım 2026 — Android erişimi ve web sürümünün durumu',
+      heading: '6 Kasım 2026 — 2.1.5 Android güncellemesinde neler değişti?',
       items: [
-        'Ivory (açık) ve Ember (koyu) renk modlarıyla baştan tasarlanan özgün Phoenix görsel kimliği',
-        'Material 3 takvim destekli pratik tarih seçici ve esnek tarih girişi (GG.AA.YYYY veya ISO)',
-        'Yayımlanan erişim sayfasında Android 2.1.3-phoenix, versionCode 10 belirtiliyor; bu kontrol mağaza yayılımını veya cihaz testini doğrulamaz',
-        'Çevrimdışı Keystore şifreli yerel kasa ve isteğe bağlı Google/Supabase eşitlemesi korundu'
+        'Yenilenen ödeme özeti: geciken, bugün ve gelecek 7 gündeki vadeler; para birimleri ayrı tutulan aylık tahmin',
+        'Türkçe karakterleri ve boşlukları dikkate alan arama, filtre temizleme ve telefon/tablet düzeni',
+        'Geçersiz tarih, tutar ve taksit için alan yanında hata; eşzamanlı düzenlemelerde kayıt koruması ve güvenli geri alma',
+        'Kaçırılan Android hatırlatmaları için internetsiz telafi ve yinelenen günlük bildirimlere karşı koruma',
+        'Uygulamada ayrı kullanım koşulları, KVKK aydınlatma ve gizlilik bölümleri; koşul kabulü bildirim izni veya açık rıza oluşturmaz'
       ],
-      note: 'Eski web uygulaması kaldırılmıştır. Ürün bağlantısı Android indirme rehberini açar.'
+      note: 'Bu değişiklikler 2.1.5-phoenix (12) için hazırlanan ve yerel testlerden geçen sürüm adayına aittir; mağaza yayını henüz doğrulanmadı. İşletmeci beyanına göre mevcut sürüm 2.1.4-phoenix (11). Hatırlatmalar Android iznine ve güç yönetimine bağlıdır.'
     },
     title: 'PayRadar — Phoenix Arayüzü ile Abonelik ve Ödeme Takibi | Voyagerroc Technologies',
-    description: 'Kira, fatura, abonelik ve taksitleri PayRadar ile takip edin. Phoenix teması, Material 3 tarih seçici, çevrimdışı kasa ve Android sürümü hakkında bilgi alın.',
+    description: 'PayRadar Android: ödeme özeti, para birimine göre aylık tahmin, Türkçe arama ve yerel hatırlatmalar. 2.1.5 güncelleme adayını ve native ekran turunu inceleyin.',
     heading: 'Phoenix Arayüzü ile Abonelik ve Ödeme Takibi',
-    intro: 'Kira, fatura, taksit ve abonelik yenilemelerini aynı listede izlemek isteyenler için. Phoenix görsel sistemiyle her ödemenin tarihi ve tutarı düzenlenir; takvim seçiciyle vadeler belirlenir.',
-    steps: ['Ödemeyi tutarı, para birimi ve vade tarihiyle kaydedin.', 'Material 3 takviminden veya elle esnek biçimde (GG.AA.YYYY) tarihi belirleyin.', 'Yaklaşan ödemeleri ve dönem toplamını özet ekranından kontrol edin.', 'Hatırlatmaları kullanacaksanız bildirim iznini açın ve cihazınızda test edin.'],
+    intro: 'Kira, fatura, taksit ve abonelik yenilemelerini tek yerde izleyin. Güncellenen Phoenix ödeme özeti yaklaşan vadeleri gösterir; aylık tahmin farklı para birimlerini birbirine karıştırmaz.',
+    steps: ['Ödemeyi tutarı, para birimi ve vade tarihiyle kaydedin; geçersiz girişte alanın yanındaki açıklamayı izleyin.', 'Material 3 takviminden veya elle (GG.AA.YYYY) tarihi belirleyin.', 'Geciken, bugün ve gelecek 7 gündeki vadeleri; para birimine göre aylık tahmini kontrol edin.', 'Ad, kategori veya notla arayın; filtreleri temizleyerek bütün kayıtlarınıza dönün.', 'Hatırlatmalar için Android bildirim iznini açın ve gerçek cihazınızda teslimatı kontrol edin.'],
     faq: [
       ['Phoenix teması nedir?', 'PayRadar 2.1.0 ile gelen Phoenix görsel kimliği; sıcak Ivory (açık) ve derin Ember (koyu) renk modları, Material 3 takvim seçicisi ve ergonomik kart düzeni sunar.'],
       ['İnternet olmadan kullanabilir miyim?', 'Evet. Kayıtlar cihazınızda Android Keystore ile şifrelenir. İnternet olmadan ödeme ekleyebilir, düzenleyebilir ve yerel hatırlatma alabilirsiniz. Bulut eşitlemesi isteğe bağlıdır.'],

@@ -52,30 +52,36 @@ window.PORTFOLIO_PROJECTS = [
     "live": "https://payradar-bkp.pages.dev/",
     "androidTest": "https://play.google.com/store/apps/details?id=com.payradar.app",
     "androidAccess": "/android/#payradar",
-    "image": "assets/payradar-phoenix-demo.png",
+    "image": "assets/payradar-phoenix-v12.png",
     "featured": true,
     "tr": {
       "tag": "Günlük hayat / Finans",
-      "summary": "Phoenix arayüzlü abonelik, taksit ve düzenli ödeme takibi.",
+      "summary": "Ödeme özeti, Türkçe arama ve yerel hatırlatmalarla Phoenix Android ödeme takibi.",
       "description": "Kira, abonelik, fatura ve taksitleri bir araya getiren; çevrimdışı kayıtları ve yerel hatırlatmaları destekleyen Kotlin Android uygulaması. Eski web uygulaması kullanımdan kaldırılmıştır.",
       "problem": "Düzenli ödemeler farklı yerlerde durunca yenileme tarihlerini ve toplam yükü görmek zorlaşıyor.",
-      "approach": "Phoenix (Ivory / Ember) görsel sistemi, Material 3 takvimli tarih seçici, yerel şifreli kasa, mobil ödeme özeti ve Android yerel bildirimleri. İsteğe bağlı Google/Supabase eşitlemesi ile arka plan hatırlatma kaynakları aynı ürün ailesinde geliştiriliyor.",
-      "scope": "Android kapalı test sürümüdür. Erişim, Google Play test katılımına bağlıdır. Bağlantı verilen sayfa indirme rehberidir; tarayıcıda çalışan ödeme uygulaması değildir. Bulut eşitlemesi sunucudan gizli uçtan uca şifreli değildir. Yayımlanan erişim sayfasındaki sürüm: 2.1.3-phoenix (versionCode 10).",
-      "visual": "Güncel Phoenix Android arayüzünün örnek ödeme verileriyle görünümü; kişisel hesap kaydı değildir."
+      "approach": "Güncellenen Phoenix (Ivory / Ember) ödeme özeti; para birimine göre ayrı aylık tahminler, Türkçe arama, alan yanında doğrulama ve telefon/tablet düzeni. Yerel hatırlatma telafisi, eşzamanlı kayıt koruması ve geri alma geliştirmeleri 2.1.5 sürüm adayında hazırlandı. Kullanım koşulları, KVKK aydınlatma ve gizlilik uygulamada ayrı bölümlerdir.",
+      "scope": "Android kapalı test sürümüdür. Erişim, Google Play test katılımına bağlıdır. Bağlantı verilen sayfa indirme rehberidir; tarayıcıda çalışan ödeme uygulaması değildir. Bulut eşitlemesi sunucudan gizli uçtan uca şifreli değildir. İşletmeci tarafından bildirilen mevcut mağaza sürümü: 2.1.4-phoenix (versionCode 11). Tanıtımdaki yeni sürüm adayı: 2.1.5-phoenix (12). Bu adayın mağaza yayını henüz doğrulanmadı.",
+      "visual": "2.1.5 (12) sürüm adayının gerçek Android emülatör ekranı; yalnızca örnek ödeme verileri içerir."
     },
     "en": {
       "tag": "Everyday tools / Finance",
-      "summary": "Phoenix-powered subscription, instalment and recurring payment tracking.",
+      "summary": "Phoenix Android payment tracking with an updated overview, Turkish search and local reminders.",
       "description": "A Kotlin Android app for rent, bills, subscriptions and instalments, with offline records and local reminders. The former web app has been retired.",
       "problem": "Scattered recurring payments make renewals and total spending hard to see.",
-      "approach": "Phoenix (Ivory / Ember) design system, Material 3 calendar date picker, local encrypted vault, payment summaries and native Android reminders. Optional Google/Supabase cloud sync available.",
-      "scope": "Android closed test. Google Play enrolment is required. The linked page is a download guide, not a browser payment app. Cloud sync is not server-blind end-to-end encryption. Version on the published access page: 2.1.3-phoenix (versionCode 10).",
-      "visual": "Current Phoenix Android interface with sample payment data, not a personal account record."
+      "approach": "The updated Phoenix Ivory / Ember overview keeps monthly estimates separate by currency, with Turkish search, inline validation and phone/tablet layouts. The 2.1.5 candidate adds local reminder recovery, stale-edit protection and improved payment undo. Terms, KVKK notice and privacy information are separate in-app sections.",
+      "scope": "Android closed test. Google Play enrolment is required. The linked page is a download guide, not a browser payment app. Cloud sync is not server-blind end-to-end encryption. Current store version reported by the owner: 2.1.4-phoenix (versionCode 11). New candidate shown in this presentation: 2.1.5-phoenix (12). Store publication of this candidate has not been verified.",
+      "visual": "Authentic Android emulator screenshot of the 2.1.5 (12) candidate, using sample payment records only."
     },
     "release": {
-      "version": "2.1.3-phoenix",
-      "versionCode": 10,
-      "checked": "2026-11-05",
+      "version": "2.1.4-phoenix",
+      "versionCode": 11,
+      "checked": "2026-11-06",
+      "evidence": "owner-confirmed",
+      "candidate": {
+        "version": "2.1.5-phoenix",
+        "versionCode": 12,
+        "status": "signed-candidate"
+      },
       "platform": "Android",
       "webAppAvailable": false,
       "landing": "https://payradar-bkp.pages.dev/",
