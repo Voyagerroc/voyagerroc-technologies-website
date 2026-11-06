@@ -23,3 +23,12 @@ assert.equal(failure.status,503);assert.equal(failure.headers.get('Cache-Control
 assert.doesNotMatch(await failure.text(),/private provider detail|fixture@example/);
 assert.match(failure.headers.get('Content-Security-Policy'),/script-src-attr 'none'/);
 console.log('PASS: upstream failure returns a generic uncached error with security headers.');
+const previewEnv={...publicAssetEnv,LOCAL_DEV:'true',CANONICAL_ORIGIN:'http://127.0.0.1:8890'};
+assert.equal((await edge.fetch(new Request('http://127.0.0.1:8890/'),previewEnv)).status,200);
+assert.equal((await edge.fetch(new Request('http://127.0.0.1:8890/'),{...previewEnv,LOCAL_DEV:true})).status,200);
+// Wrangler rewrites the upstream host without the listening port.
+assert.equal((await edge.fetch(new Request('http://127.0.0.1/'),previewEnv)).status,200);
+assert.equal((await edge.fetch(new Request('http://127.0.0.1:8890/'),{...previewEnv,LOCAL_DEV:'false'})).status,308);
+assert.equal((await edge.fetch(new Request('http://voyagerroctechnologies.com/'),{...publicAssetEnv,LOCAL_DEV:'true'})).status,308);
+assert.equal((await edge.fetch(new Request('http://public.example/'),{...previewEnv,CANONICAL_ORIGIN:'http://public.example'})).status,308);
+console.log('PASS: explicit loopback preview does not bypass production HTTPS or public-host redirects.');

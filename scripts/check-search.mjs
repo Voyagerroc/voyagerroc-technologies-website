@@ -6,7 +6,7 @@ import vm from 'node:vm';
 import {androidAccess} from '../content/android.mjs';
 import {fileURLToPath} from 'node:url';
 import {products,services} from '../content/search.mjs';
-import {studies,payradarDemo} from '../content/studies.mjs';
+import {studies,payradarDemo,payradarArchiveDemo} from '../content/studies.mjs';
 import {securityHeaders} from '../src/security-headers.mjs';
 const dist=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../dist');
 const origin='https://voyagerroctechnologies.com';
@@ -45,13 +45,13 @@ const operator=homeGraph.find(n=>n['@type']==='Person');
 assert.equal(website.name,'Voyagerroc Technologies');
 assert.ok(identity.alternateName.includes('voyagerroctechnologies'),'Compact brand spelling must resolve to the same brand entity');
 assert.ok(website.alternateName.includes('voyagerroctechnologies'),'Compact search spelling must identify the official website');
-assert.ok(aboutHtml.includes('voyagerroctechnologies araması hangi markayı ifade eder?'),'Exact search spelling needs a visible, factual identity answer');
+assert.ok(aboutHtml.includes('Voyagerroc Technologies'),'Brand identity must remain visible without repeated search keywords');
 assert.equal(website.publisher['@id'],operator['@id'],'Website publisher must resolve to its real operator');
 assert.ok(operator.sameAs.includes(personalProfile),'Personal profile must identify the operator');
 assert.ok(identity.sameAs.includes('https://www.linkedin.com/company/voyagerroc-technologies/'),'Company identity must link to the exact company profile');
 assert.equal(homeGraph.find(n=>n['@type']==='WebPage').mainEntity['@id'],identity['@id']);
-assert.ok(home.includes('data-i18n="officialBrand"'),'Official identity must be discoverable from the hero');
-assert.ok(aboutHtml.includes('Voyager Technologies adının kısaltması veya alternatif yazımı değildir'),'Brand spelling distinction must be visible');
+assert.ok(home.includes('href="/hakkimizda/"'),'Brand identity must be discoverable from the home page');
+assert.ok(aboutHtml.includes('Voyagerroc'),'Brand spelling must be visible');
 assert.ok(aboutHtml.includes('Erol Taşcı'),'Structured operator must also be named visibly');
 const founderHtml=fs.readFileSync(path.join(dist,'erol-tasci/index.html'),'utf8');
 const founderGraph=graphFrom(founderHtml),profile=founderGraph.find(n=>n['@type']==='ProfilePage'),founder=founderGraph.find(n=>n['@type']==='Person');
@@ -85,17 +85,17 @@ for(const study of studies){
  assert.ok(home.includes('/notlar/'+study.slug+'/'),'Study orphaned');
  const html=fs.readFileSync(path.join(dist,'notlar',study.slug,'index.html'),'utf8');
  assert.ok(html.includes('preload="none"'),'Do not load demo video before user playback');
- assert.ok(html.includes(payradarDemo.captions),'Video needs captions');
- assert.ok(html.includes('Fiziksel telefonda'),'Physical-device limits must be visible');
+ assert.ok(html.includes(payradarArchiveDemo.captions),'Archive video needs captions');
+ assert.ok(html.includes('fiziksel cihaz testi değildir'),'Physical-device limits must be visible');
 }
 assert.ok(fs.readFileSync(path.join(dist,payradarDemo.captions),'utf8').startsWith('WEBVTT'));
 const android=fs.readFileSync(path.join(dist,'android/index.html'),'utf8');
 const portfolio={window:{}};vm.runInNewContext(fs.readFileSync(path.join(dist,'data/projects.js'),'utf8'),portfolio);
-const story=home.match(/<section id="product-story"[\s\S]*?<\/section>/)[0];
+const story=home;
 assert.ok(!story.includes('href="https://play.google.com/'),'Static story must not bypass Android enrollment guidance');
 for(const p of portfolio.window.PORTFOLIO_PROJECTS){
  for(const language of ['tr','en'])for(const field of ['tag','summary','description','problem','approach','scope',...(p.image?['visual']:[])])assert.ok(p[language]?.[field],'Missing project content: '+p.id+'/'+language+'/'+field);
- if(p.androidTest)assert.ok(story.includes('href="'+p.androidAccess+'"'),'Static story must discover Android guide: '+p.id);
+ if(p.androidTest){const detail=fs.readFileSync(path.join(dist,'urunler',p.id,'index.html'),'utf8');assert.ok(home.includes('/urunler/'+p.id+'/')&&detail.includes('href="'+p.androidAccess+'"'),'Homepage must discover Android guide through product details: '+p.id);}
 }
 for(const p of portfolio.window.PORTFOLIO_PROJECTS.filter(x=>x.androidTest)){
  assert.equal(p.androidAccess,'/android/#'+p.id,'Android CTA must lead through enrollment guidance');
@@ -107,3 +107,7 @@ for(const p of portfolio.window.PORTFOLIO_PROJECTS.filter(x=>x.androidTest)){
 assert.ok(android.includes('Bu site Google hesabınızı veya testçi üyeliğinizi göremez'),'Do not imply the site can verify Google test consent');
 assert.ok(!android.includes('<form'),'Do not collect Google account data for test registration');
 console.log('PASS: '+urls.length+' unique sitemap pages, canonical URLs, headings, internal links, structured data/CSP and product/service discovery.');
+
+const nativeProduct=fs.readFileSync(path.join(dist,'urunler/payradar/index.html'),'utf8');
+assert.ok(nativeProduct.includes(payradarDemo.src)&&nativeProduct.includes(payradarDemo.poster));
+assert.ok(!nativeProduct.includes('payradar-demo-20261025'),'Current product must not use the retired web recording');

@@ -255,7 +255,9 @@ if (renderer) {
   });
   scene.add(new THREE.Points(sparkGeo, sparkMat));
 
-  let paused = reduced.matches;
+  // Autoplay is intended on every viewport. Reduced motion softens the pace.
+  let paused = false;
+  let fitDistance = 10.5;
   let visible = true;
   let raf = 0;
   let last = 0;
@@ -345,7 +347,7 @@ if (renderer) {
       node.pulse.position.copy(node.curve.getPoint(pulseT));
     });
 
-    camera.position.z = THREE.MathUtils.lerp(camera.position.z, story.active ? 8.2 : 8.8, l);
+    camera.position.z = THREE.MathUtils.lerp(camera.position.z, story.active ? fitDistance * 0.94 : fitDistance, l);
     camera.lookAt(0, 0, 0);
 
     if (selected !== n) {
@@ -354,6 +356,7 @@ if (renderer) {
     }
     canvas.dataset.storyStep = String(story.index);
     canvas.dataset.scrollProgress = progress.toFixed(3);
+    canvas.dataset.animationTime = time.toFixed(3);
   }
 
   function tick(now) {
@@ -364,7 +367,7 @@ if (renderer) {
       raf = requestAnimationFrame(tick);
       return;
     }
-    time += Math.min(elapsed / 1000, 0.08);
+    time += Math.min(elapsed / 1000, 0.08) * (reduced.matches ? 0.4 : 1);
     last = now;
     pose();
     draw();
@@ -386,8 +389,15 @@ if (renderer) {
   function resize() {
     const r = container.getBoundingClientRect();
     if (!r.width || !r.height) return;
+    renderer.setPixelRatio(Math.min(devicePixelRatio, r.width < 500 ? 1.25 : r.width < 800 ? 1.5 : 1.75));
     renderer.setSize(r.width, r.height, false);
     camera.aspect = r.width / r.height;
+    // Fit wings and orbital ring with motion clearance at every aspect ratio.
+    const tangent = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+    fitDistance = Math.max(2.9 / tangent, 3.1 / (tangent * camera.aspect)) + 0.6;
+    camera.position.z = fitDistance;
+    canvas.dataset.viewport = Math.round(r.width) + 'x' + Math.round(r.height);
+    canvas.dataset.cameraDistance = fitDistance.toFixed(2);
     camera.updateProjectionMatrix();
     pose(true);
     draw();
@@ -407,7 +417,7 @@ if (renderer) {
   container.addEventListener(
     'pointermove',
     e => {
-      if (paused || e.pointerType === 'touch') return;
+      if (paused || reduced.matches || e.pointerType === 'touch') return;
       const r = container.getBoundingClientRect();
       pointer.x = ((e.clientX - r.left) / r.width) * 2 - 1;
       pointer.y = ((e.clientY - r.top) / r.height) * 2 - 1;
@@ -430,13 +440,10 @@ if (renderer) {
   }
 
   reduced.addEventListener('change', () => {
-    paused = reduced.matches;
-    label();
-    if (paused) {
-      stop();
-      pose(true);
-      draw();
-    } else start();
+    pointer.x = 0;
+    pointer.y = 0;
+    pose(true);
+    draw();
   });
 
   document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
@@ -462,6 +469,13 @@ if (renderer) {
     e.preventDefault();
     stop();
     fallback();
+  });
+  canvas.addEventListener('webglcontextrestored', () => {
+    document.body.dataset.webgl = 'ready';
+    if (toggle) toggle.hidden = false;
+    resize();
+    label();
+    start();
   });
 
   document.body.dataset.webgl = 'ready';

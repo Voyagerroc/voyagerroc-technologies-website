@@ -1,4 +1,4 @@
-/* Curated public product data. No private paths or account identifiers. */
+/* Generated from content/projects.json and content/releases.mjs. */
 window.PORTFOLIO_PROJECTS = [
   {
     "id": "eip",
@@ -22,7 +22,7 @@ window.PORTFOLIO_PROJECTS = [
       "problem": "Bir özgeçmişin anlattıkları ile kişinin gösterebildikleri her zaman aynı şey değil.",
       "approach": "Aday kanıt merkezi, başvurular, işveren çalışma alanı ve raporlar üzerinden daha incelenebilir bir süreç kuruyor.",
       "scope": "Tanıtım ve giriş arayüzü erişilebilir. Canlı sayfanın açılması; tüm API, değerlendirme veya mobil akışların test edildiği anlamına gelmez.",
-      "visual": "Ürünün mevcut uygulama ikonu."
+      "visual": "5 Kasım 2026 tarihli herkese açık ürün arayüzü. Giriş yapılmadı; işlevlerin uçtan uca doğrulandığı anlamına gelmez."
     },
     "en": {
       "tag": "Talent & recruitment platform",
@@ -31,10 +31,11 @@ window.PORTFOLIO_PROJECTS = [
       "problem": "What a CV says and what a person can demonstrate are not always the same.",
       "approach": "A candidate evidence centre, applications, employer workspace and reporting make the process more inspectable.",
       "scope": "The public landing interface is accessible. This does not establish end-to-end API, evaluation or mobile testing.",
-      "visual": "The project's existing app icon."
+      "visual": "Public product interface captured on 5 November 2026, without signing in. This is not end-to-end feature verification."
     },
     "androidTest": "https://play.google.com/store/apps/details?id=com.voyagerroc.eip",
-    "androidAccess": "/android/#eip"
+    "androidAccess": "/android/#eip",
+    "evidenceImage": "assets/eip-product-screen.jpg"
   },
   {
     "id": "payradar",
@@ -45,12 +46,10 @@ window.PORTFOLIO_PROJECTS = [
       "Kotlin",
       "Jetpack Compose",
       "Material 3",
-      "React",
-      "TypeScript",
-      "PWA",
-      "WebCrypto"
+      "Room",
+      "Android Keystore"
     ],
-    "live": "https://payradar-bkp.pages.dev",
+    "live": "https://payradar-bkp.pages.dev/",
     "androidTest": "https://play.google.com/store/apps/details?id=com.payradar.app",
     "androidAccess": "/android/#payradar",
     "image": "assets/payradar-phoenix-demo.png",
@@ -58,20 +57,29 @@ window.PORTFOLIO_PROJECTS = [
     "tr": {
       "tag": "Günlük hayat / Finans",
       "summary": "Phoenix arayüzlü abonelik, taksit ve düzenli ödeme takibi.",
-      "description": "Kira, abonelik, fatura ve taksitleri bir araya getiren; Phoenix görsel kimliği, Material 3 takvim tarih seçicisi, çevrimdışı kullanımı ve cihazdaki veri kontrolünü öne alan Android native ve web ödeme takip uygulaması.",
+      "description": "Kira, abonelik, fatura ve taksitleri bir araya getiren; çevrimdışı kayıtları ve yerel hatırlatmaları destekleyen Kotlin Android uygulaması. Eski web uygulaması kullanımdan kaldırılmıştır.",
       "problem": "Düzenli ödemeler farklı yerlerde durunca yenileme tarihlerini ve toplam yükü görmek zorlaşıyor.",
       "approach": "Phoenix (Ivory / Ember) görsel sistemi, Material 3 takvimli tarih seçici, yerel şifreli kasa, mobil ödeme özeti ve Android yerel bildirimleri. İsteğe bağlı Google/Supabase eşitlemesi ile arka plan hatırlatma kaynakları aynı ürün ailesinde geliştiriliyor.",
-      "scope": "Web uygulaması ve Android 2.1.0-phoenix (versionCode 7) Kotlin native sürümü hazır. Phoenix teması, Ivory ve Ember renk modları, Material 3 takvim tarih seçici, çevrimdışı Keystore şifreli kasa ve yerel bildirimler içerir. Aylık vadeler takvim ayına göre korunur. Bulut senkronizasyonu sunucudan gizli uçtan uca şifreli olarak sunulmaz.",
+      "scope": "Android kapalı test sürümüdür. Erişim, Google Play test katılımına bağlıdır. Bağlantı verilen sayfa indirme rehberidir; tarayıcıda çalışan ödeme uygulaması değildir. Bulut eşitlemesi sunucudan gizli uçtan uca şifreli değildir. Yayımlanan erişim sayfasındaki sürüm: 2.1.3-phoenix (versionCode 10).",
       "visual": "Güncel Phoenix Android arayüzünün örnek ödeme verileriyle görünümü; kişisel hesap kaydı değildir."
     },
     "en": {
       "tag": "Everyday tools / Finance",
       "summary": "Phoenix-powered subscription, instalment and recurring payment tracking.",
-      "description": "A recurring-payment tracker that brings rent, subscriptions and instalments together, with the Phoenix design system, Material 3 calendar date picker, offline use and on-device data control.",
+      "description": "A Kotlin Android app for rent, bills, subscriptions and instalments, with offline records and local reminders. The former web app has been retired.",
       "problem": "Scattered recurring payments make renewals and total spending hard to see.",
       "approach": "Phoenix (Ivory / Ember) design system, Material 3 calendar date picker, local encrypted vault, payment summaries and native Android reminders. Optional Google/Supabase cloud sync available.",
-      "scope": "Web app and Android 2.1.0-phoenix (versionCode 7) Kotlin native release ready. Features Phoenix design, Ivory and Ember color modes, Material 3 calendar picker, Keystore encryption and local alarms. Cloud sync is not presented as end-to-end encrypted.",
+      "scope": "Android closed test. Google Play enrolment is required. The linked page is a download guide, not a browser payment app. Cloud sync is not server-blind end-to-end encryption. Version on the published access page: 2.1.3-phoenix (versionCode 10).",
       "visual": "Current Phoenix Android interface with sample payment data, not a personal account record."
+    },
+    "release": {
+      "version": "2.1.3-phoenix",
+      "versionCode": 10,
+      "checked": "2026-11-05",
+      "platform": "Android",
+      "webAppAvailable": false,
+      "landing": "https://payradar-bkp.pages.dev/",
+      "access": "/android/#payradar"
     }
   },
   {
@@ -223,23 +231,24 @@ window.PORTFOLIO_PROJECTS = [
     "repo": "https://gitlab.com/Voyagerroc/Tabela",
     "featured": true,
     "tr": {
-      "tag": "Si / İstatistiksel futbol analizi",
+      "tag": "AI / İstatistiksel futbol analizi",
       "summary": "Fikstür, maç analizi ve sonuçlarla karşılaştırılabilen tahmin defteri.",
       "description": "Fikstür, maç haberleri, olasılıksal skor tahminleri ve tahmin geçmişini aynı çalışma alanında bir araya getiren futbol analiz uygulaması.",
       "problem": "Maç öncesi bilgileri birlikte değerlendirmek ve üretilen tahminleri gerçek sonuçlarla karşılaştırmak.",
-      "approach": "Dixon-Coles düzeltmeli Poisson skor olasılıkları, Si destekli maç analizi, taktik saha görünümü ve sonuçların kaydedilebildiği tahmin defteri.",
-      "scope": "Web arayüzü erişilebilir. Si destekli analiz için desteklenen bir model sağlayıcısının API anahtarı gerekir. Veri kapsamı ve güncelliği kaynaklara bağlıdır. Tahminler deneysel ve olasılıksaldır; kesin sonuç veya bahis kazancı vaat edilmez.",
-      "visual": "Tabela uygulamasının mevcut ikonu."
+      "approach": "Dixon-Coles düzeltmeli Poisson skor olasılıkları, AI destekli maç analizi, taktik saha görünümü ve sonuçların kaydedilebildiği tahmin defteri.",
+      "scope": "Web arayüzü erişilebilir. AI destekli analiz için desteklenen bir model sağlayıcısının API anahtarı gerekir. Veri kapsamı ve güncelliği kaynaklara bağlıdır. Tahminler deneysel ve olasılıksaldır; kesin sonuç veya bahis kazancı vaat edilmez.",
+      "visual": "5 Kasım 2026 tarihli herkese açık ürün arayüzü. Giriş yapılmadı; işlevlerin uçtan uca doğrulandığı anlamına gelmez."
     },
     "en": {
-      "tag": "Si / Probabilistic football analytics",
+      "tag": "AI / Probabilistic football analytics",
       "summary": "Fixtures, match analysis and forecasts you can compare with results.",
       "description": "A football analysis workspace bringing fixtures, match news, probabilistic score forecasts and prediction history together.",
       "problem": "Reviewing pre-match information together and comparing predictions with actual results.",
-      "approach": "Poisson score probabilities with a Dixon-Coles correction, Si-assisted match analysis, a tactical pitch view and a forecast ledger for recording results.",
-      "scope": "The web interface is accessible. Si-assisted analysis requires an API key from a supported model provider. Data coverage and freshness depend on the sources. Predictions are experimental and probabilistic; no guaranteed result or betting return is promised.",
-      "visual": "The existing Tabela application icon."
-    }
+      "approach": "Poisson score probabilities with a Dixon-Coles correction, AI-assisted match analysis, a tactical pitch view and a forecast ledger for recording results.",
+      "scope": "The web interface is accessible. AI-assisted analysis requires an API key from a supported model provider. Data coverage and freshness depend on the sources. Predictions are experimental and probabilistic; no guaranteed result or betting return is promised.",
+      "visual": "Public product interface captured on 5 November 2026, without signing in. This is not end-to-end feature verification."
+    },
+    "evidenceImage": "assets/tabela-product-screen.png"
   },
   {
     "id": "audit-trail",
@@ -255,7 +264,7 @@ window.PORTFOLIO_PROJECTS = [
       "tag": "Güvenlik / Gözlemlenebilirlik",
       "summary": "Model trafiğine görünürlük.",
       "description": "LLM isteklerinde hassas veri maskeleme ve istek metaverisi denetimi için geliştirilen yerel ağ geçidi.",
-      "problem": "Si servislerine giden veride ne bulunduğunu ve hangi isteklerin yapıldığını takip etmek.",
+      "problem": "AI servislerine giden veride ne bulunduğunu ve hangi isteklerin yapıldığını takip etmek.",
       "approach": "Proxy katmanı, DLP kuralları ve denetim kayıtları.",
       "scope": "Beta kaynakları incelendi. Hassas verinin her koşulda engelleneceğine veya sıfır sızıntıya ilişkin garanti sunulmuyor."
     },

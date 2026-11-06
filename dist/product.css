@@ -8,3 +8,7 @@
 .portfolio-entry{border-top:1px solid #F0D5D8;padding:34px 0;scroll-margin-top:24px}.portfolio-entry h2{font-size:clamp(26px,4vw,36px);overflow-wrap:anywhere}.portfolio-entry h3{font-size:16px;color:#20070B;margin:26px 0 8px}.portfolio-entry .tags{margin:20px 0}.portfolio-entry p{overflow-wrap:anywhere}
 
 .support-card{margin:34px 0;padding:28px;border:1px solid #F0D5D8;border-radius:16px;background:#FFF7F6;overflow-wrap:anywhere}.support-card h2{font-size:clamp(26px,4vw,36px);margin:10px 0 18px}.support-card .kicker{margin:0;color:#A52D3A}.support-card .fineprint{font-size:12px}.support-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px;margin:28px 0}.support-facts div{padding-bottom:12px;border-bottom:1px solid #F0D5D8}.support-facts dt{font-size:11px;color:#552832;font-weight:600}.support-facts dd{margin:5px 0 0;color:#20070B;font-size:16px}.support-card .product-link{max-width:100%;overflow-wrap:anywhere}@media(max-width:520px){.support-card{padding:20px}.support-facts{grid-template-columns:1fr}}
+
+.portfolio-tools{display:grid;gap:10px;margin:28px 0;padding:22px;border:1px solid #F0D5D8}.portfolio-tools[hidden],.portfolio-entry[hidden]{display:none}.portfolio-tools input,.portfolio-tools select{font:inherit;min-height:44px;padding:10px;border:1px solid #784D55;border-radius:4px;background:white;color:#20070B;width:100%}
+
+.product-demo-native{width:min(100%,360px);aspect-ratio:9/20;height:auto;display:block;margin:24px auto;object-fit:contain}

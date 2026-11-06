@@ -1,10 +1,16 @@
 export const payradarDemo = {
-  src: '/assets/demos/payradar-demo-20261025.mp4',
-  poster: '/assets/demos/payradar-demo-20261025.jpg',
-  captions: '/assets/demos/payradar-demo-20261025.tr.vtt',
-  title: 'PayRadar: ödeme ekleme, Orbit 3D ve çevrimdışı kullanım',
-  note: 'Gerçek web uygulamasından, yalnızca örnek ödeme kayıtlarıyla alınmış sessiz tarayıcı kaydı. Ödeme ekleme, Orbit 3D görünümü ve ağ kapatıldıktan sonra yeniden açılış gösterilir. Fiziksel telefonda bildirim teslimi bu videoda test edilmez.'
+  src: '/assets/demos/payradar-native-tour-20261106.mp4',
+  poster: '/assets/demos/payradar-native-tour-20261106.jpg',
+  captions: '/assets/demos/payradar-native-tour-20261106.tr.vtt',
+  englishCaptions: '/assets/demos/payradar-native-tour-20261106.en.vtt',
+  width: 720, height: 1600, native: true,
+  title: 'PayRadar Android native — ekran turu',
+  note: 'Kotlin Android native uygulamasının gerçek ekran görüntülerinden hazırlanan sessiz ekran turu: ana ekran, ödeme ekleme, Material 3 tarih seçici ve ayarlar. Görüntüler emülatör önizlemesine aittir; canlı işlem kaydı veya fiziksel cihaz testi değildir. Eski web arayüzünü göstermez.',
+  summary: ['Android native ana ekranında cihazdaki kayıtlar, arama ve kategoriler gösterilir.', 'Yeni ödeme ekranındaki ad, tutar, vade ve tekrar alanları gösterilir.', 'Material 3 tarih seçicisi ile hesap ve yerel hatırlatma ayarları gösterilir.']
 };
+
+// Historical technical notes now link to the current native tour.
+export const payradarArchiveDemo = payradarDemo;
 
 export const studies = [{
   slug: 'payradar-web-push-bildirimleri',

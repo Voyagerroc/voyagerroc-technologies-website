@@ -2,28 +2,28 @@
 export const products = {
   tabela: {
     title: 'Tabela — Futbol Analizi ve Tahmin Defteri | Voyagerroc Technologies',
-    description: 'Fikstürü, maç analizini ve tahmin geçmişini Tabela ile inceleyin. Si analizi için gereken API anahtarını ve olasılıksal tahminlerin sınırlarını öğrenin.',
+    description: 'Fikstürü, maç analizini ve tahmin geçmişini Tabela ile inceleyin. AI analizi için gereken API anahtarını ve olasılıksal tahminlerin sınırlarını öğrenin.',
     heading: 'Maç analizi ve tahminlerin sonuçlarla karşılaştırılması',
     intro: 'Lig ve maç bilgilerini, analizleri ve tahmin geçmişini bir arada incelemek için hazırlanmış deneysel bir çalışma alanıdır. Tahminin değeri, gerçek sonuçla karşılaştırılarak değerlendirilir.',
-    steps: ['Si analizi için desteklenen model sağlayıcısının API anahtarını uygulamada tanımlayın.', 'İnceleyeceğiniz ligi ve maçı seçin; analizin dayandığı bilgileri ve kaynakları kontrol edin.', 'Maç bittikten sonra gerçek skoru tahmin defterine kaydedip sonuçları karşılaştırın.'],
+    steps: ['AI analizi için desteklenen model sağlayıcısının API anahtarını uygulamada tanımlayın.', 'İnceleyeceğiniz ligi ve maçı seçin; analizin dayandığı bilgileri ve kaynakları kontrol edin.', 'Maç bittikten sonra gerçek skoru tahmin defterine kaydedip sonuçları karşılaştırın.'],
     faq: [
-      ['API anahtarı gerekiyor mu?', 'Si destekli analiz için desteklenen bir model sağlayıcısının API anahtarı gerekir. Anahtarı bu portföy sitesine veya iletişim mesajına göndermeyin; ilgili uygulamanın kendi akışını kullanın.'],
+      ['API anahtarı gerekiyor mu?', 'AI destekli analiz için desteklenen bir model sağlayıcısının API anahtarı gerekir. Anahtarı bu portföy sitesine veya iletişim mesajına göndermeyin; ilgili uygulamanın kendi akışını kullanın.'],
       ['Veriler ve tahminler her zaman güncel mi?', 'Fikstür, haber ve analiz kapsamı dış veri kaynaklarına ve model sağlayıcısına bağlıdır. Eksik veya doğrulanamayan bilgiler olabilir; önemli ayrıntıları kaynaklarından kontrol edin.'],
       ['Tahmin defteri nasıl değerlendirilir?', 'Gerçek skorlar kaydedildikçe tahminlerle karşılaştırılır. Boş veya küçük bir tahmin geçmişi kanıtlanmış başarı oranı olarak değerlendirilmez.'],
       ['Kesin sonuç ya da kazanç garantisi var mı?', 'Hayır. Tabela deneysel ve olasılıksal analiz sunar; kesin skor veya bahis kazancı vaat etmez.']
     ]
   },
   payradar: {
-    modified: '2026-11-01',
+    modified: '2026-11-05',
     update: {
-      heading: '1 Kasım 2026 — Phoenix Arayüzü ve Android 2.1.0 Sürümü',
+      heading: '5 Kasım 2026 — Android erişimi ve web sürümünün durumu',
       items: [
         'Ivory (açık) ve Ember (koyu) renk modlarıyla baştan tasarlanan özgün Phoenix görsel kimliği',
         'Material 3 takvim destekli pratik tarih seçici ve esnek tarih girişi (GG.AA.YYYY veya ISO)',
-        'Android native versionCode 7 (2.1.0-phoenix) sürümü hazırlandı ve emülatör kabul testlerinden geçti',
+        'Yayımlanan erişim sayfasında Android 2.1.3-phoenix, versionCode 10 belirtiliyor; bu kontrol mağaza yayılımını veya cihaz testini doğrulamaz',
         'Çevrimdışı Keystore şifreli yerel kasa ve isteğe bağlı Google/Supabase eşitlemesi korundu'
       ],
-      note: 'Güncelleme Android native ve web ürün kapsamına uygulanmıştır.'
+      note: 'Eski web uygulaması kaldırılmıştır. Ürün bağlantısı Android indirme rehberini açar.'
     },
     title: 'PayRadar — Phoenix Arayüzü ile Abonelik ve Ödeme Takibi | Voyagerroc Technologies',
     description: 'Kira, fatura, abonelik ve taksitleri PayRadar ile takip edin. Phoenix teması, Material 3 tarih seçici, çevrimdışı kasa ve Android sürümü hakkında bilgi alın.',
@@ -34,7 +34,7 @@ export const products = {
       ['Phoenix teması nedir?', 'PayRadar 2.1.0 ile gelen Phoenix görsel kimliği; sıcak Ivory (açık) ve derin Ember (koyu) renk modları, Material 3 takvim seçicisi ve ergonomik kart düzeni sunar.'],
       ['İnternet olmadan kullanabilir miyim?', 'Evet. Kayıtlar cihazınızda Android Keystore ile şifrelenir. İnternet olmadan ödeme ekleyebilir, düzenleyebilir ve yerel hatırlatma alabilirsiniz. Bulut eşitlemesi isteğe bağlıdır.'],
       ['PayRadar banka hesabıma bağlanır mı?', 'Hayır. PayRadar banka hesabına bağlanmaz, para transferi yapmaz veya ödeme gerçekleştirmez. Kayıtları kullanıcı elle girer; uygulama kişisel not ve hatırlatıcıdır.'],
-      ['Android sürümü nasıl edinilir?', 'Android native 2.1.0-phoenix (versionCode 7) sürümü hazırlanmıştır. Android erişim sayfası testçi katılım adımlarını açıklar.']
+      ['Android sürümü nasıl edinilir?', 'Android kapalı test katılımı gerekir; güncel sürüm bilgisi ve indirme adımları erişim rehberindedir. Android erişim sayfası testçi katılım adımlarını açıklar.']
     ]
   },
   laserdeck: {
@@ -88,8 +88,8 @@ export const services = [
     ], examples: ['eip', 'bungalow']
   },
   {
-    slug: 'si-is-akisi-otomasyonu', title: 'Si Destekli İş Akışı ve Ajan Tasarımı',
-    description: 'Si destekli iş akışlarında bağlam, kaynak erişimi, insan onayı ve değerlendirme ölçütlerini planlayın. Pharos ve Bungalow OS yaklaşımlarını inceleyin.',
+    slug: 'si-is-akisi-otomasyonu', title: 'AI Destekli İş Akışı ve Ajan Tasarımı',
+    description: 'AI destekli iş akışlarında bağlam, kaynak erişimi, insan onayı ve değerlendirme ölçütlerini planlayın. Pharos ve Bungalow OS yaklaşımlarını inceleyin.',
     intro: 'Bir iş akışına model bağlamak tek başına yeterli değil. Hangi kaynağın kullanılacağı, hangi aracın neye erişebileceği ve hangi adımda insan onayı gerektiği birlikte tasarlanmalı.',
     sections: [
       ['Bağlamı hazırlamak', 'Context engineering; göreve uygun talimatları, verileri ve kaynakları hazırlama işidir. Gereksiz veriyi her adımda taşımak yerine, görevin ihtiyaç duyduğu bilgiye erişimi planlıyoruz.'],

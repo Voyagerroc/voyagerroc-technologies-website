@@ -18,3 +18,10 @@ dialog{width:min(850px,calc(100% - 32px));max-height:calc(100svh - 48px);border:
 
 /* Keep both language and menu controls inside a 280px viewport. */
 @media(max-width:320px){.site-header{gap:8px}.brand .logo-window{width:135px;height:36px}.header-right{gap:8px}}
+
+/* Audit: readable copy, intact brand mark and generous touch targets. */
+body{font-size:16px}.hero h1{font-size:clamp(36px,4.2vw,64px);line-height:1.08;text-wrap:balance}.hero-description{font-size:16px;max-width:56ch}.hero{padding-top:48px;align-items:center}.language button{min-width:44px;min-height:44px;padding:8px}.language{padding-left:10px}.scene-toolbar{font-size:11px}.scene-toolbar button{font-size:11px;min-height:44px;padding:8px}.portfolio-cta{padding:24px 0 48px}.feature-summary{font-size:15px}.product-capture{width:100%;height:100%;object-fit:cover;object-position:top}.brand .logo-window{width:270px;height:60px}.featured-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.feature-info{display:block}.feature-info .status{margin-top:14px}.hero-board{box-shadow:0 12px 40px #20070b12}
+@media(max-width:1100px){.brand .logo-window{width:225px}.main-nav{gap:18px}.header-right{gap:12px}}
+@media(max-width:760px){.brand .logo-window{width:170px;height:44px}.site-header{gap:8px}.header-right{gap:8px}.language{padding-left:0;border-left:0;gap:0}.language button{min-width:36px;min-height:44px}.language>span{display:none}.hero h1{font-size:40px}.hero-description{font-size:16px}.featured-grid{grid-template-columns:1fr}.hero{padding-top:36px}.menu-toggle{min-height:44px;min-width:44px}.hero-actions{flex-wrap:wrap}}
+@media(max-width:360px){.brand .logo-window{width:135px}.header-right{gap:4px}.hero h1{font-size:35px}}
+.hero-copy{min-width:0}.hero h1 em{white-space:normal}.hero-footnote>span{min-width:0}.hero .hero-footnote{align-items:flex-start}

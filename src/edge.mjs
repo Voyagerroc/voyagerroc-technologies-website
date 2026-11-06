@@ -7,7 +7,10 @@ export default {
   const url=new URL(request.url),canonical=new URL(env.CANONICAL_ORIGIN);
   const headers=new Headers(securityHeaders);
   try {
-  if(url.protocol!=='https:'||url.host!==canonical.host){
+  // An explicit local CLI flag permits loopback HTTP preview only. It cannot
+  // bypass redirects for a public host or a production HTTPS canonical URL.
+  const localPreview=(env.LOCAL_DEV===true||env.LOCAL_DEV==='true')&&canonical.protocol==='http:'&&canonical.hostname===url.hostname&&['localhost','127.0.0.1','[::1]'].includes(url.hostname);
+  if(!localPreview&&(url.protocol!=='https:'||url.host!==canonical.host)){
    // Never resolve untrusted paths against the base: // paths can replace a host.
    const destination=new URL(canonical);destination.pathname=url.pathname;destination.search=url.search;destination.hash='';
    headers.set('Location',destination.href);headers.set('X-Robots-Tag','noindex, follow');

@@ -28,6 +28,18 @@
 
 /* APERTURE — restrained materials, five domain channels, no live telemetry. */
 .hero-board{background:#FFFFFF;border-color:#F0D5D8;box-shadow:0 25px 100px #0003}
+.hero-board #scene-home{min-height:0}
+.hero-board .scene-container{height:auto;aspect-ratio:1.35;min-height:300px;max-height:440px;width:100%}
+.hero-board #nexus-canvas{display:block;width:100%;height:100%;max-width:100%}
+.hero-board #nexus-canvas{transition:none}
+body[data-webgl=ready] .hero-board .scene-fallback{visibility:hidden;opacity:0;transition:none}
+.hero-board .scene-toolbar{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;min-height:60px;margin:0 20px;padding:8px 0 12px}
+.hero-board .scene-toolbar>span{max-width:none;font-size:10px;line-height:1.5}
+.hero-board .scene-toolbar button{font-size:10px;min-height:44px;padding:8px 10px}
+.hero-board .aperture-hud{inset:auto 18px 16px;font-size:9px}
+@media(min-width:901px){.hero{align-items:start}.hero-copy{padding-top:40px}}
+@media(max-width:900px){.hero{grid-template-columns:minmax(0,1fr);gap:28px}.hero .hero-board{width:100%;max-width:680px;margin-inline:auto}.hero-copy{min-width:0}.hero-board .scene-container{aspect-ratio:1.45;max-height:420px}}
+@media(max-width:760px){.hero{padding-top:28px}.hero-copy h1{font-size:clamp(30px,7.5vw,40px);margin:18px 0}.hero-description{font-size:15px;line-height:1.7}.hero-actions{margin-top:24px}.hero .hero-footnote{margin-top:20px}.hero-board .scene-container{aspect-ratio:1.18;min-height:260px;max-height:360px}.hero-board .scene-toolbar{margin-inline:14px;gap:8px}.hero-board .scene-toolbar>span,.hero-board .scene-toolbar button{font-size:9px}.hero-board .aperture-hud{font-size:8px;inset:auto 14px 14px}}
 .scene-heading{z-index:3}.scene-heading .eyebrow{color:#C82A3A;letter-spacing:.19em}.scene-coordinate{color:#784D55}
 .scene-container{height:410px;background:radial-gradient(ellipse at 50% 48%,#C82A3A0d,transparent 62%)}
 #nexus-canvas{background:radial-gradient(ellipse at center,transparent,transparent 67%)}

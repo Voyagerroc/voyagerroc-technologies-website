@@ -2,6 +2,10 @@
 
 ## Current deployment
 
+### Prepared 6 November source update (not yet deployed)
+
+The inactive version no longer asks for analytics consent on arrival or writes a new preference cookie. Footer privacy information remains available with its optional-analytics control disabled. Previously stored cookies expire under their original lifetime; later analytics activation still requires a fresh scope and version. TR/EN pages use language-specific URLs; an explicit language click keeps only the selected `tr`/`en` in tab-session storage. The deployment description below records the previous live behavior until this source update is published and verified.
+
 The founder WhatsApp link has a prefilled message. Opening the link does not send the message; the visitor must send it in WhatsApp.
 
 Every HTML page includes a first-party preference panel with equally prominent accept/reject controls, settings, withdrawal and a dismiss option. Access is not conditional on accepting. The choice is stored only after a click in a Secure `__Host-vrt_privacy` cookie for 180 days. It contains policy version, allow/deny and decision day, not a visitor ID. This duration is an implementation choice, not a statutory universal period. Language remains in sessionStorage.

@@ -27,10 +27,10 @@ The website has been completely reimagined with a high-contrast, clean **Phoenix
 
 ## 🚀 Core Web Vitals & Performance Engineering
 
-- **Lighthouse Scores:** 100 SEO · 100 Accessibility · 100 Best Practices · 2/2 Agentic Browsing · 98+ Desktop Performance.
-- **Zero Total Blocking Time (TBT):** The 585 KB procedural Three.js WebGL engine (`scene-3d.min.js`) is deferred to user interaction (`pointerdown`, `touchstart`, `scroll`) or a 3.5s idle window, eliminating main-thread locking.
+- Performance and accessibility measurements apply only to the measured build and environment; see `docs/AUDIT-REMEDIATION-2026-11-05.md` for current checks.
+- **APERTURE autoplay:** The Three.js WebGL module loads on entry on phones, tablets and desktop. Responsive framing preserves the wings and orbit; pause/resume remains available. Performance must be measured for this autoplay build.
 - **Sub-second LCP:** High-priority `<link rel="preload">` ensures the hero Aperture poster (`assets/aperture-static.webp`) paints immediately on first byte delivery.
-- **Cumulative Layout Shift (CLS):** Strictly 0 across mobile and desktop.
+- Images reserve dimensions; layout shifts and performance must be measured for each release.
 
 ---
 
@@ -46,7 +46,7 @@ Configured for next-generation AI search engines (Google Gemini / AI Overview, O
 
 ## 📱 Featured Products & Systems
 
-1. **PayRadar** (`/urunler/payradar/`): Android native (Kotlin, Jetpack Compose, Room, Biometrics) and web payment, subscription, and instalment tracker with Material 3 Phoenix UI and on-device privacy.
+1. **PayRadar** (`/urunler/payradar/`): Android native (Kotlin, Jetpack Compose, Room, Biometrics) payment, subscription, and instalment tracker; the former web app is retired with Material 3 Phoenix UI and on-device privacy.
 2. **LaserDeck PTT** (`/urunler/laserdeck/`): Offline peer-to-peer Bluetooth Push-To-Talk, voice call, messaging, and photo transfer application for Android devices without internet or cell towers.
 3. **Evidence Intelligence Platform (EİP)** (`/urunler/eip/`): Candidate and skill evaluation platform bringing portfolios, verified documents, and candidate-employer interactions into one context.
 4. **Pharos Onion Researcher** (`/urunler/pharos/`): Self-hosted hybrid search (BM25 + vector), infrastructure correlation, and historical change analysis platform.
