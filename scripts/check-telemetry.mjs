@@ -1,0 +1,21 @@
+import assert from 'node:assert/strict';
+import {analyticsReady,collectAnalytics,securityRecord,consentAllowed} from '../src/telemetry.mjs';
+const original=console.log,records=[];console.log=value=>records.push(value);
+const env={CANONICAL_ORIGIN:'https://voyagerroctechnologies.com',ANALYTICS_ENABLED:'true',ANALYTICS_TRANSFER_READY:'true',CONSENT_VERSION:'test-live-v2',ANALYTICS_LIMITER:{limit:async()=>({success:true})}};
+const day=Math.floor(Date.now()/86400000),cookie='__Host-vrt_privacy='+env.CONSENT_VERSION+'.allow.'+day;
+function req({headers={},body,method='POST'}={}){const r=new Request(env.CANONICAL_ORIGIN+'/api/analytics',{method,headers:{Origin:env.CANONICAL_ORIGIN,'Sec-Fetch-Site':'same-origin','Content-Type':'application/json',Cookie:cookie,'User-Agent':'Mozilla/5.0 Android Mobile Chrome/130.0','CF-Connecting-IP':'192.0.2.3',...headers},...(method==='POST'?{body:body??JSON.stringify({event:'page_view',page:'/'})}:{})});Object.defineProperty(r,'cf',{value:{country:'TR',city:'DO NOT LOG',latitude:'DO NOT LOG',longitude:'DO NOT LOG'}});return r;}
+assert.equal(analyticsReady({...env,ANALYTICS_TRANSFER_READY:'false'}),false);assert.equal(analyticsReady({...env,ANALYTICS_LIMITER:undefined}),false);assert.equal(analyticsReady({...env,CONSENT_VERSION:'test-preview'}),false);
+assert.equal((await collectAnalytics(req(),{...env,ANALYTICS_ENABLED:'false'})).status,503);
+for(const headers of [{Cookie:''},{Cookie:cookie.replace('.allow.','.deny.')},{Cookie:'__Host-vrt_privacy=old.allow.'+day},{Cookie:'__Host-vrt_privacy='+env.CONSENT_VERSION+'.allow.'+(day-181)},{'Sec-GPC':'1'},{Origin:'https://attacker.example'},{'Sec-Fetch-Site':'cross-site'}])assert.equal((await collectAnalytics(req({headers}),env)).status,403);
+assert.equal(consentAllowed(req({headers:{Cookie:'__Host-vrt_privacy=%ZZ'}}),env),false);
+assert.equal((await collectAnalytics(req({method:'GET'}),env)).status,405);
+assert.equal((await collectAnalytics(req({headers:{'Content-Type':'text/plain'}}),env)).status,415);
+assert.equal((await collectAnalytics(req({body:'x'.repeat(513)}),env)).status,413);
+for(const body of ['bad','null','[]',JSON.stringify({event:'page_view',page:'/',email:'DO NOT LOG'}),JSON.stringify({event:'page_view',page:'/?secret=DO-NOT-LOG'}),JSON.stringify({event:'arbitrary',page:'/'})])assert.equal((await collectAnalytics(req({body}),env)).status,400);
+assert.equal((await collectAnalytics(req(),{...env,ANALYTICS_LIMITER:{limit:async()=>({success:false})}})).status,429);
+assert.equal(records.length,0);
+assert.equal((await collectAnalytics(req(),env)).status,204);assert.equal(records.length,1);
+assert.deepEqual(Object.keys(records[0]).sort(),['kind','day','event','page','project','country','device','browser','consentVersion'].sort());assert.equal(records[0].country,'TR');assert.equal(records[0].device,'mobile');assert.equal(records[0].browser,'Chromium');
+securityRecord(new Request(env.CANONICAL_ORIGIN+'/?secret=DO-NOT-LOG'),200);assert.equal(records.length,1);
+securityRecord(new Request(env.CANONICAL_ORIGIN+'/arbitrary-private-path?token=DO-NOT-LOG'),404);assert.equal(records.length,2);assert.equal(records[1].route,'other');assert.equal(/192\.0\.2|DO.NOT.LOG|city|latitude|Cookie|arbitrary-private-path/.test(JSON.stringify(records)),false);
+console.log=original;console.log('PASS: default-off/transfer/rate gates, current consent, GPC, origin, bounded payload, field whitelist and log minimisation.');

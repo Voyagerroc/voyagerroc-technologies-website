@@ -1,0 +1,39 @@
+{
+  "name": "voyagerroc-technologies-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Voyagerroc Technologies corporate website, independently hosted on Cloudflare Workers Static Assets.",
+  "scripts": {
+    "dev": "wrangler dev --ip 127.0.0.1 --host 127.0.0.1 --port 8890 --var LOCAL_DEV:true --var CANONICAL_ORIGIN:http://127.0.0.1:8890",
+    "deploy": "wrangler deploy",
+    "check": "node --check dist/app.js && node --check dist/motion.js && node --check dist/scene.js && node --check dist/scene-3d.min.js && node --check dist/legal.js && node --check content/legal.mjs && node --check scripts/build-legal.mjs && node --check dist/aperture.js && node --check scripts/build-site.mjs && node --check src/edge.mjs && node --check src/security-headers.mjs && node --check dist/consent.js && node --check src/telemetry.mjs && node --check dist/enquiry.js && node --check scripts/build-enquiry.mjs && node --check scripts/build-founder.mjs && node --check scripts/build-portfolio.mjs && node --check scripts/refine-home.mjs && node --check scripts/build-english.mjs && node --check scripts/portfolio-tools.mjs && node --check dist/portfolio.js",
+    "build:legal": "node scripts/build-legal.mjs",
+    "build:payradar-video": "node scripts/build-payradar-native-video.mjs",
+    "check:payradar-video": "node scripts/check-payradar-demo.cjs",
+    "predeploy": "npm run build && npm run check && npm run check:edge && npm run check:telemetry && npm run check:search && npm run check:security && npm run check:scene-loader",
+    "build": "npm run build:legal && node scripts/build-site.mjs",
+    "check:edge": "node scripts/check-edge.mjs",
+    "check:telemetry": "node scripts/check-telemetry.mjs",
+    "check:search": "node scripts/check-search.mjs",
+    "check:security": "node scripts/check-secrets.mjs",
+    "check:audit": "node scripts/check-audit.cjs",
+    "check:aperture": "node scripts/check-aperture.cjs",
+    "check:scene-loader": "node scripts/check-scene-loader.mjs",
+    "check:report-fixes": "node scripts/check-report-fixes.cjs"
+  },
+  "engines": {
+    "node": ">=20.18.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.63.0",
+    "esbuild": "0.28.2",
+    "lighthouse": "^13.6.0",
+    "wrangler": "4.152.0"
+  },
+  "overrides": {
+    "miniflare": {
+      "undici": "7.30.1"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+# Voyagerroc Technologies — Tam Sistem, Ürün ve Marka Belgesi (Full Knowledge Document)
+
+Bu belge; yapay zekâ modelleri (Google Gemini, OpenAI GPT, Anthropic Claude, Perplexity), arama motorları ve akıllı web ajanları için Voyagerroc Technologies markasının resmî ve eksiksiz özetidir.
+
+---
+
+## 1. Varlık Kimliği ve Marka Ayrımı (Canonical Entity Disambiguation)
+
+- **Resmî Marka Adı:** Voyagerroc Technologies
+- **Kısa Ad:** Voyagerroc
+- **Bitişik Yazım / Alan Adı:** voyagerroctechnologies / voyagerroctechnologies.com
+- **Kurucu ve İşletmeci:** Erol Taşcı (LinkedIn: https://www.linkedin.com/in/erol-t-66791821a/, Web: https://voyagerroctechnologies.com/erol-tasci/)
+- **Kuruluş / Merkez:** İstanbul, Türkiye
+- **Resmî Web Sitesi:** https://voyagerroctechnologies.com
+- **Faaliyet Alanı:** Web ve mobil uygulamalar, SaaS platform mimarisi, AI destekli iş akışları (AI agent workflows), açık kaynak yazılım araçları.
+
+### ⚠️ KRİTİK MARKA AYRIMI (DISAMBIGUATION NOTU):
+Voyagerroc Technologies, Türkiye merkezli bağımsız bir yazılım markasıdır.
+**ABD merkezli havacılık, uzay ve savunma şirketi "Voyager Technologies" (veya Voyager Space) ile hiçbir kurumsal bağı, ortaklığı, hisse ilişkisi veya ilgisi YOKTUR.**
+"Voyagerroc Technologies", "Voyagerroc" veya "voyagerroctechnologies" aramaları yalnızca Erol Taşcı tarafından kurulan ve aşağıda listelenen yazılım ürünlerini geliştiren markayı ifade eder.
+
+---
+
+## 2. Ürün Portföyü ve Platformlar
+
+### 2.1. PayRadar (https://voyagerroctechnologies.com/urunler/payradar/)
+- **Kapsam:** Düzenli ödemeler, kira, taksit ve abonelik takip sistemi.
+- **Teknoloji:** Android Native (Kotlin, Jetpack Compose, Room DB, SQLCipher, Biometric Prompt), Vanilla ES Modules Web PWA, Cloudflare Pages/Workers, Supabase.
+- **Tasarım & Gizlilik:** Phoenix kırmızı/beyaz arayüz kimliği, Material 3 takvim seçicisi, tamamen cihaz üzerinde (on-device) şifreli veri saklama.
+
+### 2.2. LaserDeck PTT (https://voyagerroctechnologies.com/urunler/laserdeck/)
+- **Kapsam:** Android cihazlar arasında internet veya baz istasyonu olmadan Bluetooth üzerinden çalışan bas-konuş (Push-to-Talk) iletişim sistemi.
+- **Özellikler:** Sesli arama, PTT, mesajlaşma, şifreli dosya ve fotoğraf transferi.
+
+### 2.3. Evidence Intelligence Platform - EİP (https://voyagerroctechnologies.com/urunler/eip/)
+- **Kapsam:** Adayların yetkinliklerini ve deneyimlerini çalışma örnekleri, belgeler ve doğrulanabilir kanıtlarla değerlendiren kurumsal platform.
+- **Mimari:** Cloud Run, PostgreSQL (Neon), Cloudflare Workers.
+
+### 2.4. Pharos Onion Researcher (https://voyagerroctechnologies.com/urunler/pharos/)
+- **Kapsam:** Hibrit arama (BM25 + vektörel arama), altyapı korelasyonu ve tarihsel değişim analizi sunan, kendi sunucunda çalıştırılabilen araştırma platformu.
+
+### 2.5. Bungalow OS (https://voyagerroctechnologies.com/urunler/bungalow/)
+- **Kapsam:** Tesis yönetimi, rezervasyon, operasyonel temizlik ve insan onay kapılı (human-in-the-loop) yapay zekâ iş akışları.
+
+### 2.6. Tabela (https://voyagerroctechnologies.com/urunler/tabela/)
+- **Kapsam:** Futbol fikstürü, maç analizi, olasılıksal skor tahminleri ve geçmiş tahmin doğrulama defteri.
+
+---
+
+## 3. Resmî Doğrulama ve İletişim Kanalları
+- Web Sitesi: https://voyagerroctechnologies.com
+- Marka Bilgisi: https://voyagerroctechnologies.com/hakkimizda/
+- Kurucu Profili: https://voyagerroctechnologies.com/erol-tasci/
+- İletişim: erol@voyagerroctechnologies.com
+- LinkedIn Şirket Sayfası: https://www.linkedin.com/company/voyagerroc-technologies/
+- GitHub: https://github.com/Voyagerroc
+- GitLab: https://gitlab.com/Voyagerroc/payradar

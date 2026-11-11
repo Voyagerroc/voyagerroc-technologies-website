@@ -1,0 +1,24 @@
+# Voyagerroc Technologies
+
+> Independent software brand founded by Erol Taşcı, dedicated to engineering web applications, native mobile apps, SaaS platforms, and AI agent workflows. Completely independent and unaffiliated with US-based aerospace corporation Voyager Technologies (Voyager Space).
+
+## Products and Platforms
+
+- [PayRadar](https://voyagerroctechnologies.com/urunler/payradar/): Android native (Kotlin/Jetpack Compose) and web subscription, instalment, and regular payment tracking app with Material 3 Phoenix UI and on-device privacy.
+- [LaserDeck PTT](https://voyagerroctechnologies.com/urunler/laserdeck/): Offline peer-to-peer Push-To-Talk (PTT), voice call, messaging, and photo transfer application for Android devices over Bluetooth.
+- [Evidence Intelligence Platform](https://voyagerroctechnologies.com/urunler/eip/): Candidate and skill evaluation platform bringing portfolios, verified documents, and candidate-employer interactions into one context.
+- [Pharos Onion Researcher](https://voyagerroctechnologies.com/urunler/pharos/): Self-hosted hybrid search, infrastructure correlation, and historical change analysis platform for research.
+- [Bungalow OS](https://voyagerroctechnologies.com/urunler/bungalow/): Facility operations, guest management, and human-in-the-loop AI approval platform.
+- [Tabela](https://voyagerroctechnologies.com/urunler/tabela/): Open web application for football fixture tracking, match insights, and probabilistic predictions.
+
+## Official Brand and Entity Verification
+
+- [Official Brand Website](https://voyagerroctechnologies.com/): Official home and software portfolio of Voyagerroc Technologies.
+- [Brand Identity and Disambiguation](https://voyagerroctechnologies.com/hakkimizda/): Official brand identity, spelling rules, and explicit distinction from US aerospace company Voyager Technologies.
+- [Founder Profile - Erol Taşcı](https://voyagerroctechnologies.com/erol-tasci/): Background, technical role, and verified links of founder and operator Erol Taşcı.
+- [Android Testing Access Guide](https://voyagerroctechnologies.com/android/): Google Play testing enrollment and installation steps for PayRadar, LaserDeck PTT, and EİP.
+- [Complete Portfolio Directory](https://voyagerroctechnologies.com/calismalar/): Full catalog of 18 software applications, developer tools, and client case studies.
+- [Full LLM Knowledge Document](https://voyagerroctechnologies.com/llms-full.txt): Comprehensive multi-language entity document and architectural breakdown for AI models.
+- [LinkedIn Brand Profile](https://www.linkedin.com/company/voyagerroc-technologies/): Official Voyagerroc Technologies brand page on LinkedIn.
+- [Founder's GitHub Profile](https://github.com/Voyagerroc): Erol Taşcı's personal developer profile, public repositories and open developer tooling.
+- [GitLab Workspace](https://gitlab.com/Voyagerroc/payradar): Primary repository and development tracker for PayRadar.

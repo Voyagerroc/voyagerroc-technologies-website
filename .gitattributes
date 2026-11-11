@@ -1,0 +1,2 @@
+# Generated renderer contains upstream multiline shader strings; review its source.
+dist/scene-3d.min.js linguist-generated=true -diff

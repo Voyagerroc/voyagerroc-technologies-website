@@ -1,0 +1,13 @@
+Sorgu: Voyagerroc Technologies
+
+Sorun: AI Overview yanlış markayı anlatıyor. Sorguda “Voyagerroc Technologies” yazmasına ve organik sonuçlarda voyagerroctechnologies.com görünmesine rağmen özet, ayrı bir marka olan “Voyager Technologies” ve onun uzay/savunma faaliyetlerini açıklıyor. Özetin kaynakları voyagertechnologies.com ve Voyager Technologies Wikipedia sayfası; bunlar aranan yazılım markasının kaynakları değil.
+
+Doğru kimlik: Voyagerroc Technologies, Erol Taşcı’nın kurduğu bağımsız yazılım markasıdır. Faaliyetleri web ve mobil uygulamalar, SaaS ürün çalışmaları ve Si iş akışlarıdır. Ürün çalışmaları arasında PayRadar, LaserDeck PTT ve Evidence Intelligence Platform (EİP) bulunur.
+
+Resmî doğrulama kaynakları:
+https://voyagerroctechnologies.com/
+https://voyagerroctechnologies.com/hakkimizda/
+https://voyagerroctechnologies.com/erol-tasci/
+https://voyagerroctechnologies.com/calismalar/
+
+Lütfen bu sorgudaki marka/varlık eşleştirmesini ve AI Overview’in kaynak seçimini inceleyin.
