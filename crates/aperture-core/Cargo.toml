@@ -1,0 +1,16 @@
+[package]
+name = "aperture-core"
+version = "0.1.0"
+edition = "2021"
+description = "High-performance 3D Kinematics and Motion State Engine for Voyagerroc Technologies"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/Voyagerroc/voyagerroc-technologies-website"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = ["-Oz", "--enable-bulk-memory", "--enable-nontrapping-float-to-int"]

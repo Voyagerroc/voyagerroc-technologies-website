@@ -16,8 +16,12 @@ function initCardTilt(){
           const r=card.getBoundingClientRect();
           const x=(e.clientX-r.left)/r.width-0.5;
           const y=(e.clientY-r.top)/r.height-0.5;
+          const px=((e.clientX-r.left)/r.width)*100;
+          const py=((e.clientY-r.top)/r.height)*100;
           card.style.setProperty('--tilt-x',(-y*7.5).toFixed(2)+'deg');
           card.style.setProperty('--tilt-y',(x*9.5).toFixed(2)+'deg');
+          card.style.setProperty('--mouse-x',px.toFixed(1)+'%');
+          card.style.setProperty('--mouse-y',py.toFixed(1)+'%');
           ticking=false;
         });
         ticking=true;

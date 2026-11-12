@@ -1,4 +1,7 @@
 node_modules/
+target/
+crates/**/target/
+crates/**/pkg/
 .wrangler/
 .dev.vars*
 .env*

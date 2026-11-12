@@ -1,4 +1,5 @@
 import * as THREE from './vendor/three.module.js';
+import initWasm, { ApertureEngine } from './pkg/aperture_core.js';
 
 // APERTURE: Voyagerroc Phoenix 3D Motion — Authentic Brand Logo in 3D
 const container = document.getElementById('scene-container');
@@ -39,24 +40,42 @@ if (renderer) {
   renderer.toneMappingExposure = 1.35;
   renderer.setClearColor(0, 0);
 
-  // Clean, high-key studio lighting for white background
-  const ambient = new THREE.HemisphereLight(0xffffff, 0xfce8eb, 2.0);
+  // Procedural Studio HDRI Environment for real anisotropic reflections & iridescence
+  if (!mobile.matches) {
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    const envScene = new THREE.Scene();
+    const l1 = new THREE.DirectionalLight(0xff6b7d, 3.5);
+    l1.position.set(3, 5, 4);
+    envScene.add(l1);
+    const l2 = new THREE.DirectionalLight(0xffeedd, 2.5);
+    l2.position.set(-4, -2, -3);
+    envScene.add(l2);
+    const l3 = new THREE.DirectionalLight(0x4080ff, 1.8);
+    l3.position.set(0, -4, 3);
+    envScene.add(l3);
+    const envTex = pmrem.fromScene(envScene, 0.04).texture;
+    scene.environment = envTex;
+    pmrem.dispose();
+  }
+
+  // Dramatic Studio Lighting for high-end PBR depth
+  const ambient = new THREE.HemisphereLight(0xffe8eb, 0x1f060b, 1.1);
   scene.add(ambient);
 
-  const keyLight = new THREE.DirectionalLight(0xfff5f6, 4.5);
+  const keyLight = new THREE.DirectionalLight(0xffffff, 3.2);
   keyLight.position.set(-3.5, 4.5, 5.0);
   scene.add(keyLight);
 
-  const fillLight = new THREE.DirectionalLight(0xffd8dc, 2.2);
+  const fillLight = new THREE.DirectionalLight(0xff7085, 2.0);
   fillLight.position.set(4.0, -1.0, 3.0);
   scene.add(fillLight);
 
-  const rimLight = new THREE.PointLight(0xffffff, 25, 12);
-  rimLight.position.set(-2.0, 2.5, -3.0);
+  const rimLight = new THREE.PointLight(0xffe0e6, 32, 14);
+  rimLight.position.set(-2.0, 3.0, -3.5);
   scene.add(rimLight);
 
-  const rubyGlow = new THREE.PointLight(0xc82a3a, 24, 10);
-  rubyGlow.position.set(0, 0.3, 2.4);
+  const rubyGlow = new THREE.PointLight(0xff2244, 28, 9);
+  rubyGlow.position.set(0, 0.3, 2.2);
   scene.add(rubyGlow);
 
   const sculpture = new THREE.Group();
@@ -68,13 +87,16 @@ if (renderer) {
   const rubyWingMat = new Surface({
     color: 0xc82a3a,
     metalness: mobile.matches ? 0.65 : 0.82,
-    roughness: 0.18,
+    roughness: 0.16,
     ...(!mobile.matches ? {
       clearcoat: 0.95,
-      clearcoatRoughness: 0.1,
+      clearcoatRoughness: 0.08,
       sheen: 0.85,
       sheenColor: new THREE.Color(0xff8a99),
-      sheenRoughness: 0.35
+      sheenRoughness: 0.28,
+      iridescence: 0.44,
+      iridescenceIOR: 1.34,
+      iridescenceThicknessRange: [120, 360]
     } : {}),
     envMapIntensity: 1.8
   });
@@ -82,13 +104,16 @@ if (renderer) {
   const roseWingMat = new Surface({
     color: 0xdf384b,
     metalness: mobile.matches ? 0.65 : 0.82,
-    roughness: 0.18,
+    roughness: 0.16,
     ...(!mobile.matches ? {
       clearcoat: 0.95,
-      clearcoatRoughness: 0.1,
+      clearcoatRoughness: 0.08,
       sheen: 0.85,
       sheenColor: new THREE.Color(0xff9aa8),
-      sheenRoughness: 0.35
+      sheenRoughness: 0.28,
+      iridescence: 0.44,
+      iridescenceIOR: 1.34,
+      iridescenceThicknessRange: [120, 360]
     } : {}),
     envMapIntensity: 1.8
   });
@@ -96,12 +121,16 @@ if (renderer) {
   const bodyMat = new Surface({
     color: 0x881422,
     metalness: mobile.matches ? 0.7 : 0.88,
-    roughness: 0.22,
+    roughness: 0.2,
     ...(!mobile.matches ? {
-      clearcoat: 0.9,
-      sheen: 0.6,
+      clearcoat: 0.92,
+      clearcoatRoughness: 0.1,
+      sheen: 0.65,
       sheenColor: new THREE.Color(0xff7788),
-      sheenRoughness: 0.4
+      sheenRoughness: 0.35,
+      iridescence: 0.32,
+      iridescenceIOR: 1.28,
+      iridescenceThicknessRange: [100, 320]
     } : {}),
     envMapIntensity: 1.5
   });
@@ -248,6 +277,62 @@ if (renderer) {
     nodes.push({ node: nMesh, pulse, curve, track, color: colors[i], mat: nMat });
   }
 
+  // 5. Crystalline Agentic Facets (01 Context, 02 Tool Execution, 03 Human-in-the-loop)
+  const facetsGroup = new THREE.Group();
+  sculpture.add(facetsGroup);
+
+  const facetGeom = new THREE.OctahedronGeometry(0.25, 0);
+  facetGeom.scale(0.52, 1.85, 0.52);
+
+  const facetMat = mobile.matches
+    ? new THREE.MeshStandardMaterial({
+        color: 0xff4d66,
+        roughness: 0.25,
+        metalness: 0.35,
+        emissive: 0xc82a3a,
+        emissiveIntensity: 0.35
+      })
+    : new THREE.MeshPhysicalMaterial({
+        color: 0xfff0f4,
+        roughness: 0.05,
+        metalness: 0.08,
+        transmission: 0.82,
+        ior: 1.58,
+        thickness: 0.75,
+        transparent: true,
+        opacity: 0.95,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.03,
+        iridescence: 0.78,
+        iridescenceIOR: 1.45,
+        iridescenceThicknessRange: [160, 420],
+        attenuationColor: new THREE.Color(0xff2244),
+        attenuationDistance: 0.5
+      });
+
+  const facetWireMat = new THREE.LineBasicMaterial({
+    color: 0xff9eb0,
+    transparent: true,
+    opacity: 0.85
+  });
+  const facetEdges = new THREE.EdgesGeometry(facetGeom);
+
+  const facetCoords = [
+    { x: -1.75, y: 0.9, z: 0.55, rx: 0.25, ry: 0.35, speed: 0.28 },
+    { x: 1.85, y: -0.65, z: 0.45, rx: -0.2, ry: 0.45, speed: -0.24 },
+    { x: 0.0, y: -1.8, z: -0.3, rx: 0.4, ry: -0.25, speed: 0.32 }
+  ];
+
+  const facets = facetCoords.map(c => {
+    const mesh = new THREE.Mesh(facetGeom, facetMat);
+    const wire = new THREE.LineSegments(facetEdges, facetWireMat);
+    mesh.add(wire);
+    mesh.position.set(c.x, c.y, c.z);
+    mesh.rotation.set(c.rx, c.ry, 0);
+    facetsGroup.add(mesh);
+    return { mesh, ...c, basePos: new THREE.Vector3(c.x, c.y, c.z) };
+  });
+
   // Sparkling Ember Points
   let seed = 971;
   const random = () => {
@@ -289,6 +374,22 @@ if (renderer) {
   const smooth = { x: 0, y: 0 };
   const stateLabel = document.getElementById('scene-state');
 
+  // Rust / WebAssembly Kinematics Accelerator
+  let wasmEngine = null;
+  let wasmView = null;
+  let wasmMem = null;
+
+  try {
+    const wasm = await initWasm({ module_or_path: '/aperture_core_bg.wasm' });
+    wasmEngine = new ApertureEngine();
+    wasmMem = wasm.memory;
+    wasmView = new Float32Array(wasmMem.buffer, wasmEngine.state_ptr(), wasmEngine.state_floats());
+    canvas.dataset.engine = 'rust-wasm';
+  } catch (err) {
+    console.warn('[Aperture] WebAssembly acceleration fallback to JavaScript:', err);
+    canvas.dataset.engine = 'js-fallback';
+  }
+
   function updateState() {
     const en = document.documentElement.lang === 'en';
     const n = story.active ? story.index : focus;
@@ -324,9 +425,83 @@ if (renderer) {
     canvas.dataset.frames = String(++frame);
   }
 
-  function pose(instant = false) {
-    const l = instant ? 1 : 0.055;
+  function pose(instant = false, dt = 0) {
     const n = story.active ? story.index : focus;
+
+    if (wasmEngine) {
+      wasmEngine.tick(
+        dt,
+        pointer.x,
+        pointer.y,
+        focus,
+        story.active,
+        story.progress,
+        story.index,
+        fitDistance,
+        instant,
+        reduced.matches
+      );
+
+      if (!wasmView || wasmView.buffer !== wasmMem.buffer || wasmView.byteLength === 0) {
+        wasmView = new Float32Array(wasmMem.buffer, wasmEngine.state_ptr(), wasmEngine.state_floats());
+      }
+
+      // 1. Sculpture Group Rotation
+      sculpture.rotation.set(wasmView[0], wasmView[1], wasmView[2]);
+
+      // 2. Left Wing [scale, rot_y, rot_z]
+      leftWingPivot.scale.set(wasmView[3], wasmView[3], wasmView[3]);
+      leftWingPivot.rotation.y = wasmView[4];
+      leftWingPivot.rotation.z = wasmView[5];
+
+      // 3. Right Wing [scale, rot_y, rot_z]
+      rightWingPivot.scale.set(wasmView[6], wasmView[6], wasmView[6]);
+      rightWingPivot.rotation.y = wasmView[7];
+      rightWingPivot.rotation.z = wasmView[8];
+
+      // 4. Ember Heart [scale, rot_y, emissive_intensity]
+      heart.scale.setScalar(wasmView[9]);
+      heart.rotation.y = wasmView[10];
+      heartMat.emissiveIntensity = wasmView[11];
+
+      // 5. Orbital Product Nodes (8 floats each, starting at index 12)
+      for (let i = 0; i < 5; i++) {
+        const o = 12 + i * 8;
+        nodes[i].node.scale.setScalar(wasmView[o]);
+        nodes[i].mat.emissiveIntensity = wasmView[o + 1];
+        nodes[i].track.material.opacity = wasmView[o + 2];
+        nodes[i].pulse.scale.setScalar(wasmView[o + 3]);
+        nodes[i].pulse.position.set(wasmView[o + 4], wasmView[o + 5], wasmView[o + 6]);
+        nodes[i].pulse.visible = wasmView[o + 7] > 0.5;
+      }
+
+      // 6. Crystalline Facets (7 floats each, starting at index 52)
+      for (let i = 0; i < 3; i++) {
+        const o = 52 + i * 7;
+        facets[i].mesh.position.set(wasmView[o], wasmView[o + 1], wasmView[o + 2]);
+        facets[i].mesh.rotation.set(wasmView[o + 3], wasmView[o + 4], wasmView[o + 5]);
+        facets[i].mesh.scale.setScalar(wasmView[o + 6]);
+      }
+
+      // 7. Telemetry & Camera
+      camera.position.z = wasmView[73];
+      camera.lookAt(0, 0, 0);
+
+      time = wasmView[74];
+      progress = wasmView[75];
+
+      if (selected !== n) {
+        selected = n;
+        updateState();
+      }
+      canvas.dataset.storyStep = String(story.index);
+      canvas.dataset.scrollProgress = progress.toFixed(3);
+      canvas.dataset.animationTime = time.toFixed(3);
+      return;
+    }
+
+    // Pure JavaScript Fallback
+    const l = instant ? 1 : 0.055;
     progress = THREE.MathUtils.lerp(progress, story.progress, l);
     smooth.x = THREE.MathUtils.lerp(smooth.x, pointer.x, l);
     smooth.y = THREE.MathUtils.lerp(smooth.y, pointer.y, l);
@@ -376,6 +551,16 @@ if (renderer) {
       node.pulse.scale.setScalar(isFocused ? 2.2 : 1.0);
     });
 
+    // Crystalline agentic facets flotation and subtle alignment
+    facets.forEach((f, idx) => {
+      const fPulse = Math.sin(time * f.speed + idx * 1.8) * 0.07;
+      f.mesh.position.y = f.basePos.y + fPulse + (isDomainFocused ? domainBiasY * 0.5 : 0);
+      f.mesh.position.x = f.basePos.x + (isDomainFocused ? domainBiasX * 0.5 : 0);
+      f.mesh.rotation.x = f.rx + Math.sin(time * 0.35 + idx) * 0.12;
+      f.mesh.rotation.y = f.ry + time * f.speed * 0.5;
+      f.mesh.scale.setScalar(isDomainFocused ? 1.15 : 1.0);
+    });
+
     camera.position.z = THREE.MathUtils.lerp(camera.position.z, story.active ? fitDistance * 0.94 : fitDistance, l);
     camera.lookAt(0, 0, 0);
 
@@ -396,9 +581,12 @@ if (renderer) {
       raf = requestAnimationFrame(tick);
       return;
     }
-    time += Math.min(elapsed / 1000, 0.08) * (reduced.matches ? 0.4 : 1);
+    const dt = Math.min(elapsed / 1000, 0.08);
+    if (!wasmEngine) {
+      time += dt * (reduced.matches ? 0.4 : 1);
+    }
     last = now;
-    pose();
+    pose(false, dt);
     draw();
     raf = requestAnimationFrame(tick);
   }
@@ -502,6 +690,7 @@ if (renderer) {
   canvas.addEventListener('webglcontextrestored', () => {
     document.body.dataset.webgl = 'ready';
     if (toggle) toggle.hidden = false;
+    if (wasmEngine) wasmEngine.set_time(time);
     resize();
     label();
     start();
