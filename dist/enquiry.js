@@ -21,15 +21,6 @@
   status.textContent='';result.hidden=false;result.focus();
  });
  form.addEventListener('input',()=>{document.getElementById('brief-goal').setCustomValidity('');result.hidden=true;status.textContent='';});
- const waBtn=document.getElementById('brief-whatsapp');
- if(waBtn){
-  waBtn.href='https://wa.me/905444219322';
-  waBtn.addEventListener('click',async()=>{
-   const text=preview.textContent;
-   try{await navigator.clipboard.writeText(text);status.textContent=en?'Brief copied — paste it into the chat.':'Özet kopyalandı — sohbete yapıştırın.';}
-   catch{const sel=window.getSelection(),r=document.createRange();r.selectNodeContents(preview);sel.removeAllRanges();sel.addRange(r);status.textContent=en?'Select and copy the brief above, then paste it into the chat.':'Yukarıdaki özeti seçip kopyalayın, ardından sohbete yapıştırın.';}
-  });
- }
  document.getElementById('brief-copy').addEventListener('click',async()=>{
   try{await navigator.clipboard.writeText(preview.textContent);status.textContent=en?'Brief copied.':'Özet kopyalandı.';}
   catch{const selection=window.getSelection(),range=document.createRange();range.selectNodeContents(preview);selection.removeAllRanges();selection.addRange(range);status.textContent=en?'Select and copy the brief above.':'Yukarıdaki özeti seçip kopyalayabilirsiniz.';}
