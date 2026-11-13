@@ -5,7 +5,7 @@ export function refineHome(html, {escape, projects}) {
   html=html.replace(/<section id="product-story"[\s\S]*?<\/section>/,'');
   html=html.replace(/<section id="collection"[\s\S]*?<\/section>/,'');
   html=html.replace(/<!-- brand-identity:start -->[\s\S]*?<!-- brand-identity:end -->/,'');
-  html=html.replace(/(<h1 id="hero-title"[^>]*>)[\s\S]*?<\/h1>/,'$1Fikrinizi çalışan bir<br><em>yazılım ürününe dönüştürelim.</em></h1>');
+  html=html.replace(/(<h1 id="hero-title"[^>]*>)[\s\S]*?<\/h1>/,'$1Voyagerroc Technologies<br><em>Fikrinizi çalışan bir yazılıma dönüştürelim.</em></h1>');
   html=html.replace(/(<p class="hero-description"[^>]*>)[\s\S]*?<\/p>/,'$1Web ve Android uygulamaları, SaaS platformları ve yapay zekâ destekli iş akışları geliştiriyoruz. İhtiyacı, kapsamı ve teslim edilecek çıktıyı birlikte netleştirelim.</p>');
   const selected=projects.filter(p=>['eip','payradar','laserdeck'].includes(p.id));
   const cards=selected.map(p=>'<article class="feature-card" data-project="'+p.id+'"><div class="feature-info"><div><p class="feature-tag">'+escape(p.tr.tag)+'</p><h3><a href="/urunler/'+p.id+'/">'+escape(p.name)+'</a></h3><p class="feature-summary">'+escape(p.tr.summary)+'</p><a class="text-link" href="/urunler/'+p.id+'/">Ürün kapsamı ve erişimi ↗</a></div></div></article>').join('');

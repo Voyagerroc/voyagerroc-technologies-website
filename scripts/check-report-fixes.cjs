@@ -61,9 +61,8 @@ const server=http.createServer((req,res)=>{
     await enquiry.locator('#brief-goal').fill('Fixture project goal with sufficient detail for validation.');
     await enquiry.locator('#enquiry-form button[type="submit"]').click();
     const text=await enquiry.locator('#brief-preview').innerText();
-    assert.equal(await enquiry.locator('#brief-whatsapp').getAttribute('href'),'https://wa.me/905444219322');
-    const popupPromise=enquiry.waitForEvent('popup');await enquiry.locator('#brief-whatsapp').click();
-    const popup=await popupPromise;await popup.close();
+    assert.ok((await enquiry.locator('#brief-email').getAttribute('href')).startsWith('mailto:erol@voyagerroctechnologies.com'));
+     await enquiry.locator('#brief-copy').click();
     await enquiry.waitForFunction(()=>document.getElementById('brief-status').textContent.trim().length>0);
     const status=await enquiry.locator('#brief-status').innerText();
     if(denied){assert.deepEqual(await enquiry.evaluate(()=>window.copiedBriefs),[]);assert.match(status,en?/copy|select/i:/kopyala|seç/i);}
