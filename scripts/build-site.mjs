@@ -158,6 +158,12 @@ if(privacyConfig.analyticsAvailable&&privacyConfig.version.endsWith('-preview'))
 fs.writeFileSync(path.join(dist,'privacy-config.js'),'window.VT_PRIVACY = '+JSON.stringify(privacyConfig)+';\n');
 function injectPrivacy(dir){for(const entry of fs.readdirSync(dir,{withFileTypes:true})){const file=path.join(dir,entry.name);if(entry.isDirectory())injectPrivacy(file);else if(entry.name.endsWith('.html')){let html=fs.readFileSync(file,'utf8');html=html.replace(/<!-- privacy-assets:start -->[\s\S]*?<!-- privacy-assets:end -->/g,'').replace(/<!-- privacy-trigger:start -->[\s\S]*?<!-- privacy-trigger:end -->/g,'');html=html.replace('</head>','<!-- privacy-assets:start --><link rel="stylesheet" href="/consent.css"><script defer src="/privacy-config.js"></script><script defer src="/consent.js"></script><!-- privacy-assets:end --></head>');html=html.replace('</footer>','<!-- privacy-trigger:start --><button type="button" class="privacy-settings-trigger" data-privacy-open>'+(html.includes('<html lang="en">')?'Privacy preferences':'Gizlilik tercihleri')+'</button><!-- privacy-trigger:end --></footer>');fs.writeFileSync(file,html);}}}
 injectPrivacy(dist);
+// Stylesheets and scripts are cached for an hour. Version their URLs by content
+// so a new deploy (or a local edit) is never rendered with stale assets.
+const assetVersions=new Map();
+const assetVersion=file=>{if(!assetVersions.has(file)){assetVersions.set(file,fs.existsSync(file)?crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex').slice(0,10):null);}return assetVersions.get(file);};
+function versionAssets(dir){for(const entry of fs.readdirSync(dir,{withFileTypes:true})){const file=path.join(dir,entry.name);if(entry.isDirectory())versionAssets(file);else if(entry.name.endsWith('.html')){const html=fs.readFileSync(file,'utf8');fs.writeFileSync(file,html.replace(/(<(?:link rel="stylesheet" href|script (?:defer |type="module" )?src)=")((?!https?:)[^"?#]+\.(?:css|js))(?:\?v=[0-9a-f]+)?(")/g,(tag,start,href,end)=>{const version=assetVersion(href.startsWith('/')?path.join(dist,href):path.join(path.dirname(file),href));return version?start+href+'?v='+version+end:tag;}));}}}
+versionAssets(dist);
 // Generated last so it reflects exactly what is published.
 const sitemapUrls=writeSitemap({dist,origin,manifestFile:path.join(root,'content/lastmod.json')});
 console.log('Built '+featured.length+' product pages and '+services.length+' project pages, a '+sitemapUrls.length+'-URL sitemap and hash-based security policy.');
