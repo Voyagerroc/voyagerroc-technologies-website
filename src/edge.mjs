@@ -51,7 +51,9 @@ export default {
   if(!localPreview&&(url.protocol!=='https:'||url.host!==canonical.host)){
    // Never resolve untrusted paths against the base: // paths can replace a host.
    const destination=new URL(canonical);destination.pathname=url.pathname;destination.search=url.search;destination.hash='';
-   headers.set('Location',destination.href);headers.set('X-Robots-Tag','noindex, follow');
+   // A plain permanent redirect: Search Console files a redirect that also says
+   // "noindex" under "Excluded by noindex" instead of consolidating it.
+   headers.set('Location',destination.href);
    return new Response(null,{status:308,headers});
   }
   if(url.pathname==='/api/analytics'){
