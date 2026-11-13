@@ -17,7 +17,8 @@ const MIME_BY_EXT = new Map([
   ['.ttf', 'font/ttf'],
   ['.json', 'application/json'],
   ['.webmanifest', 'application/manifest+json'],
-  ['.wasm', 'application/wasm']
+  ['.wasm', 'application/wasm'],
+  ['.txt', 'text/plain']
 ]);
 
 function isStaticAsset(url, response) {
