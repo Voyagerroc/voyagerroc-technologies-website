@@ -66,3 +66,30 @@ body[data-webgl=ready] .hero-board .scene-fallback{visibility:hidden;opacity:0;t
 @media(max-width:390px){.scene-container{height:325px}#scene-home{min-height:380px}}
 
 .product-directory{display:flex;flex-wrap:wrap;gap:12px 20px;padding:25px 0 0;margin-top:25px;border-top:1px solid #F0D5D8;font-size:11px;color:#552832}.product-directory>span{width:100%;font:700 10px var(--mono);color:#8E1624;letter-spacing:.08em}.product-directory a{color:#A52D3A;font-weight:600}.product-directory a:hover{color:#C82A3A;text-decoration:underline;text-underline-offset:4px}
+
+/* ==========================================================================
+   Linear engine — motion layer. Tokens follow the ECC motion-foundations
+   scale; transform and opacity only; every rule is disabled under
+   prefers-reduced-motion and on low-end devices (html.le-calm).
+   ========================================================================== */
+:root{--mo-fast:.18s;--mo-normal:.35s;--mo-slow:.6s;--mo-crawl:1s;--mo-smooth:cubic-bezier(.22,1,.36,1);--mo-md:16px;--mo-lg:24px}
+@media(prefers-reduced-motion:no-preference){
+  /* hero entrance: the headline keeps full opacity (it is the LCP element) and only settles into place */
+  .hero .eyebrow,.hero h1,.hero-description,.hero-actions,.hero .hero-footnote{animation:le-rise var(--mo-slow) var(--mo-smooth) both}
+  .hero h1{animation-name:le-settle}
+  .hero-description{animation-delay:.08s}.hero-actions{animation-delay:.16s}.hero .hero-footnote{animation-delay:.24s}
+  @keyframes le-rise{from{opacity:0;transform:translateY(var(--mo-md))}to{opacity:1;transform:none}}
+  @keyframes le-settle{from{transform:translateY(var(--mo-lg))}to{transform:none}}
+  /* product window settles from a slight tilt as it scrolls into view (progress set by motion.js) */
+  html.le-live .hero-board{transform:perspective(1600px) rotateX(calc((1 - var(--le-p,1)) * 7deg)) scale(calc(.965 + var(--le-p,1) * .035));transform-origin:50% 0;will-change:transform}
+  /* pointer light on the window frame */
+  html.le-live .hero-board::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:3;opacity:var(--le-glow,0);transition:opacity var(--mo-normal) var(--mo-smooth);background:radial-gradient(420px circle at var(--le-x,50%) var(--le-y,0%),#c82a3a1f,transparent 60%)}
+  /* list rows and directory links: quick state feedback */
+  .radar-row>span:last-child{transition:transform var(--mo-fast) var(--mo-smooth)}
+  .radar-row:hover>span:last-child,.radar-row:focus-visible>span:last-child{transform:translate(2px,-2px)}
+  .button-primary>span[aria-hidden]{display:inline-block;transition:transform var(--mo-fast) var(--mo-smooth)}
+  .button-primary:hover>span[aria-hidden]{transform:translate(2px,-2px)}
+  .focus-strip>div>span:not(.strip-cross){animation:le-rise var(--mo-slow) var(--mo-smooth) both;animation-timeline:view();animation-range:entry 0% entry 60%}
+}
+html.le-calm .hero-board{transform:none!important}
+@media(prefers-reduced-motion:reduce){.hero .eyebrow,.hero h1,.hero-description,.hero-actions,.hero .hero-footnote{animation:none}.hero-board{transform:none}}

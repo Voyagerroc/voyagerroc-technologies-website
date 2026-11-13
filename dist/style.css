@@ -138,3 +138,5 @@ dialog{border-radius:14px;border-color:var(--le-line-strong)}
 .radar-row+.radar-row{border-top:1px solid var(--le-line);border-radius:0}
 .radar-row:hover,.radar-row:focus-visible{border-radius:8px}
 .product-radar{padding-top:4px}
+/* Linear engine: narrow-screen strip wraps, scene control keeps a 44px touch target */
+@media(max-width:760px){.focus-strip{flex-direction:column;align-items:flex-start;gap:14px}.focus-strip>div{flex-wrap:wrap;gap:8px 14px}.scene-toolbar button{min-height:44px}}

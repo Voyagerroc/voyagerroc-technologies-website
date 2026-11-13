@@ -63,3 +63,42 @@ reduced.addEventListener('change',()=>{
 });
 reveal();
 })();
+
+/* Linear engine motion: product window settle and pointer light.
+   Gate follows ECC motion-foundations: reduced motion wins, then low-end devices. */
+(()=>{'use strict';
+const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+const lowEnd=typeof navigator!=='undefined'&&navigator.hardwareConcurrency>0&&navigator.hardwareConcurrency<=4;
+const root=document.documentElement;
+const board=document.querySelector('.hero-board');
+if(!board)return;
+if(reduced.matches||lowEnd){root.classList.add('le-calm');return;}
+root.classList.add('le-live');
+let queued=false;
+function settle(){
+  queued=false;
+  const r=board.getBoundingClientRect();
+  const start=innerHeight*0.98,end=innerHeight*0.42;
+  const p=Math.min(1,Math.max(0,(start-r.top)/(start-end)));
+  board.style.setProperty('--le-p',p.toFixed(3));
+}
+function request(){if(!queued){queued=true;requestAnimationFrame(settle);}}
+addEventListener('scroll',request,{passive:true});
+addEventListener('resize',request,{passive:true});
+settle();
+if(matchMedia('(hover: hover) and (pointer: fine)').matches){
+  let lit=false;
+  board.addEventListener('pointermove',e=>{
+    if(lit)return;lit=true;
+    requestAnimationFrame(()=>{
+      const r=board.getBoundingClientRect();
+      board.style.setProperty('--le-x',((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
+      board.style.setProperty('--le-y',((e.clientY-r.top)/r.height*100).toFixed(1)+'%');
+      board.style.setProperty('--le-glow','1');
+      lit=false;
+    });
+  },{passive:true});
+  board.addEventListener('pointerleave',()=>board.style.setProperty('--le-glow','0'));
+}
+reduced.addEventListener('change',()=>{if(reduced.matches){root.classList.remove('le-live');root.classList.add('le-calm');}});
+})();
