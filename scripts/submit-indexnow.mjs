@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
-const key = '4a9b8c7d6e5f40392817263544332211';
+const key = '5636fad39ed9612478f2499d42e9937e';
 const host = 'voyagerroctechnologies.com';
 
 const sitemapFile = path.join(dist, 'sitemap.xml');
