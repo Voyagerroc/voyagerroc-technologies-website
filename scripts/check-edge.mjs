@@ -9,7 +9,8 @@ for(const source of ['http://voyagerroctechnologies.com/urunler/eip/?ref=test','
 assert.equal(reads,0);
 const rejected=await edge.fetch(new Request(env.CANONICAL_ORIGIN,{method:'POST',body:'ignored'}),env);assert.equal(rejected.status,405);assert.equal(rejected.headers.get('Allow'),'GET, HEAD');assert.equal(reads,0);
 for(const method of ['GET','HEAD']){const response=await edge.fetch(new Request(env.CANONICAL_ORIGIN+'/missing/',{method}),env);assert.equal(response.status,404);assert.equal(response.headers.get('ETag'),'test');assert.match(response.headers.get('Content-Security-Policy'),/script-src-attr 'none'/);assert.match(response.headers.get('Strict-Transport-Security'),/31536000/);}
-assert.equal(reads,2);console.log('PASS: fixed-host redirects, path/query preservation, method gate, asset status and security headers.');
+// Each missing address costs one extra read: the lookup of the error page.
+assert.equal(reads,4);console.log('PASS: fixed-host redirects, path/query preservation, method gate, asset status and security headers.');
 const publicAssetEnv={...env,ASSETS:{fetch:async()=>new Response('public image',{status:200,headers:{'Content-Type':'image/png'}})}};
 for(const [route,policy] of [['/assets/email-signature-logo.png','cross-origin'],['/assets/brand/voyagerroc-technologies-logo.png','same-origin'],['/','same-origin']]){
  const response=await edge.fetch(new Request(env.CANONICAL_ORIGIN+route),publicAssetEnv);
@@ -57,4 +58,5 @@ assert.equal(slash.status,308,'Trailing-slash redirect must be permanent');asser
 const page=await edge.fetch(new Request(env.CANONICAL_ORIGIN+'/en/'),{...env,ASSETS:{fetch:async()=>new Response('<!doctype html>',{headers:{'Content-Type':'text/html'}})}});
 assert.equal(page.status,200);assert.equal(page.headers.get('Content-Type'),'text/html; charset=utf-8');
 for(const prefix of ['','/en']){const movedPage=await edge.fetch(new Request(env.CANONICAL_ORIGIN+prefix+'/calismalar/si-is-akisi-otomasyonu/?ref=x'),env);assert.equal(movedPage.status,308);assert.equal(movedPage.headers.get('Location'),prefix+'/calismalar/ai-is-akisi-otomasyonu/?ref=x');}
-console.log('PASS: permanent trailing-slash redirect, moved-page redirects and explicit HTML charset.');
+for(const [route,expected] of [['/yok/','/404'],['/en/nope/','/en/404']]){const asked=[];const missing=await edge.fetch(new Request(env.CANONICAL_ORIGIN+route),{...env,ASSETS:{fetch:async request=>{const pathname=new URL(request.url).pathname;asked.push(pathname);return pathname===expected?new Response('<h1>error page</h1>',{headers:{'Content-Type':'text/html'}}):new Response(null,{status:404});}}});assert.equal(missing.status,404,'Unknown address must stay a 404');assert.equal(await missing.text(),'<h1>error page</h1>');assert.deepEqual(asked,[route,expected]);}
+console.log('PASS: permanent trailing-slash redirect, moved-page redirects, language-aware 404 page and explicit HTML charset.');

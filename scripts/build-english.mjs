@@ -56,12 +56,16 @@ export function buildEnglish({dist,origin,home,projects,services,escape,shell,me
     ['SaaS and product platforms','Plan roles, data isolation, support and operating costs before subscriptions.','We map the workflow and the smallest useful release. Multi-tenancy, billing, backups and erasure are separate decisions. EIP and Bungalow OS illustrate our work; they are not evidence of production customer adoption.'],
     ['AI workflows and agent design','Define context, tool access and the steps that require human approval.','We combine task-specific instructions and retrieval with explicit permissions. Evaluation scenarios, failure handling and expected outputs are agreed as part of the scope.']
   ];
+  // Turn the Turkish product-page shell into its English counterpart.
+  const localizeShell=html=>localizeImageAlt(html).replace('<html lang="tr">','<html lang="en">').replaceAll('content="tr_TR"','content="en_US"').replaceAll('İçeriğe geç','Skip to content').replaceAll('Tüm ürünler ↗','All products ↗').replace('href="/#products"','href="/en/#products"')
+    .replace(/<footer>[\s\S]*?<\/footer>/,'<footer><a href="/en/">Home</a><a href="/en/about/">About</a><a href="/en/calismalar/">All projects</a><a href="/en/privacy/">Privacy</a><a href="/en/terms/">Terms</a><a href="/en/project-enquiry/">Contact</a></footer>')
+    .replace('<a class="product-brand" href="/">','<a class="product-brand" href="/en/">');
+  // Served for unknown addresses under /en/ (Static Assets picks the nearest 404.html).
+  fs.mkdirSync(path.join(dist,'en'),{recursive:true});
+  fs.writeFileSync(path.join(dist,'en','404.html'),localizeShell(shell('Page not found — Voyagerroc Technologies','<meta name="robots" content="noindex,nofollow">','<p class="kicker">404 / PAGE NOT FOUND</p><h1>There is no page at this address.</h1><p class="lead">The address may have changed. You can continue from the home page or the project list.</p><div class="product-links"><a class="product-link" href="/en/">Back to home ↗</a><a class="product-link" href="/en/calismalar/">All projects ↗</a><a class="product-link" href="/">Türkçe ↗</a></div>')));
   const page=(route,tr,title,description,body)=>{
     let html=shell(title+' | Voyagerroc Technologies','<meta name="description" content="'+escape(description)+'"><link rel="canonical" href="'+origin+route+'">'+hreflangLinks(origin,tr,route)+metadata(title+' | Voyagerroc Technologies',description,origin+route)+structuredData(route,title,description),body);
-    html=localizeImageAlt(html);
-    html=html.replace('<html lang="tr">','<html lang="en">').replaceAll('content="tr_TR"','content="en_US"').replaceAll('İçeriğe geç','Skip to content').replaceAll('Tüm ürünler ↗','All products ↗').replace('href="/#products"','href="/en/#products"');
-    html=html.replace(/<footer>[\s\S]*?<\/footer>/,'<footer><a href="/en/">Home</a><a href="/en/about/">About</a><a href="/en/calismalar/">All projects</a><a href="/en/privacy/">Privacy</a><a href="/en/terms/">Terms</a><a href="/en/project-enquiry/">Contact</a></footer>');
-    html=html.replace('<a class="product-brand" href="/">','<a class="product-brand" href="/en/">');
+    html=localizeShell(html);
     if(route==='/en/calismalar/')html=portfolioTools(html,projects,true);
     const folder=path.join(dist,route);fs.mkdirSync(folder,{recursive:true});fs.writeFileSync(path.join(folder,'index.html'),html);urls.push(origin+route);
     const trFile=path.join(dist,tr,'index.html');if(fs.existsSync(trFile))fs.writeFileSync(trFile,setHreflang(fs.readFileSync(trFile,'utf8'),origin,tr,route));

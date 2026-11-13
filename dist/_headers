@@ -52,6 +52,9 @@ https://voyagerroc-technologies.voyagerroc.workers.dev/*
 /destekler/index.html
   Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval' 'sha256-/V+RfFbhCP712t7LqWb50jBLFq8lMOEDYzJhNqrfapQ='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
 
+/en/404.html
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval' ; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
+
 /en/about/
   Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval' 'sha256-2mJuDQzUWUPKbnZeDS3uy7UZmzRbYnAUQtmpF2GTuco='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
 

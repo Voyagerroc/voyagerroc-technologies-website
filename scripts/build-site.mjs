@@ -7,7 +7,7 @@ import {fileURLToPath} from 'node:url';
 import {releases} from '../content/releases.mjs';
 import {refineHome} from './refine-home.mjs';
 import {buildEnglish} from './build-english.mjs';
-import {writeSitemap} from './seo.mjs';
+import {writeSitemap,writeLlmsDocuments} from './seo.mjs';
 import {privacyConfig} from '../content/privacy.mjs';
 import {products as searchProducts,services} from '../content/search.mjs';
 import {studies,payradarDemo,payradarArchiveDemo} from '../content/studies.mjs';
@@ -141,7 +141,7 @@ home=home.replace(/<div id="project-grid" class="project-grid">[\s\S]*?<\/div>/,
 home=refineHome(home,{escape,projects:catalogue});
 fs.writeFileSync(path.join(dist,'index.html'),home);
 buildEnglish({dist,origin,home,projects:catalogue,services,escape,shell,metadata,jsonld});
-fs.writeFileSync(path.join(dist,'404.html'),shell('Sayfa bulunamadı — Voyagerroc Technologies','<meta name="robots" content="noindex,nofollow">','<p class="kicker">404 / SAYFA BULUNAMADI</p><h1>Bu adreste bir sayfa yok.</h1><p class="lead">Ürünleri ana sayfadan inceleyebilirsiniz.</p><a class="product-link" href="/">Ana sayfaya dön ↗</a>'));
+fs.writeFileSync(path.join(dist,'404.html'),shell('Sayfa bulunamadı — Voyagerroc Technologies','<meta name="robots" content="noindex,nofollow">','<p class="kicker">404 / SAYFA BULUNAMADI</p><h1>Bu adreste bir sayfa yok.</h1><p class="lead">Adres değişmiş olabilir. Ana sayfadan veya çalışmalar listesinden devam edebilirsiniz.</p><div class="product-links"><a class="product-link" href="/">Ana sayfaya dön ↗</a><a class="product-link" href="/calismalar/">Tüm çalışmalar ↗</a><a class="product-link" href="/en/">English ↗</a></div>'));
 const policyFor=values=>"default-src 'none'; script-src 'self' 'wasm-unsafe-eval' "+[...new Set(values)].join(' ')+"; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests";
 const csp=policyFor(hashes);
 const headers='/*\n  Cache-Control: public, max-age=0, must-revalidate, no-transform\n  Content-Security-Policy: '+csp+'\n  Referrer-Policy: no-referrer\n  X-Content-Type-Options: nosniff\n  X-Frame-Options: DENY\n  Strict-Transport-Security: max-age=31536000\n  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=(), bluetooth=(), midi=(), display-capture=(), fullscreen=(self)\n  Cross-Origin-Opener-Policy: same-origin\n  Cross-Origin-Resource-Policy: same-origin\n  X-Permitted-Cross-Domain-Policies: none\n  X-DNS-Prefetch-Control: off\n\nhttps://voyagerroc-technologies.voyagerroc.workers.dev/*\n  X-Robots-Tag: noindex, follow\n';
@@ -166,4 +166,6 @@ function versionAssets(dir){for(const entry of fs.readdirSync(dir,{withFileTypes
 versionAssets(dist);
 // Generated last so it reflects exactly what is published.
 const sitemapUrls=writeSitemap({dist,origin,manifestFile:path.join(root,'content/lastmod.json')});
+// AI search documents list the same pages, with the titles and descriptions just built.
+writeLlmsDocuments({dist,origin,name:brand.name,summary:'Independent software brand founded by Erol Taşcı, building web applications, native Android apps, SaaS platforms and AI agent workflows. Official website: voyagerroctechnologies.com. Independent of and unaffiliated with the US aerospace companies Voyager Technologies and Voyager Space.',profiles:[...brand.publicPages.map(([label,url])=>[label+' brand page',url,'Official Voyagerroc Technologies profile on '+label+'.']),['Founder profile',origin+brand.founderProfile.path,'Erol Taşcı, founder and operator of the site.']]});
 console.log('Built '+featured.length+' product pages and '+services.length+' project pages, a '+sitemapUrls.length+'-URL sitemap and hash-based security policy.');

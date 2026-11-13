@@ -64,7 +64,10 @@ export default {
   }
   const moved=MOVED.get(url.pathname.endsWith('/')?url.pathname:url.pathname+'/');
   if(moved){headers.set('Location',moved+url.search);return new Response(null,{status:308,headers});}
-  const asset=await env.ASSETS.fetch(request);
+  const found=await env.ASSETS.fetch(request);
+  // Unknown address: answer 404 with the designed error page in the visitor's language.
+  const errorPage=found.status===404?await env.ASSETS.fetch(new Request(new URL(url.pathname.startsWith('/en/')?'/en/404':'/404',url.origin),{method:request.method})):null;
+  const asset=errorPage?.ok?new Response(errorPage.body,{status:404,headers:errorPage.headers}):found;
   // Static Assets answers /page with a temporary 307 to /page/. The canonical
   // URL never changes, so tell crawlers the move is permanent.
   const response=new Response(asset.body,{status:asset.status===307?308:asset.status,statusText:asset.status===307?'Permanent Redirect':asset.statusText,headers:asset.headers});
