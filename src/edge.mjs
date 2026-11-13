@@ -56,9 +56,13 @@ export default {
    headers.set('Allow','GET, HEAD');headers.set('Content-Type','text/plain; charset=utf-8');
    return new Response('Method not allowed',{status:405,headers});
   }
-  const asset=await env.ASSETS.fetch(request),response=new Response(asset.body,asset);
+  const asset=await env.ASSETS.fetch(request);
+  // Static Assets answers /page with a temporary 307 to /page/. The canonical
+  // URL never changes, so tell crawlers the move is permanent.
+  const response=new Response(asset.body,{status:asset.status===307?308:asset.status,statusText:asset.status===307?'Permanent Redirect':asset.statusText,headers:asset.headers});
   securityRecord(request,asset.status);
   for(const [key,value] of Object.entries(securityHeaders))response.headers.set(key,value);
+  if((response.headers.get('Content-Type')||'').trim().toLowerCase()==='text/html')response.headers.set('Content-Type','text/html; charset=utf-8');
   if((response.ok || response.status === 304) && isStaticAsset(url, response)){
    response.headers.set('Cache-Control', 'public, max-age=3600, must-revalidate, no-transform');
   }

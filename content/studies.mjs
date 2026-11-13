@@ -14,9 +14,9 @@ export const payradarArchiveDemo = payradarDemo;
 
 export const studies = [{
   slug: 'payradar-web-push-bildirimleri',
-  title: 'PayRadar Web Push Bildirimleri: Sorun, Düzeltme ve Test | Voyagerroc Technologies',
+  title: 'PayRadar Bildirimleri: Sorun, Düzeltme ve Test | Voyagerroc',
   heading: 'PayRadar bildirimleri: hata sonrası toparlanan motor',
-  description: '6 Kasım PayRadar Android güncelleme adayı: internetsiz bildirim telafisi, güncel native ekranlar ve doğrulama sınırları. Önceki web push çalışması tarihsel kayıt olarak korunur.',
+  description: 'PayRadar Android güncelleme adayı: internetsiz bildirim telafisi, güncel native ekranlar ve doğrulama sınırları. Önceki web push çalışması kayıt olarak korunur.',
   date: '2026-10-25',
   modified: '2026-11-06',
   intro: 'PayRadar güncel Kotlin Android uygulamasında cihaz üzerinde yerel hatırlatma kullanır. 6 Kasım geliştirmeleri 2.1.5 sürüm adayı için hazırlandı; mağaza yayını henüz doğrulanmadı. Aşağıdaki önceki web push çalışmaları tarihsel kayıttır ve güncel Android bildirim hattıyla karıştırılmamalıdır.',

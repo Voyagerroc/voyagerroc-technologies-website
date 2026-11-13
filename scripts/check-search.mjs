@@ -131,3 +131,38 @@ console.log('PASS: '+urls.length+' unique sitemap pages, canonical URLs, heading
 const nativeProduct=fs.readFileSync(path.join(dist,'urunler/payradar/index.html'),'utf8');
 assert.ok(nativeProduct.includes(payradarDemo.src)&&nativeProduct.includes(payradarDemo.poster));
 assert.ok(!nativeProduct.includes('payradar-demo-20261025'),'Current product must not use the retired web recording');
+
+// Search hygiene: snippet lengths, language annotations and English-page language purity.
+const read=url=>fs.readFileSync(path.join(dist,new URL(url).pathname,'index.html'),'utf8');
+const hreflang=html=>[...html.slice(0,html.indexOf('</head>')).matchAll(/<link rel="alternate" hreflang="([^"]+)" href="([^"]+)">/g)].map(([,lang,href])=>[lang,href]);
+const turkishInterface=['Ana gezinme','İçeriğe geç','Gizlilik tercihleri','Tüm ürünler','Doğrudan e-posta gönder','KAVRAMSAL GÖRSEL','Beş ürün alanını','etkinleştirin','aria-label="Kapat"','aria-label="Hukuki bilgiler"'];
+const seenTitles=new Map();
+for(const url of urls){
+ const html=read(url),title=html.match(/<title>([^<]+)<\/title>/)[1],description=html.match(/<meta name="description" content="([^"]*)"/)?.[1]||'';
+ assert.ok(title.length<=70,'Title is truncated in results ('+title.length+'): '+url);
+ assert.ok(description.length>=70&&description.length<=170,'Description length '+description.length+' outside 70-170: '+url);
+ assert.ok(!seenTitles.has(title),'Duplicate title: '+url+' and '+seenTitles.get(title));seenTitles.set(title,url);
+ assert.ok(html.includes('property="og:url" content="'+url+'"'),'OG URL must match canonical: '+url);
+ const alternates=hreflang(html);
+ if(alternates.length){
+  assert.ok(alternates.some(([,href])=>href===url),'hreflang needs a self reference: '+url);
+  assert.ok(alternates.some(([lang])=>lang==='x-default'),'hreflang needs x-default: '+url);
+  for(const [lang,href] of alternates){
+   assert.ok(urls.includes(href),'hreflang '+lang+' target is not an indexable sitemap page: '+href);
+   assert.ok(hreflang(read(href)).some(([,back])=>back===url),'hreflang must be reciprocal: '+url+' -> '+href);
+   assert.ok(sitemap.includes('<loc>'+url+'</loc>')&&sitemap.split('<loc>'+url+'</loc>')[1].split('</url>')[0].includes('hreflang="'+lang+'" href="'+href+'"'),'Sitemap must repeat hreflang '+lang+' for '+url);
+  }
+ }
+ if(new URL(url).pathname.startsWith('/en/')){
+  assert.ok(html.includes('<html lang="en">'),'English page language: '+url);
+  for(const phrase of turkishInterface)assert.ok(!html.includes(phrase),'Turkish interface text "'+phrase+'" on English page: '+url);
+  assert.ok(alternates.length,'English page needs its Turkish counterpart annotated: '+url);
+ }
+}
+const englishHome=read(origin+'/en/'),englishGraph=graphFrom(englishHome);
+assert.equal(englishGraph.filter(node=>node['@type']==='WebSite').length,1);
+assert.equal(englishGraph.find(node=>node['@type']==='WebSite')['@id'],website['@id'],'Both languages must describe one WebSite entity');
+assert.ok(englishGraph.some(node=>node['@type']==='Organization'),'English home needs the Organization entity');
+for(const page of [home,englishHome])for(const [lang,href] of [['tr','/'],['en','/en/']])assert.ok(new RegExp('<a data-lang="'+lang+'" href="'+href+'"').test(page),'Language switch must be a crawlable link');
+for(const label of ['Product pages (TR)','All projects (TR)','About the brand (TR)','Privacy (TR)','Terms (TR)'])assert.ok(!englishHome.includes(label),'Link to an English page is labelled as Turkish: '+label);
+console.log('PASS: titles, descriptions, reciprocal hreflang with x-default, sitemap alternates and English-page language.');

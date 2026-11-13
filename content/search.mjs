@@ -1,7 +1,7 @@
 // Public, evidence-based copy. Do not add client claims or unverified release promises.
 export const products = {
   tabela: {
-    title: 'Tabela — Futbol Analizi ve Tahmin Defteri | Voyagerroc Technologies',
+    title: 'Tabela — Maç Analizi ve Tahmin Defteri | Voyagerroc Technologies',
     description: 'Fikstürü, maç analizini ve tahmin geçmişini Tabela ile inceleyin. AI analizi için gereken API anahtarını ve olasılıksal tahminlerin sınırlarını öğrenin.',
     heading: 'Maç analizi ve tahminlerin sonuçlarla karşılaştırılması',
     intro: 'Lig ve maç bilgilerini, analizleri ve tahmin geçmişini bir arada incelemek için hazırlanmış deneysel bir çalışma alanıdır. Tahminin değeri, gerçek sonuçla karşılaştırılarak değerlendirilir.',
@@ -26,7 +26,7 @@ export const products = {
       ],
       note: 'Bu değişiklikler 2.1.5-phoenix (12) için hazırlanan ve yerel testlerden geçen sürüm adayına aittir; mağaza yayını henüz doğrulanmadı. İşletmeci beyanına göre mevcut sürüm 2.1.4-phoenix (11). Hatırlatmalar Android iznine ve güç yönetimine bağlıdır.'
     },
-    title: 'PayRadar — Phoenix Arayüzü ile Abonelik ve Ödeme Takibi | Voyagerroc Technologies',
+    title: 'PayRadar — Abonelik ve Ödeme Takibi | Voyagerroc Technologies',
     description: 'PayRadar Android: ödeme özeti, para birimine göre aylık tahmin, Türkçe arama ve yerel hatırlatmalar. 2.1.5 güncelleme adayını ve native ekran turunu inceleyin.',
     heading: 'Phoenix Arayüzü ile Abonelik ve Ödeme Takibi',
     intro: 'Kira, fatura, taksit ve abonelik yenilemelerini tek yerde izleyin. Güncellenen Phoenix ödeme özeti yaklaşan vadeleri gösterir; aylık tahmin farklı para birimlerini birbirine karıştırmaz.',
@@ -39,8 +39,8 @@ export const products = {
     ]
   },
   laserdeck: {
-    title: 'LaserDeck PTT — Bluetooth Bas-Konuş Uygulaması | Voyagerroc Technologies',
-    description: 'LaserDeck PTT, Android telefonlar arasında Bluetooth üzerinden bas-konuş, arama ve mesaj aktarımı için geliştirilir. Test erişimini ve kullanım sınırlarını inceleyin.',
+    title: 'LaserDeck PTT — Bluetooth Bas-Konuş | Voyagerroc Technologies',
+    description: 'LaserDeck PTT, Android telefonlar arasında Bluetooth üzerinden bas-konuş, arama ve mesaj aktarımı için geliştirilir. Test erişimini ve sınırlarını inceleyin.',
     heading: 'Bluetooth üzerinden bas-konuş',
     intro: 'Yakın mesafedeki iki Android cihaz arasında doğrudan iletişim kurmaya odaklanır. Kullanım senaryosu, internet hesabına bağlı bir sohbet hizmetinden farklıdır: bağlantı cihazlar arasında Bluetooth ile kurulur.',
     steps: ['Kurulum rehberinden desteklenen sürümü ve gereken Android izinlerini kontrol edin.', 'İki cihazda Bluetooth bağlantısını kurun ve eşleşmeyi doğrulayın.', 'PTT, arama ve aktarım işlevlerini kullanacağınız ortamda iki cihazla deneyin.'],
@@ -53,7 +53,7 @@ export const products = {
     ]
   },
   eip: {
-    title: 'EİP — Aday ve İşe Alım Değerlendirme Platformu | Voyagerroc Technologies',
+    title: 'EİP — Aday ve İşe Alım Değerlendirme | Voyagerroc Technologies',
     description: 'Evidence Intelligence Platform, aday belgelerini, çalışma örneklerini ve başvuruları birlikte ele alır. İşveren akışlarını ve ürünün mevcut kapsamını inceleyin.',
     heading: 'Aday değerlendirmesinde belge ve çalışma örneği',
     intro: 'Bir başvuruyu yalnızca özgeçmişteki ifadelerle değerlendirmek yerine, adayın sunduğu belgeleri ve çalışma örneklerini aynı süreçte inceleme yaklaşımıdır. Amaç, değerlendirmede hangi bilginin neye dayandığını görünür kılmaktır.',
@@ -80,7 +80,7 @@ export const services = [
   },
   {
     slug: 'saas-gelistirme', title: 'SaaS ve Ürün Platformu Geliştirme',
-    description: 'SaaS fikrinde kullanıcı rolleri, veri sınırları, yönetim ekranı ve işletim gereksinimlerini birlikte planlayın. EİP ve Bungalow OS üzerinden ürün yaklaşımını inceleyin.',
+    description: 'SaaS fikrinde kullanıcı rolleri, veri sınırları, yönetim ekranı ve işletim gereksinimlerini birlikte planlayın. EİP ve Bungalow OS örneklerini inceleyin.',
     intro: 'Bir yönetim ekranı hazırlamak ile işletilebilir bir SaaS kurmak aynı kapsam değil. Kullanıcı rolleri, veri ayrımı, destek, izleme ve maliyetler ürünün ilk tasarımında yer almalı.',
     sections: [
       ['Önce iş akışı', 'Kimin hangi kaydı oluşturduğunu, kimin onay verdiğini ve hangi işlemlerin iz bırakması gerektiğini çıkarıyoruz. İlk sürümü, bu akışın çalıştırılabilir en küçük kapsamına göre planlıyoruz.'],

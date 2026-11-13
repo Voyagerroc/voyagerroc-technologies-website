@@ -51,3 +51,9 @@ assert.equal(revalidated.status,304);assert.equal(revalidated.headers.get('Cache
 const analytics=await edge.fetch(new Request(env.CANONICAL_ORIGIN+'/api/analytics'),{...env,ANALYTICS_ENABLED:'false'});
 assert.match(analytics.headers.get('Cache-Control'),/no-store/);
 console.log('PASS: bounded GET/HEAD static caching, JS MIME aliases, HTML/error/redirect exclusions, validators, 304 and uncached analytics.');
+// Trailing-slash redirects are permanent, and HTML declares its charset.
+const slash=await edge.fetch(new Request(env.CANONICAL_ORIGIN+'/en'),{...env,ASSETS:{fetch:async()=>new Response(null,{status:307,headers:{Location:'/en/'}})}});
+assert.equal(slash.status,308,'Trailing-slash redirect must be permanent');assert.equal(slash.headers.get('Location'),'/en/');
+const page=await edge.fetch(new Request(env.CANONICAL_ORIGIN+'/en/'),{...env,ASSETS:{fetch:async()=>new Response('<!doctype html>',{headers:{'Content-Type':'text/html'}})}});
+assert.equal(page.status,200);assert.equal(page.headers.get('Content-Type'),'text/html; charset=utf-8');
+console.log('PASS: permanent trailing-slash redirect and explicit HTML charset.');

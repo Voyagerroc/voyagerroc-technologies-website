@@ -7,6 +7,7 @@ import {fileURLToPath} from 'node:url';
 import {releases} from '../content/releases.mjs';
 import {refineHome} from './refine-home.mjs';
 import {buildEnglish} from './build-english.mjs';
+import {writeSitemap} from './seo.mjs';
 import {privacyConfig} from '../content/privacy.mjs';
 import {products as searchProducts,services} from '../content/search.mjs';
 import {studies,payradarDemo,payradarArchiveDemo} from '../content/studies.mjs';
@@ -16,7 +17,6 @@ import {buildEnquiry} from './build-enquiry.mjs';
 import {buildFounder} from './build-founder.mjs';
 import {buildPortfolio} from './build-portfolio.mjs';
 import {buildSupport} from './build-support.mjs';
-import {supportPage} from '../content/support.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),dist=path.join(root,'dist');
 // Preserve upstream sources/licenses; serve one tree-shaken, minified 3D module.
 await bundle({entryPoints:[path.join(dist,'aperture.js')],outfile:path.join(dist,'scene-3d.min.js'),bundle:true,minify:true,format:'esm',target:'es2022',sourcemap:false,legalComments:'eof'});
@@ -40,8 +40,8 @@ const statuses={web:'Web erişimi mevcut',beta:'Test sürümü',prototype:'Geli�
 const footer='<footer><a href="/">Ana sayfa</a><a href="/hakkimizda/">Marka hakkında</a><a href="/destekler/">Program destekleri</a><a href="/yasal/">Hukuki bilgiler</a><a href="/yasal/kvkk/">KVKK aydınlatma</a><a href="/yasal/iletisim/">İşletmeci ve iletişim</a></footer>';
 const faviconTags='<link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="icon" type="image/png" sizes="48x48" href="/assets/brand/favicon-48x48.png"><link rel="icon" type="image/png" sizes="96x96" href="/assets/brand/favicon-96x96.png"><link rel="icon" type="image/png" sizes="192x192" href="/assets/brand/favicon-192x192.png"><link rel="icon" type="image/svg+xml" href="/assets/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/assets/brand/apple-touch-icon.png">';
 const shell=(title,head,body)=>'<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#FFFFFF"><title>'+escape(title)+'</title>'+faviconTags+'<link rel="stylesheet" href="/product.css">'+head+'</head><body><a class="skip-link" href="#content">İçeriğe geç</a><header><a class="product-brand" href="/">VOYAGERROC <small>TECHNOLOGIES</small></a><a href="/#products">Tüm ürünler ↗</a></header><main id="content">'+body+'</main>'+footer+'</body></html>\n';
-const enquiryUrls=buildEnquiry({dist,origin,shell,metadata,jsonld,escape});
-const supportUrl=buildSupport({dist,origin,shell,metadata,jsonld,escape});
+buildEnquiry({dist,origin,shell,metadata,jsonld,escape});
+buildSupport({dist,origin,shell,metadata,jsonld,escape});
 const demoSection=(demo=payradarDemo)=>'<section class="demo-section"><h2>'+escape(demo.title)+'</h2><video class="product-demo'+(demo.native?' product-demo-native':'')+'" controls playsinline preload="none" width="'+demo.width+'" height="'+demo.height+'" poster="'+escape(demo.poster)+'" aria-label="'+escape(demo.title)+'"><source src="'+escape(demo.src)+'" type="video/mp4"><track kind="captions" src="'+escape(demo.captions)+'" srclang="tr" label="Türkçe">Tarayıcınız videoyu oynatamıyor. <a href="'+escape(demo.src)+'">Videoyu MP4 olarak açın.</a></video><p class="fineprint">'+escape(demo.note)+'</p><details><summary>Videonun metin özeti</summary><ol>'+demo.summary.map(text=>'<li>'+escape(text)+'</li>').join('')+'</ol></details></section>';
 
 for(const p of featured){
@@ -74,7 +74,8 @@ for(const study of studies){
 }
 // Public Android access guide. Google, not this page, confirms tester membership.
 const androidProducts=box.window.PORTFOLIO_PROJECTS.filter(p=>p.androidTest);
-const androidTitle='Android Testine Katılım | Voyagerroc Technologies';
+const androidTitle='Android Testine Katılım | Voyagerroc Technologies',androidUrl=origin+'/android/';
+const androidDescription='PayRadar, LaserDeck PTT ve EİP Android testlerine erişim, testçi katılımı ve Google Play kurulum adımları.';
 const androidCards=androidProducts.map(p=>{
  const a=androidAccess[p.id];if(!a)throw Error('Missing Android access config: '+p.id);
  if(!['restricted','group','open','production','pending','review'].includes(a.mode))throw Error('Unknown Android access mode');
@@ -90,7 +91,7 @@ const androidCards=androidProducts.map(p=>{
 }).join('');
 const androidBody='<nav class="breadcrumb" aria-label="Sayfa yolu"><a href="/">Ana sayfa</a><span>/</span><span>Android erişimi</span></nav><p class="kicker">ANDROID · ERİŞİM VE TEST KATILIMI</p><h1>Uygulamayı seç.<br>Erişim durumunu kontrol et.</h1><p class="lead">Test grubumuza herkes katılabilir. Android’de indirme erişimi, ilgili Google Play test kanalı açıldıktan ve katılımı onayladıktan sonra sağlanır. Her uygulamanın güncel durumu aşağıda.</p><nav class="product-links" aria-label="Android uygulamaları">'+androidProducts.map(p=>'<a class="product-link" href="#'+p.id+'">'+escape(p.name)+'</a>').join('')+'<a class="product-link" href="#tabela">Tabela · Web</a></nav>'+androidCards+'<section id="tabela"><p class="kicker">HERKESE AÇIK WEB UYGULAMASI</p><h2>Tabela</h2><p>Tabela’yı tarayıcıda açabilirsiniz. Google Grubu veya Android testçi kaydı gerekmez.</p><a class="product-link" href="'+escape(box.window.PORTFOLIO_PROJECTS.find(p=>p.id==='tabela').live)+'" target="_blank" rel="noopener noreferrer">Tabela’yı aç ↗</a></section><section><h2>“Bu uygulama kullanılamıyor” yazıyorsa</h2><ul><li>Play Store ile katılım bağlantısında aynı Google hesabının açık olduğunu kontrol edin.</li><li>İç veya kapalı testlerde bağlantıyı açmak tek başına erişim sağlamaz; testçi listesi veya grup üyeliği de gerekir.</li><li>Google Play’de katılımı onayladıktan sonra mağazaya yansıması zaman alabilir. Ülke, cihaz ve Android sürümü koşulları ayrıca geçerlidir.</li><li>Google tarafından henüz yayımlanmamış bir test sürümüne bu web sitesi erişim açamaz.</li></ul><p>Bu site Google hesabınızı veya testçi üyeliğinizi göremez. Bir düğmeye tıklamanızı “testçi oldunuz” olarak kaydetmeyiz. Google Play’deki onayı siz verirsiniz; dilediğinizde yine Google Play’den testten ayrılabilirsiniz.</p><p>Test erişimi için banka veya kart bilgisi istenmez. İncelemek istediğiniz ürünü belirtip <a href="mailto:erol@voyagerroctechnologies.com">iletişime geçebilirsiniz</a>.</p></section>';
 fs.mkdirSync(path.join(dist,'android'),{recursive:true});
-fs.writeFileSync(path.join(dist,'android/index.html'),shell(androidTitle,'<meta name="description" content="PayRadar, LaserDeck PTT ve EİP Android testlerine erişim, testçi katılımı ve Google Play kurulum adımları."><link rel="canonical" href="'+origin+'/android/">'+metadata(androidTitle,'Android test erişimi ve katılım adımları',origin+'/android/'),androidBody));
+fs.writeFileSync(path.join(dist,'android/index.html'),shell(androidTitle,'<meta name="description" content="'+escape(androidDescription)+'"><link rel="canonical" href="'+androidUrl+'">'+metadata(androidTitle,androidDescription,androidUrl)+jsonld({'@context':'https://schema.org','@graph':[{'@type':'WebPage','@id':androidUrl,url:androidUrl,name:androidTitle,description:androidDescription,inLanguage:'tr',isPartOf:{'@id':origin+'/#website'}},{'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Ana sayfa',item:origin+'/'},{'@type':'ListItem',position:2,name:'Android erişimi',item:androidUrl}]}]}),androidBody));
 
 let home=fs.readFileSync(path.join(root,'src/home.html'),'utf8');
 // Keep the server-rendered story and the JavaScript-enhanced story on the same enrollment route.
@@ -106,9 +107,9 @@ const brandNode={'@type':'Brand','@id':origin+'/#brand',name:brand.name,alternat
 // The legal operator is a person; do not invent a registered corporation for SEO.
 const operatorNode={'@type':'Person','@id':origin+'/#operator',name:brand.founderProfile.name,alternateName:brand.founderProfile.alternateNames,url:origin+brand.founderProfile.path,description:'Voyagerroc Technologies kurucusu ve site işletmecisi; web ve mobil uygulamalar, SaaS ürün çalışmaları ve AI iş akışları üzerinde çalışır.',sameAs:[brand.founderProfile.url],brand:{'@id':origin+'/#brand'}};
 const organizationNode={'@type':'Organization','@id':origin+'/#organization',name:brand.name,legalName:brand.name,alternateName:brand.alternateNames,url:origin+'/',description:brand.description,disambiguatingDescription:brand.identity,logo:origin+'/assets/brand/voyagerroc-technologies-logo-512.png',image:origin+'/assets/social-card.png',slogan:'Model, araç ve veriyi birlikte tasarlıyoruz',founder:{'@id':operatorNode['@id']},brand:{'@id':brandNode['@id']},knowsAbout:brandNode.knowsAbout,sameAs:brandNode.sameAs,contactPoint:{'@type':'ContactPoint',email:'erol@voyagerroctechnologies.com',contactType:'customer support',availableLanguage:['Turkish','English']}};
-const websiteNode={'@type':'WebSite','@id':origin+'/#website',url:origin+'/',name:brand.name,alternateName:[...brand.alternateNames,'voyagerroctechnologies.com'],inLanguage:'tr',description,publisher:{'@id':operatorNode['@id']},about:{'@id':brandNode['@id']}};
-const portfolioUrl=buildPortfolio({dist,origin,projects:box.window.PORTFOLIO_PROJECTS,brand,shell,metadata,jsonld,escape});
-const founderUrl=buildFounder({dist,origin,brand,brandNode,operatorNode,websiteNode,featured,shell,metadata,jsonld,escape});
+const websiteNode={'@type':'WebSite','@id':origin+'/#website',url:origin+'/',name:brand.name,alternateName:[...brand.alternateNames,'voyagerroctechnologies.com'],inLanguage:['tr','en'],description,publisher:{'@id':operatorNode['@id']},about:{'@id':brandNode['@id']}};
+buildPortfolio({dist,origin,projects:box.window.PORTFOLIO_PROJECTS,brand,shell,metadata,jsonld,escape});
+buildFounder({dist,origin,brand,brandNode,operatorNode,websiteNode,featured,shell,metadata,jsonld,escape});
 const schema={'@context':'https://schema.org','@graph':[websiteNode,{'@type':'WebPage','@id':origin+'/#page',url:origin+'/',name:title,description,inLanguage:'tr',isPartOf:{'@id':websiteNode['@id']},mainEntity:{'@id':brandNode['@id']}},brandNode,organizationNode,operatorNode,{'@type':'ItemList',name:'Voyagerroc Technologies ürün portföyü',itemListElement:featured.map((p,i)=>({'@type':'ListItem',position:i+1,name:p.name,url:origin+'/urunler/'+p.id+'/'}))}]};
 const aboutUrl=origin+brand.aboutPath,aboutTitle=brand.name+' Hakkında | Resmî Marka Bilgileri';
 const aboutDescription='Voyagerroc Technologies kurucusu Erol Taşcı, resmî marka bağlantıları ve PayRadar, LaserDeck PTT, EİP ürünlerinin geliştirme yaklaşımı hakkında bilgi edinin.';
@@ -139,26 +140,7 @@ home=home.replace(/<div class="hero-actions">[\s\S]*?<\/div>/,'<div class="hero-
 home=home.replace(/<div id="project-grid" class="project-grid">[\s\S]*?<\/div>/,'<div id="project-grid" class="project-grid">'+box.window.PORTFOLIO_PROJECTS.map(p=>'<article class="project-card"><h3>'+escape(p.name)+'</h3><p class="card-description">'+escape(p.tr.description)+'</p><a class="card-action" href="'+(p.featured?'/urunler/'+p.id+'/':'/proje-gorusmesi/?product='+encodeURIComponent(p.name))+'">'+(p.featured?'Çalışmayı inceleyin':'Çalışma hakkında konuşalım')+' ↗</a></article>').join('')+'</div>');
 home=refineHome(home,{escape,projects:catalogue});
 fs.writeFileSync(path.join(dist,'index.html'),home);
-const englishUrls=buildEnglish({dist,origin,home,projects:catalogue,services,escape,shell,metadata,jsonld});
-let sitemap=fs.readFileSync(path.join(dist,'sitemap.xml'),'utf8');
-const existingUrls=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1]);
-const allUrls=[...new Set([...existingUrls,...englishUrls,portfolioUrl,founderUrl,supportUrl,...enquiryUrls,origin+brand.aboutPath,origin+'/android/',...featured.map(p=>origin+'/urunler/'+p.id+'/'),...services.map(s=>origin+'/calismalar/'+s.slug+'/'),...studies.map(s=>origin+'/notlar/'+s.slug+'/')])];
-sitemap='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+allUrls.map(url=>'<url><loc>'+url+'</loc><lastmod>'+([portfolioUrl,founderUrl,...enquiryUrls,...featured.map(p=>origin+'/urunler/'+p.id+'/'),...services.map(s=>origin+'/calismalar/'+s.slug+'/'),origin+'/',aboutUrl,origin+'/android/',origin+'/yasal/cerezler/',origin+'/yasal/kvkk/',origin+'/urunler/pharos/',origin+'/urunler/tabela/',...studies.filter(s=>s.modified).map(s=>origin+'/notlar/'+s.slug+'/'),...androidProducts.map(p=>origin+'/urunler/'+p.id+'/')].includes(url)?'2026-10-27':'2026-10-25')+'</lastmod></url>').join('')+'</urlset>\n';fs.writeFileSync(path.join(dist,'sitemap.xml'),sitemap);
-const today=new Date().toISOString().split('T')[0];
-const modifiedPages=new Map([
-  ...englishUrls.map(url=>[url,today]),
-  ...['/yasal/','/yasal/gizlilik/','/yasal/kvkk/','/yasal/cerezler/','/proje-gorusmesi/','/en/project-enquiry/'].map(route=>[origin+route,'2026-11-06']),
-  [supportUrl,supportPage.modified],
-  ...studies.filter(s=>s.modified).map(s=>[origin+'/notlar/'+s.slug+'/',s.modified]),
-  [aboutUrl,today],
-  [founderUrl,today],
-  [portfolioUrl,today],
-  [origin+'/',today],
-  [origin+'/android/',today],
-  ...featured.map(p=>[origin+'/urunler/'+p.id+'/',today])
-]);
-sitemap=sitemap.replace(/<url><loc>([^<]+)<\/loc><lastmod>[^<]+<\/lastmod><\/url>/g,(entry,url)=>modifiedPages.has(url)?'<url><loc>'+url+'</loc><lastmod>'+modifiedPages.get(url)+'</lastmod></url>':entry);
-fs.writeFileSync(path.join(dist,'sitemap.xml'),sitemap);
+buildEnglish({dist,origin,home,projects:catalogue,services,escape,shell,metadata,jsonld});
 fs.writeFileSync(path.join(dist,'404.html'),shell('Sayfa bulunamadı — Voyagerroc Technologies','<meta name="robots" content="noindex,nofollow">','<p class="kicker">404 / SAYFA BULUNAMADI</p><h1>Bu adreste bir sayfa yok.</h1><p class="lead">Ürünleri ana sayfadan inceleyebilirsiniz.</p><a class="product-link" href="/">Ana sayfaya dön ↗</a>'));
 const policyFor=values=>"default-src 'none'; script-src 'self' 'wasm-unsafe-eval' "+[...new Set(values)].join(' ')+"; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests";
 const csp=policyFor(hashes);
@@ -174,6 +156,8 @@ const securityHeaders=Object.fromEntries(headers.split('\n\n')[0].split('\n').sl
 fs.mkdirSync(path.join(root,'src'),{recursive:true});fs.writeFileSync(path.join(root,'src/security-headers.mjs'),'// Generated by scripts/build-site.mjs. Do not edit.\nexport const securityHeaders = '+JSON.stringify(securityHeaders,null,2)+';\n');
 if(privacyConfig.analyticsAvailable&&privacyConfig.version.endsWith('-preview'))throw Error('Analytics activation requires a fresh consent version.');
 fs.writeFileSync(path.join(dist,'privacy-config.js'),'window.VT_PRIVACY = '+JSON.stringify(privacyConfig)+';\n');
-function injectPrivacy(dir){for(const entry of fs.readdirSync(dir,{withFileTypes:true})){const file=path.join(dir,entry.name);if(entry.isDirectory())injectPrivacy(file);else if(entry.name.endsWith('.html')){let html=fs.readFileSync(file,'utf8');html=html.replace(/<!-- privacy-assets:start -->[\s\S]*?<!-- privacy-assets:end -->/g,'').replace(/<!-- privacy-trigger:start -->[\s\S]*?<!-- privacy-trigger:end -->/g,'');html=html.replace('</head>','<!-- privacy-assets:start --><link rel="stylesheet" href="/consent.css"><script defer src="/privacy-config.js"></script><script defer src="/consent.js"></script><!-- privacy-assets:end --></head>');html=html.replace('</footer>','<!-- privacy-trigger:start --><button type="button" class="privacy-settings-trigger" data-privacy-open>Gizlilik tercihleri</button><!-- privacy-trigger:end --></footer>');fs.writeFileSync(file,html);}}}
+function injectPrivacy(dir){for(const entry of fs.readdirSync(dir,{withFileTypes:true})){const file=path.join(dir,entry.name);if(entry.isDirectory())injectPrivacy(file);else if(entry.name.endsWith('.html')){let html=fs.readFileSync(file,'utf8');html=html.replace(/<!-- privacy-assets:start -->[\s\S]*?<!-- privacy-assets:end -->/g,'').replace(/<!-- privacy-trigger:start -->[\s\S]*?<!-- privacy-trigger:end -->/g,'');html=html.replace('</head>','<!-- privacy-assets:start --><link rel="stylesheet" href="/consent.css"><script defer src="/privacy-config.js"></script><script defer src="/consent.js"></script><!-- privacy-assets:end --></head>');html=html.replace('</footer>','<!-- privacy-trigger:start --><button type="button" class="privacy-settings-trigger" data-privacy-open>'+(html.includes('<html lang="en">')?'Privacy preferences':'Gizlilik tercihleri')+'</button><!-- privacy-trigger:end --></footer>');fs.writeFileSync(file,html);}}}
 injectPrivacy(dist);
-console.log('Built '+featured.length+' product pages and '+services.length+' project pages, sitemap and hash-based security policy.');
+// Generated last so it reflects exactly what is published.
+const sitemapUrls=writeSitemap({dist,origin,manifestFile:path.join(root,'content/lastmod.json')});
+console.log('Built '+featured.length+' product pages and '+services.length+' project pages, a '+sitemapUrls.length+'-URL sitemap and hash-based security policy.');
