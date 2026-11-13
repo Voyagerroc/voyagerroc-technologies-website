@@ -12,3 +12,15 @@
 .portfolio-tools{display:grid;gap:10px;margin:28px 0;padding:22px;border:1px solid #F0D5D8}.portfolio-tools[hidden],.portfolio-entry[hidden]{display:none}.portfolio-tools input,.portfolio-tools select{font:inherit;min-height:44px;padding:10px;border:1px solid #784D55;border-radius:4px;background:white;color:#20070B;width:100%}
 
 .product-demo-native{width:min(100%,360px);aspect-ratio:9/20;height:auto;display:block;margin:24px auto;object-fit:contain}
+
+/* Linear engine (design/linear-engine): type scale, hairlines and pill controls shared with the homepage. CSS only. */
+body{letter-spacing:-.011em;-webkit-font-smoothing:antialiased}
+h1{letter-spacing:-.04em;line-height:1.04;font-weight:600;text-wrap:balance}
+h2{letter-spacing:-.03em;line-height:1.1;font-weight:600}
+.kicker{font-size:11px;letter-spacing:.08em;font-weight:500}
+.lead{line-height:1.5;letter-spacing:-.015em}
+.status{border-radius:999px}
+.product-link,.product-links a,.portfolio-tools a,.portfolio-tools button{border-radius:999px;transition:transform .2s cubic-bezier(.22,1,.36,1),background .18s,color .18s}
+.product-link:hover,.product-links a:hover{transform:translateY(-1px)}
+.tags>*{border-radius:999px}
+.support-card,.android-access-card,.portfolio-entry,.product-evidence,.product-demo{border-radius:12px}

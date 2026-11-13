@@ -3,3 +3,11 @@
 @media(max-width:850px){.legal-layout{grid-template-columns:1fr;gap:30px;padding-top:25px}.legal-nav{position:static;display:flex;flex-wrap:wrap;gap:4px}.legal-nav a{border:1px solid var(--line);padding:7px 10px;font-size:11px}.legal-nav a[aria-current=page]{border-color:var(--cyan)}.legal-header{padding:22px 0}.legal-kicker{margin-top:18px}.legal-card-grid{grid-template-columns:1fr}.legal-article{max-width:none}.legal-lead{font-size:15px}body{font-size:14px}h2{font-size:21px}.legal-header>a:last-child{font-size:11px}.legal-brand{font-size:15px}}
 @media print{body{background:white;color:black}.legal-nav,.legal-header,.legal-footer,.legal-button{display:none}.legal-layout{display:block}.legal-callout{background:#eee}.legal-sources a,a{color:black}table{min-width:0}h2{break-after:avoid}}
 .legal-table-hint{display:none}@media(max-width:650px){.legal-table-hint{display:block;font-size:11px;color:var(--muted);margin:18px 0 -10px}}
+
+/* Linear engine (design/linear-engine): shared type scale and pill controls. CSS only. */
+body{letter-spacing:-.011em;-webkit-font-smoothing:antialiased}
+h1{letter-spacing:-.04em;line-height:1.05;font-weight:600;text-wrap:balance}
+h2{letter-spacing:-.03em;font-weight:600}
+.legal-kicker{font-size:11px;letter-spacing:.08em;font-weight:500}
+.legal-button{border-radius:999px}
+.legal-card,.legal-callout{border-radius:12px}
