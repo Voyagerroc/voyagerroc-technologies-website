@@ -33,6 +33,12 @@ function isStaticAsset(url, response) {
   return mime === expectedMime || (['.js', '.mjs'].includes(ext) && mime === 'text/javascript');
 }
 
+// Pages that moved. Old addresses stay reachable through a permanent redirect.
+const MOVED = new Map([
+  ['/calismalar/si-is-akisi-otomasyonu/', '/calismalar/ai-is-akisi-otomasyonu/'],
+  ['/en/calismalar/si-is-akisi-otomasyonu/', '/en/calismalar/ai-is-akisi-otomasyonu/']
+]);
+
 // Transport guard and consent-gated, minimised telemetry. No identity lookup.
 export default {
  async fetch(request,env){
@@ -56,6 +62,8 @@ export default {
    headers.set('Allow','GET, HEAD');headers.set('Content-Type','text/plain; charset=utf-8');
    return new Response('Method not allowed',{status:405,headers});
   }
+  const moved=MOVED.get(url.pathname.endsWith('/')?url.pathname:url.pathname+'/');
+  if(moved){headers.set('Location',moved+url.search);return new Response(null,{status:308,headers});}
   const asset=await env.ASSETS.fetch(request);
   // Static Assets answers /page with a temporary 307 to /page/. The canonical
   // URL never changes, so tell crawlers the move is permanent.

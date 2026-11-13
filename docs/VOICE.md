@@ -39,4 +39,4 @@ Homepage text lives in `dist/app.js`, with a Turkish fallback in `dist/index.htm
 
 ## Owner terminology update
 
-Public interface text uses **Si**, including English UI copy, metadata and product descriptions. Preserve technical identifiers and actual repository URLs. This is the owner’s naming preference; it does not imply achieved superintelligence or foundation-model research. The APERTURE scene is a conceptual five-domain portfolio study, not a live integration map.
+Public interface text uses **AI** (owner decision of 13 November 2026, replacing the earlier "Si" wording), including English UI copy, metadata and product descriptions. Preserve technical identifiers and actual repository URLs. This is the owner’s naming preference; it does not imply achieved superintelligence or foundation-model research. The APERTURE scene is a conceptual five-domain portfolio study, not a live integration map.

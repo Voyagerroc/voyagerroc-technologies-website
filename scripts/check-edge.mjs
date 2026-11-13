@@ -56,4 +56,5 @@ const slash=await edge.fetch(new Request(env.CANONICAL_ORIGIN+'/en'),{...env,ASS
 assert.equal(slash.status,308,'Trailing-slash redirect must be permanent');assert.equal(slash.headers.get('Location'),'/en/');
 const page=await edge.fetch(new Request(env.CANONICAL_ORIGIN+'/en/'),{...env,ASSETS:{fetch:async()=>new Response('<!doctype html>',{headers:{'Content-Type':'text/html'}})}});
 assert.equal(page.status,200);assert.equal(page.headers.get('Content-Type'),'text/html; charset=utf-8');
-console.log('PASS: permanent trailing-slash redirect and explicit HTML charset.');
+for(const prefix of ['','/en']){const movedPage=await edge.fetch(new Request(env.CANONICAL_ORIGIN+prefix+'/calismalar/si-is-akisi-otomasyonu/?ref=x'),env);assert.equal(movedPage.status,308);assert.equal(movedPage.headers.get('Location'),prefix+'/calismalar/ai-is-akisi-otomasyonu/?ref=x');}
+console.log('PASS: permanent trailing-slash redirect, moved-page redirects and explicit HTML charset.');

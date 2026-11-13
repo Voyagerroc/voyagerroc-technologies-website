@@ -372,7 +372,7 @@ window.PORTFOLIO_PROJECTS = [
   },
   {
     "id": "ai-news",
-    "name": "Güncel Si Haberleri",
+    "name": "Güncel AI Haberleri",
     "category": "intelligence",
     "status": "source",
     "stack": [

@@ -89,7 +89,7 @@ export const services = [
     ], examples: ['eip', 'bungalow']
   },
   {
-    slug: 'si-is-akisi-otomasyonu', title: 'AI Destekli İş Akışı ve Ajan Tasarımı',
+    slug: 'ai-is-akisi-otomasyonu', title: 'AI Destekli İş Akışı ve Ajan Tasarımı',
     description: 'AI destekli iş akışlarında bağlam, kaynak erişimi, insan onayı ve değerlendirme ölçütlerini planlayın. Pharos ve Bungalow OS yaklaşımlarını inceleyin.',
     intro: 'Bir iş akışına model bağlamak tek başına yeterli değil. Hangi kaynağın kullanılacağı, hangi aracın neye erişebileceği ve hangi adımda insan onayı gerektiği birlikte tasarlanmalı.',
     sections: [

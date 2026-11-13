@@ -22,23 +22,23 @@ https://voyagerroc-technologies.voyagerroc.workers.dev/*
 /android/index.html
   Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval' 'sha256-4doBFdKeskkoK755dVdHsB7SIMqbaEV7pg3hAgmosCo='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
 
+/calismalar/ai-is-akisi-otomasyonu/
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval' 'sha256-hpy7WjUB9K4uqXcCzfFA30oJfisWRjqjUab5MS3x1vU='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
+
+/calismalar/ai-is-akisi-otomasyonu/index.html
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval' 'sha256-hpy7WjUB9K4uqXcCzfFA30oJfisWRjqjUab5MS3x1vU='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
+
 /calismalar/
-  Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval' 'sha256-jTDWOMiwwGShZWmRlc5vp2fI355FTerU6YPl12ByjD0='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval' 'sha256-Sn3osmj9cZ569QSlxibpg3U0pl9sQgAm/I82QCHYvXA='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
 
 /calismalar/index.html
-  Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval' 'sha256-jTDWOMiwwGShZWmRlc5vp2fI355FTerU6YPl12ByjD0='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval' 'sha256-Sn3osmj9cZ569QSlxibpg3U0pl9sQgAm/I82QCHYvXA='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
 
 /calismalar/saas-gelistirme/
   Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval' 'sha256-OBD+mqU5itPJ8BUlyW5863Ks3bib8RJN67qD7DPTUqk='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
 
 /calismalar/saas-gelistirme/index.html
   Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval' 'sha256-OBD+mqU5itPJ8BUlyW5863Ks3bib8RJN67qD7DPTUqk='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
-
-/calismalar/si-is-akisi-otomasyonu/
-  Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval' 'sha256-PpOLkbWeTdziOmeGMdLO4s+DcMzVXcgLEefFw4TtSTE='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
-
-/calismalar/si-is-akisi-otomasyonu/index.html
-  Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval' 'sha256-PpOLkbWeTdziOmeGMdLO4s+DcMzVXcgLEefFw4TtSTE='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
 
 /calismalar/web-mobil-uygulama-gelistirme/
   Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval' 'sha256-WuJhzF57HMM7LIctHktAn+EKWHW9j+NPJuVooUa6ukM='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
@@ -58,6 +58,12 @@ https://voyagerroc-technologies.voyagerroc.workers.dev/*
 /en/about/index.html
   Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval' 'sha256-2mJuDQzUWUPKbnZeDS3uy7UZmzRbYnAUQtmpF2GTuco='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
 
+/en/calismalar/ai-is-akisi-otomasyonu/
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval' 'sha256-n+ACsLJRF1CUTjRSMDkOl1XMYArpObe/OuNJzzIUEZ4='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
+
+/en/calismalar/ai-is-akisi-otomasyonu/index.html
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval' 'sha256-n+ACsLJRF1CUTjRSMDkOl1XMYArpObe/OuNJzzIUEZ4='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
+
 /en/calismalar/
   Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval' 'sha256-W/rW9VuY5VEaHA7vv4zbzPxMYqqhXr+m58pfluUITwc='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
 
@@ -69,12 +75,6 @@ https://voyagerroc-technologies.voyagerroc.workers.dev/*
 
 /en/calismalar/saas-gelistirme/index.html
   Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval' 'sha256-WgNA6cSHfnxeksn+WF7swQpQXz3ov1GS5mkx+JUrLmA='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
-
-/en/calismalar/si-is-akisi-otomasyonu/
-  Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval' 'sha256-CIj8q9y/p0owMadmQlWNKv3cuCEIC/QM62tWT2Up4Ms='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
-
-/en/calismalar/si-is-akisi-otomasyonu/index.html
-  Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval' 'sha256-CIj8q9y/p0owMadmQlWNKv3cuCEIC/QM62tWT2Up4Ms='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
 
 /en/calismalar/web-mobil-uygulama-gelistirme/
   Content-Security-Policy: default-src 'none'; script-src 'self' 'wasm-unsafe-eval' 'sha256-APkqQLvwvliaZ+5zz/qSltA7dUDoXLXRipbclAB2K/8='; script-src-attr 'none'; connect-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'; form-action 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests
