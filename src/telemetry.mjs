@@ -13,11 +13,18 @@ export function routeClass(pathname){
 }
 export function deviceClass(ua){return /bot|crawler|spider/i.test(ua)?'automation':/ipad|tablet/i.test(ua)?'tablet':/mobile|android|iphone/i.test(ua)?'mobile':'desktop-or-other';}
 export function browserClass(ua){return /Edg\//.test(ua)?'Edge':/Firefox\//.test(ua)?'Firefox':/Chrome\//.test(ua)?'Chromium':/Safari\//.test(ua)?'Safari':'Other';}
-export function securityRecord(request,status){
+export function createSecurityRecorder({now=Date.now,write=value=>console.log(value),limit=20}={}){
+ let minute=-1;const counts=new Map();
+ return (request,status)=>{
  // No request URL, query, IP, UA, cookie, body or user identifier is logged.
  if(status!==405&&status!==429&&status<500&&!(status===404&&routeClass(new URL(request.url).pathname)==='other'))return;
- console.log({kind:'vrt_security',minute:new Date().toISOString().slice(0,16),method:['GET','HEAD','POST','OPTIONS'].includes(request.method)?request.method:'OTHER',status,route:routeClass(new URL(request.url).pathname)});
+ const time=now(),window=Math.floor(time/60000);if(window!==minute){minute=window;counts.clear();}
+ const bucket=status>=500?'5xx':String(status),count=counts.get(bucket)||0;if(count>=limit)return;counts.set(bucket,count+1);
+ write({kind:'vrt_security',minute:new Date(time).toISOString().slice(0,16),method:['GET','HEAD','POST','OPTIONS'].includes(request.method)?request.method:'OTHER',status,route:routeClass(new URL(request.url).pathname)});
+ };
 }
+// Per-isolate log budget, not a global request limiter or provider cost ceiling.
+export const securityRecord=createSecurityRecorder();
 export async function collectAnalytics(request,env){
  const headers={'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow'};
  const reply=(status,message)=>new Response(JSON.stringify({message}),{status,headers});
